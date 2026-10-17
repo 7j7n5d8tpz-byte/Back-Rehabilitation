@@ -58,6 +58,9 @@ the array is the order you do them in.
 - `"unit": "bw"` for bodyweight exercises — the app then shows no load field.
 - `"timed": true` for carries and planks — the app labels the second box
   *sec* instead of *reps*.
+- `"ss": 1` marks a superset. Exercises sharing a number must sit next to each
+  other; the PDF shows an *SS1* tag and the app appends `, SS1` to the sets.
+  `build.py` stops if a superset is split up or has only one exercise.
 
 ### One thing to be careful about
 

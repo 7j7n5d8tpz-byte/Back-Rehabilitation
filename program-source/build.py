@@ -70,12 +70,25 @@ def esc(s):
 # PDF rendering
 # --------------------------------------------------------------------------
 
+def check_supersets(d):
+    """Exercises sharing an 'ss' number must sit next to each other, at least two of them."""
+    for pnum, ph in d["phases"].items():
+        for letter, day in ph["days"].items():
+            tags = [e.get("ss") for e in day["exercises"]]
+            for t in set(tags) - {None}:
+                run = [j for j, u in enumerate(tags) if u == t]
+                if len(run) < 2 or run != list(range(run[0], run[0] + len(run))):
+                    sys.exit("Phase {} Day {}: superset {} is not a run of 2+ adjacent exercises"
+                             .format(pnum, letter, t))
+
+
 def render_exercise_table(day):
     rows = []
     for e in day["exercises"]:
+        tag = '<span class="ss">SS{}</span>'.format(e["ss"]) if e.get("ss") else ""
         rows.append(
-            '  <tr><td class="n">{n}</td><td>{s}</td><td>{r}</td><td>{c}</td></tr>'.format(
-                n=e["name"], s=e["sets"], r=e.get("rpe", ""), c=esc(e.get("cue"))
+            '  <tr><td class="n">{t}{n}</td><td>{s}</td><td>{r}</td><td>{c}</td></tr>'.format(
+                t=tag, n=e["name"], s=e["sets"], r=e.get("rpe", ""), c=esc(e.get("cue"))
             )
         )
     return (
@@ -276,8 +289,11 @@ def exercise_js(e):
     cue = app_field(e, "cue", plain(e.get("cue", "")))
     unit = app_field(e, "unit", "kg")
     timed = app_field(e, "timed", False)
+    if e.get("ss"):
+        # suffix, not prefix: the app's flare mode rewrites a leading "N x"
+        sets += ", SS{}".format(e["ss"])
 
-    bits = ["n:" + js(name), "s:" + js(sets), "u:" + js(unit)]
+    bits =["n:" + js(name), "s:" + js(sets), "u:" + js(unit)]
     if timed:
         bits.append("t:1")
     if e.get("group"):
@@ -440,6 +456,7 @@ def patch_app(d):
 
 def main():
     d = json.loads(DATA.read_text(encoding="utf-8"))
+    check_supersets(d)
     args = set(sys.argv[1:])
 
     if "--app-only" not in args:

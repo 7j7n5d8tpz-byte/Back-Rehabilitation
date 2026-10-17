@@ -115,6 +115,8 @@ table.ex td { font-size: 8.8pt; padding: 4pt 7pt; vertical-align: top;
               border-bottom: 0.5pt solid var(--hairline); }
 table.ex tbody tr:nth-child(odd) td { background: var(--wash); }
 table.ex td.n { color: var(--navy); font-weight: bold; }
+table.ex td.n .ss { display: inline-block; margin-right: 4pt; padding: 0 3pt; border-radius: 2pt;
+                    background: var(--navy); color: #fff; font-size: 6.8pt; }
 table.ex .c1 { width: 29%; }
 table.ex .c2 { width: 15%; }
 table.ex .c3 { width: 10%; }
