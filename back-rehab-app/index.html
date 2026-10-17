@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Back Rehab">
+<meta name="theme-color" content="#111820">
+<title>Back Rehab</title>
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%231d3557'/%3E%3Ctext x='90' y='122' font-size='96' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3EL5%3C/text%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:#111820;color:#e8edf2;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:16px;-webkit-text-size-adjust:100%}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 20px) 0}
+.wrap{max-width:600px;margin:0 auto;padding:0 16px}
+header{padding:18px 0 12px}
+h1{font-size:19px;margin:0;font-weight:700;letter-spacing:-.3px}
+.sub{font-size:13px;color:#8b9bab;margin-top:3px}
+h2{font-size:17px;margin:0 0 12px;font-weight:700}
+.card{background:#1a232e;border:1px solid #26333f;border-radius:14px;padding:14px;margin-bottom:12px}
+.big{display:block;width:100%;padding:17px;border-radius:14px;border:none;
+  background:#1d3557;color:#fff;font-size:16px;font-weight:600;margin-bottom:10px;text-align:left}
+.big .d{display:block;font-size:12.5px;font-weight:400;color:#a8c2de;margin-top:3px}
+.big.alt{background:#1a232e;border:1px solid #2f3d4b;color:#c8d4e0}
+.big.alt .d{color:#7b8b9b}
+.row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #26333f}
+.row:last-child{border-bottom:none}
+.row .nm{flex:1;min-width:0}
+.row .nm b{display:block;font-size:14.5px;font-weight:600}
+.row .nm span{display:block;font-size:11.5px;color:#7b8b9b;margin-top:2px}
+input,textarea,select{background:#111820;border:1px solid #33424f;color:#e8edf2;
+  border-radius:9px;padding:10px;font-size:16px;font-family:inherit;width:100%}
+input:focus,textarea:focus{outline:none;border-color:#4d7fb8}
+.num{width:64px;text-align:center;padding:9px 4px}
+.unit{font-size:11px;color:#7b8b9b;width:22px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+.chips button{padding:9px 14px;border-radius:9px;border:1px solid #33424f;
+  background:#1a232e;color:#c8d4e0;font-size:14px}
+.chips button.on{background:#1d3557;border-color:#4d7fb8;color:#fff;font-weight:600}
+.toggle{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.toggle b{font-size:14.5px;font-weight:600}
+.sw{width:50px;height:29px;border-radius:15px;background:#2f3d4b;border:none;position:relative;flex:none}
+.sw i{position:absolute;top:3px;left:3px;width:23px;height:23px;border-radius:50%;background:#8b9bab;transition:.16s}
+.sw.on{background:#1d5c40}.sw.on i{left:24px;background:#2fe08f}.sw.on.bad{background:#6e2119}.sw.on.bad i{background:#ff6b57}
+.save{display:block;width:100%;padding:17px;border-radius:14px;border:none;
+  background:#2fe08f;color:#0c1a13;font-size:16.5px;font-weight:700;margin-top:6px}
+.save:disabled{opacity:.45}
+.back{background:none;border:none;color:#6d9fd4;font-size:15px;padding:8px 0;margin-bottom:2px}
+.lbl{font-size:12px;color:#8b9bab;text-transform:uppercase;letter-spacing:.7px;margin:14px 0 5px;font-weight:600}
+.hint{font-size:12.5px;color:#7b8b9b;line-height:1.5;margin:6px 0 0}
+.dots{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.dot{width:26px;height:26px;border-radius:7px;background:#232f3c;font-size:9px;color:#6b7b8b;
+  display:flex;align-items:center;justify-content:center}
+.dot.green{background:#2fe08f;color:#0c1a13;font-weight:700}
+.dot.amber{background:#f5c542;color:#2b2205;font-weight:700}
+.dot.red{background:#ff6b57;color:#3a0f08;font-weight:700}
+.hist{font-size:13.5px;padding:9px 0;border-bottom:1px solid #26333f;display:flex;gap:9px;align-items:baseline}
+.hist:last-child{border-bottom:none}
+.pill{font-size:10px;font-weight:700;padding:3px 7px;border-radius:6px;flex:none}
+.pill.green{background:#1d5c40;color:#2fe08f}
+.pill.amber{background:#6b5313;color:#f5c542}
+.pill.red{background:#6e2119;color:#ff6b57}
+.warn{background:#2a1512;border:1px solid #6e2119;color:#ffb4a6;padding:11px 13px;
+  border-radius:11px;font-size:13.5px;line-height:1.5;margin-bottom:12px}
+.ok{background:#12261c;border:1px solid #1d5c40;color:#7fe8b5;padding:11px 13px;
+  border-radius:11px;font-size:13.5px;margin-bottom:12px}
+.hide{display:none}
+.ctr{text-align:center;padding:52px 20px;color:#8b9bab}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid2 .lbl{margin-top:8px}
+
+/* --- progression, history detail and flare mode --- */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{background:#1a232e;border:1px solid #26333f;border-radius:14px;padding:11px 11px 6px;text-align:left}
+.tile .gl{display:flex;align-items:center;gap:6px;font-size:12px;color:#8b9bab;font-weight:600}
+.tile .gl i{width:9px;height:9px;border-radius:3px;flex:none}
+.tile .v{font-size:25px;font-weight:700;margin-top:5px;line-height:1.05;letter-spacing:-.5px}
+.tile .v small{font-size:12px;font-weight:600;color:#7b8b9b;letter-spacing:0}
+.tile .dim{font-size:11.5px;color:#6b7b8b;margin-top:4px;line-height:1.35}
+.chip{display:inline-block;font-size:11px;font-weight:700;padding:2px 6px;border-radius:6px;margin-top:4px}
+.chip.up{background:#12261c;color:#7fe8b5}
+.chip.dn{background:#2a1512;color:#ffb4a6}
+.chip.fl{background:#232f3c;color:#8b9bab}
+.exrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #26333f}
+.exrow:last-child{border-bottom:none}
+.exrow .nm{flex:1;min-width:0}
+.exrow .nm b{display:block;font-size:13.5px;font-weight:600}
+.exrow .nm span{display:block;font-size:11.5px;color:#7b8b9b;margin-top:2px}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+.tbl th{text-align:left;color:#8b9bab;font-weight:600;font-size:11px;text-transform:uppercase;
+  letter-spacing:.6px;padding:5px 6px 5px 0;border-bottom:1px solid #26333f}
+.tbl td{padding:6px 6px 6px 0;border-bottom:1px solid #1f2a35;color:#c8d4e0}
+.tbl td:first-child{color:#8b9bab}
+.stage{display:flex;gap:4px;margin:9px 0 3px}
+.stage div{flex:1;height:5px;border-radius:3px;background:#2f3d4b}
+.stage div.on{background:#f5c542}
+.stage div.done{background:#1d5c40}
+.mini{display:flex;gap:7px;margin-top:9px}
+.mini button{flex:1;padding:10px 6px;border-radius:10px;border:1px solid #33424f;
+  background:#1a232e;color:#c8d4e0;font-size:13px;font-weight:600}
+.mini button.danger{border-color:#6e2119;color:#ff9d8b}
+.tapper{width:100%;text-align:left;background:none;border:none;padding:0;color:inherit;font:inherit}
+.legend{display:flex;align-items:center;gap:6px;font-size:12px;color:#8b9bab;margin:2px 0 8px}
+.legend i{width:14px;height:3px;border-radius:2px;flex:none}
+svg.ch{display:block;width:100%;height:auto;overflow:visible}
+
+/* --- 0-10 pain scale --- */
+.pain0{display:block;width:100%;padding:12px;border-radius:10px;border:1.5px solid #2f3d4b;
+  background:#232f3c;color:#7fe8b5;font-size:14px;font-weight:700;margin-bottom:5px;text-align:center}
+.pain0.on{background:#1d5c40;border-color:#2fe08f;color:#fff}
+.pain{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.pain button{padding:12px 0;border-radius:10px;border:1.5px solid #2f3d4b;background:#232f3c;
+  color:#8b9bab;font-size:15px;font-weight:700}
+.pain button.g{color:#6fd6a6}.pain button.a{color:#e0b53c}.pain button.r{color:#f08a76}
+.pain button.on.g{background:#1d5c40;border-color:#2fe08f;color:#fff}
+.pain button.on.a{background:#6b5313;border-color:#f5c542;color:#fff}
+.pain button.on.r{background:#6e2119;border-color:#ff6b57;color:#fff}
+.anch{display:flex;justify-content:space-between;gap:8px;font-size:10.5px;color:#6b7b8b;margin-top:6px}
+.derived{margin-top:11px;padding:10px 12px;border-radius:11px;font-size:12.5px;line-height:1.5}
+.derived b{display:block;font-size:10.5px;letter-spacing:.8px;margin-bottom:3px}
+.derived.green{background:#12261c;border:1px solid #1d5c40;color:#7fe8b5}
+.derived.amber{background:#241d06;border:1px solid #6b5313;color:#f5c542}
+.derived.red{background:#2a1512;border:1px solid #6e2119;color:#ffb4a6}
+.pnum{font-variant-numeric:tabular-nums;font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"><div class="ctr">Loading...</div></div>
+
+<script>
+var API = "https://mfzmyahruqghcnhjlkon.supabase.co/functions/v1/rehab";
+
+// <<< GENERATED FROM program-source/program.json - DO NOT EDIT BY HAND
+var PROGRAM = {
+ 1:{
+  A:[{n:"Goblet squat",s:"3 x 10 @ RPE 5-6",u:"kg",g:"quads",sp:2,c:"Stop above the depth where your pelvis tucks under."},
+     {n:"Machine chest press",s:"3 x 12",u:"kg",g:"chest",sp:1,c:"Back flat against the pad throughout."},
+     {n:"Chest-supported DB row",s:"3 x 12",u:"kg",g:"back",sp:1,c:"Incline bench takes your lower back out of it entirely."},
+     {n:"Hip thrust / glute bridge",s:"3 x 12",u:"kg",g:"post",sp:1,c:"Ribs down. Do not hyperextend at the top."},
+     {n:"Half-kneeling Pallof press",s:"3 x 8 per side",u:"kg",g:"trunk",sp:1,c:"3s hold. Resist rotation, do not produce it."},
+     {n:"Suitcase carry",s:"3 x 30s per side",u:"kg",t:1,g:"trunk",sp:2,c:"Stay perfectly vertical. That is the exercise."},
+     {n:"Standing calf raise",s:"2 x 15",u:"kg",g:"calf",sp:1,c:"Full range, 2s lower. S1 rehab as well as training."}],
+  B:[{n:"Leg press (depth restricted)",s:"3 x 12",u:"kg",g:"quads",sp:2,c:"Feet high. Stop well before your pelvis lifts off the pad."},
+     {n:"Lat pulldown, neutral grip",s:"3 x 12",u:"kg",g:"back",sp:1,c:"Torso near vertical, minimal lean-back."},
+     {n:"Incline DB press",s:"3 x 12",u:"kg",g:"chest",sp:1,c:"Feet flat, no arch. Bench at 30 degrees."},
+     {n:"45 deg back extension",s:"3 x 12 bodyweight",u:"bw",g:"post",sp:2,c:"Rise to neutral only, never past straight. Glute-driven."},
+     {n:"Cable pull-through",s:"3 x 12",u:"kg",g:"post",sp:3,c:"Your hinge practice. Short range, spine locked neutral."},
+     {n:"Side plank",s:"3 x 20-30s per side",u:"bw",t:1,g:"trunk",sp:1,c:"Knees bent if needed. Completes the McGill big three."},
+     {n:"Cable face pull",s:"2 x 15",u:"kg",g:"back",sp:1,c:"Upper back and rear delts. Keeps posture honest."}],
+  C:[{n:"Split squat (rear foot down)",s:"3 x 10 per leg",u:"kg",g:"quads",sp:2,c:"Hold a rack for balance. Torso upright."},
+     {n:"Seated cable row",s:"3 x 12",u:"kg",g:"back",sp:2,c:"Do not let the low back round at the stretch. Shorten the range if it does."},
+     {n:"Seated DB shoulder press",s:"3 x 12",u:"kg",g:"delts",sp:2,c:"High back support, ribs down, no lumbar arch."},
+     {n:"Hip thrust",s:"3 x 12",u:"kg",g:"post",sp:1,c:"Chin tucked. Movement at the hip, not the spine."},
+     {n:"Cable hip abduction",s:"3 x 12 per side",u:"kg",g:"post",sp:1,c:"Weak abductors make the lumbar spine stabilise the pelvis."},
+     {n:"Farmer carry",s:"3 x 40s",u:"kg",t:1,g:"trunk",sp:2,c:"Tall, braced, small steps."},
+     {n:"Cable lateral raise",s:"3 x 15",u:"kg",g:"delts",sp:1,c:"Your only side-delt work now. Tri-set it with the curl and pushdown, same cable station."},
+     {n:"Curl + pushdown",s:"2 x 12 each",u:"kg",g:"arms",sp:1,c:"Superset. No spinal cost, so train these hard."}]
+ },
+ 2:{
+  A:[{n:"Trap bar deadlift (blocks)",s:"4 x 6 @ RPE 6-7",u:"kg",g:"post",sp:3,c:"High handles or 10-15cm blocks. Hips lead. Reset every rep, no touch-and-go."},
+     {n:"Safety-bar / goblet squat",s:"3 x 8-10",u:"kg",g:"quads",sp:2,c:"SSB if your gym has one. Upright torso, far kinder than a straight bar."},
+     {n:"Chest-supported row",s:"4 x 10",u:"kg",g:"back",sp:1,c:"Heavier than Phase 1. Chest stays on the pad."},
+     {n:"Machine / DB flat press",s:"3 x 10",u:"kg",g:"chest",sp:1,c:"Controlled, no bounce."},
+     {n:"Half-kneeling Pallof press",s:"3 x 10 per side",u:"kg",g:"trunk",sp:1,c:"Progress by stepping further from the anchor before adding weight."},
+     {n:"Suitcase carry",s:"3 x 30s per side",u:"kg",t:1,g:"trunk",sp:2,c:"Add load steadily. One of the best trunk exercises you will do."}],
+  B:[{n:"Barbell / machine hip thrust",s:"4 x 8 @ RPE 7-8",u:"kg",g:"post",sp:2,c:"Can get genuinely heavy safely. Your best glute builder here."},
+     {n:"Weighted 45 deg back extension",s:"3 x 10",u:"kg",g:"post",sp:3,c:"Plate on chest. Still to neutral only. Builds protective erector endurance."},
+     {n:"Assisted pull-up / pulldown",s:"4 x 8",u:"kg",g:"back",sp:1,c:"Progress toward unassisted. No kipping or swinging."},
+     {n:"Incline DB press",s:"4 x 8",u:"kg",g:"chest",sp:1},
+     {n:"Seated DB shoulder press",s:"3 x 10",u:"kg",g:"delts",sp:2,c:"Back supported, ribs down."},
+     {n:"Side plank with leg lift",s:"3 x 30s per side",u:"bw",t:1,g:"trunk",sp:1,c:"Progression from the Phase 1 static hold."},
+     {n:"Standing calf raise",s:"3 x 12",u:"kg",g:"calf",sp:1,c:"Track this against your benchmark."}],
+  C:[{n:"Bulgarian split squat",s:"4 x 8 per leg",u:"kg",g:"quads",sp:2,c:"Dumbbells at your sides, not on your back. Brutal legs, near-zero spinal load."},
+     {n:"Dumbbell RDL (short range)",s:"3 x 10 @ RPE 6-7",u:"kg",g:"post",sp:3,c:"Stop at mid-shin or where your back position starts to change, whichever comes first."},
+     {n:"Single-arm DB / cable row",s:"3 x 10 per side",u:"kg",g:"back",sp:2,c:"Supported on a bench. Also an anti-rotation demand."},
+     {n:"Dip (assisted) / flat DB press",s:"3 x 10",u:"kg",g:"chest",sp:2},
+     {n:"Step-up, 40cm box",s:"3 x 10 per leg",u:"kg",g:"quads",sp:2,c:"Drive through the top foot. Do not push off the floor."},
+     {n:"Farmer carry",s:"3 x 40s",u:"kg",t:1,g:"trunk",sp:2,c:"Go heavy. Grip, traps and trunk at once."},
+     {n:"Cable lateral raise",s:"3 x 12-15",u:"kg",g:"delts",sp:1,c:"Tri-set it with the curl and pushdown. Same cable station, costs you no extra time."},
+     {n:"Curl + pushdown",s:"3 x 12 each",u:"kg",g:"arms",sp:1}]
+ },
+ 3:{
+  A:[{n:"Trap bar deadlift",s:"4 x 5 @ RPE 7-8",u:"kg",g:"post",sp:3,c:"Lower the blocks only after 8 fully green weeks. Never grind a rep."},
+     {n:"Safety-bar squat",s:"4 x 6",u:"kg",g:"quads",sp:3,c:"Depth is whatever you can hold neutral. That is your depth, not anyone else's."},
+     {n:"Chest-supported row",s:"4 x 8",u:"kg",g:"back",sp:1},
+     {n:"Flat bench press",s:"4 x 6",u:"kg",g:"chest",sp:1,c:"Modest arch only. Feet flat, glutes on the bench."},
+     {n:"Half-kneeling cable chop",s:"3 x 10 per side",u:"kg",g:"trunk",sp:3,c:"Rotation from the thoracic spine and hips. The lumbar spine stays quiet."},
+     {n:"Heavy suitcase carry",s:"3 x 30s per side",u:"kg",t:1,g:"trunk",sp:2}],
+  B:[{n:"Barbell hip thrust",s:"4 x 6 @ RPE 8",u:"kg",g:"post",sp:2,c:"Your heaviest posterior-chain lift. Push it."},
+     {n:"Weighted back extension",s:"3 x 10",u:"kg",g:"post",sp:3,c:"To neutral. Slow eccentric."},
+     {n:"Weighted pull-up / pulldown",s:"4 x 6",u:"kg",g:"back",sp:2},
+     {n:"Standing overhead press",s:"4 x 6",u:"kg",g:"delts",sp:3,c:"Only if you can press without arching. Glutes squeezed, ribs down. Seated if not."},
+     {n:"Incline DB press",s:"3 x 10",u:"kg",g:"chest",sp:1},
+     {n:"Side plank reach-through",s:"3 x 10 per side",u:"bw",g:"trunk",sp:1},
+     {n:"Single-leg calf raise",s:"3 x 12 per leg",u:"kg",g:"calf",sp:1,c:"Symmetry is the target, not just strength."}],
+  C:[{n:"Bulgarian split squat",s:"4 x 6 per leg",u:"kg",g:"quads",sp:2,c:"Heavier dumbbells, fewer reps."},
+     {n:"Single-leg RDL",s:"3 x 8 per leg",u:"kg",g:"post",sp:3,c:"Hinge, balance and glute medius in one. Light load, high control."},
+     {n:"Walking lunge",s:"3 x 10 per leg",u:"kg",g:"quads",sp:3},
+     {n:"Single-arm cable row",s:"3 x 10 per side",u:"kg",g:"back",sp:2},
+     {n:"Dip / close-grip press",s:"3 x 8",u:"kg",g:"chest",sp:2},
+     {n:"Heavy farmer carry",s:"4 x 40s",u:"kg",t:1,g:"trunk",sp:2},
+     {n:"Cable lateral raise",s:"3 x 12-15",u:"kg",g:"delts",sp:1,c:"Tri-set it with the curl and pushdown. Same cable station, costs you no extra time."},
+     {n:"Curl + pushdown",s:"3 x 12 each",u:"kg",g:"arms",sp:1}]
+ }
+};
+
+var PHASES = {
+ 1:{t:"Re-entry",w:"weeks 1-4",
+    g:"Establish a symptom-free baseline and rebuild trunk endurance. You are not trying to get stronger - you are collecting evidence about what your back tolerates.",
+    r:["Everything at RPE 5-6, four or more reps left in the tank.","No hip hinge under external load yet.","2 seconds down, no bounce.","If it feels easy, the phase is working."]},
+ 2:{t:"Build",w:"weeks 5-12",
+    g:"Where the muscle gets built. Loads climb into a productive range and the hip hinge returns under load.",
+    r:["RPE 6-8, reps 6-12.","Trap bar from blocks or high handles only - never the floor.","RDLs deliberately short range.","Only progress a lift if last week was green."]},
+ 3:{t:"Strength",w:"weeks 13-24",
+    g:"Consolidate. Heavier loads, same spine-sparing exercise selection. You can stay in this phase indefinitely.",
+    r:["Main lifts 4-6 reps at RPE 7-8.","Loaded rotation introduced carefully via cable chops.","Floor pulls only after 8 fully green weeks, and only with your physio's sign-off.","There is no requirement to ever pull from the floor."]}
+};
+
+var HOME = [
+ {n:"Sciatic nerve slide",s:"2 x 10 per leg",c:"Straighten the knee while looking up, bend it while looking down. Gentle traffic, never a stretch or a symptom."},
+ {n:"Prone press-up",s:"10 reps, 2s hold",c:"Only if extension makes you feel better. If it worsens things, do 90/90 breathing instead."},
+ {n:"90/90 breathing",s:"8 breaths",c:"Feet up, knees at 90. Breathe into belly and low ribs. Resets an over-braced trunk."},
+ {n:"Glute bridge",s:"15 reps",c:"Ribs down, squeeze at the top, 2s hold."},
+ {n:"Dead bug",s:"8 per side",c:"Low back stays flat against the floor. That is the whole exercise."},
+ {n:"Bird dog",s:"8 per side, 5s hold",c:"Draw a small square with the extended hand and foot to progress."},
+ {n:"Side plank",s:"2 x 25s per side",c:"Knees bent version is fine."},
+ {n:"Half-kneeling hip flexor stretch",s:"2 x 30s per side",c:"Tuck the pelvis first, then lean."}
+];
+
+var NERVE = [
+ {n:"Single-leg stand",s:"30s per leg",c:"Progress: eyes open, then eyes closed, then on a cushion."},
+ {n:"Heel and toe walks",s:"20m each",c:"Directly tests the L5 and S1 myotomes."}
+];
+
+var GROUPS = [
+ {k:"quads",l:"Legs / squat"},
+ {k:"post",l:"Glutes & hinge"},
+ {k:"back",l:"Back"},
+ {k:"chest",l:"Chest"},
+ {k:"delts",l:"Shoulders"},
+ {k:"trunk",l:"Trunk"},
+ {k:"calf",l:"Calves"},
+ {k:"arms",l:"Arms"}
+];
+
+var FLARE = {
+  closeAfter:28,
+  clearRule:"A clear day is a day with no Red logged and no symptoms below the knee. Any Red session, Red morning check-in, or session logged with leg symptoms resets the count to zero and drops you back to the stage that count belongs to.",
+  debrief:"Within a week of any flare, write down: what you did in the 72 hours before it; whether the gym or daily life was the more likely cause; and what specifically you will change. Three episodes without a written debrief means the pattern that caused them is still invisible to you. This takes ten minutes and is probably the highest-leverage thing in this entire document.",
+  stages:[
+   {n:0,t:"Settle",d:0,gym:0,sum:"No gym. Walking, reduced-range home routine, nerve slides.",sp:0,do:["Do not go to bed. Bed rest beyond a day makes disc-related pain worse, not better.","Walk short and often - 5-10 minutes every couple of hours beats one long walk.","Find your position of relief and use it: prone, prone on elbows, or standing.","Nerve slides gently, 2 x 10 per leg, twice a day. Reduce range until there is no provocation at all.","Avoid prolonged sitting entirely. Stand or lie down.","Contact your physio now. Do not wait to see whether it settles on its own."]},
+   {n:1,t:"Reintroduce",d:3,gym:1,sum:"Back in the gym, spine-neutral work only, half your pre-flare loads.",sp:1,pct:50,sets:2,rpe:"4-5",pool:1,do:["Supported and machine work only - nothing that loads the spine through range.","Two working sets, never more. You should leave feeling you could have done twice as much.","Home routine daily at full range again, walks toward 20-30 minutes.","Any leg symptom during or within 24h of a session sends you back to Settle."]},
+   {n:2,t:"Rebuild",d:7,gym:1,sum:"Phase 1 as written minus the hinge, at 70% of pre-flare loads.",sp:2,pct:70,sets:3,rpe:"5-6",pool:1,do:["Squat pattern, carries and rows return. The loaded hinge does not.","Run this for at least a week even if everything feels fine.","Re-test the single-leg calf raise and compare it to your last benchmark."]},
+   {n:3,t:"Re-load",d:14,gym:1,sum:"Your normal phase, hinge still held back, 85% of pre-flare loads.",sp:2,pct:85,rpe:"6-7",pool:0,do:["Back to the phase you were in, with the heavy hinge and loaded rotation still parked.","Sets as written. Loads are the brake here, not volume.","Write the debrief now if you have not already."]},
+   {n:4,t:"Full programme",d:21,gym:1,sum:"Everything back, 95% of pre-flare loads. One clear week from closing the flare.",sp:3,pct:95,pool:0,do:["The hinge returns at the lightest load you would call productive, and climbs from there.","Do not chase the number you were at before the flare. It will come back faster than you think.","After a clear week here the flare is closed and you are back on the normal progression."]}
+  ]
+};
+
+var PAIN = {
+  min:0,max:10,
+  prompt:"Worst back pain since the last log",
+  note:"Symptoms moving toward your back are good news even if the number is unchanged. Symptoms moving down the leg mean stop, however mild and whatever the number says.",
+  anchors:[{n:0,t:"nothing at all"},{n:3,t:"noticeable, settles within a day"},{n:6,t:"limits what you do"},{n:10,t:"the worst you have had"}],
+  bands:[
+   {l:"green",f:0,t:3,s:"Train and progress as written",
+    c:"No leg symptoms. Back stiffness or ache at or below 3/10 that settles within 24 hours.",
+    a:"Train and progress as written."},
+   {l:"amber",f:4,t:6,s:"Train, but hold the loads",
+    c:"Back pain 4-6/10, or stiffness that lingers more than 24 hours, but no symptoms below the knee.",
+    a:"Hold your loads, cut sets by a third, drop the hinge, everything at RPE 5. Do not skip the session."},
+   {l:"red",f:7,t:10,s:"Stop loading",
+    c:"Any pain, numbness, tingling or heaviness below the knee, whatever the number. Any new weakness. Symptoms spreading further down the leg than yesterday. Or back pain at 7/10 or above.",
+    a:"Stop loading. Walking, home routine at reduced range, nerve slides. Contact your physio."}
+  ]
+};
+
+var DELOADS = [10,18,24];
+// >>> END GENERATED
+var UNLOCK_DAYS = 30;
+var S = { pc:null, data:null, screen:"home", form:{} };
+var app = document.getElementById("app");
+
+// ---------- unlock window ----------
+// The passcode stays valid for UNLOCK_DAYS since it was last used. Every successful
+// load or save pushes the clock forward, so regular use never prompts, while a phone
+// left untouched re-locks itself.
+function touch(){ try{ localStorage.setItem("pcAt", String(Date.now())); }catch(e){} }
+function remember(pc){ try{ localStorage.setItem("pc", pc); }catch(e){} touch(); }
+function forget(){ try{ localStorage.removeItem("pc"); localStorage.removeItem("pcAt"); }catch(e){} }
+function storedPasscode(){
+  var pc, at;
+  try{ pc = localStorage.getItem("pc"); at = Number(localStorage.getItem("pcAt")||0); }catch(e){ return null; }
+  if(!pc || !at) return null;
+  if((Date.now()-at)/86400000 > UNLOCK_DAYS){ forget(); return null; }
+  return pc;
+}
+function isAuthError(e){
+  var m = String(e && e.message ? e.message : e);
+  return m==="BAD_PASSCODE" || m==="NO_PASSCODE";
+}
+
+function api(action, payload){
+  var body = Object.assign({action:action, passcode:S.pc}, payload||{});
+  return fetch(API, {
+    method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify(body)
+  }).then(function(r){ return r.json().then(function(j){
+      if(!r.ok) throw new Error(j.error||"error"); return j; }); });
+}
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function today(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function weekNum(){
+  if(!S.data||!S.data.settings||!S.data.settings.program_start) return 1;
+  var st=new Date(S.data.settings.program_start+"T00:00:00");
+  var diff=Math.floor((new Date(today()+"T00:00:00")-st)/86400000);
+  return Math.max(1, Math.floor(diff/7)+1);
+}
+function phaseFor(w){ return w<=4?1:(w<=12?2:3); }
+function nextDay(){
+  var ss=S.data&&S.data.sessions?S.data.sessions:[];
+  if(!ss.length) return "A";
+  var last=ss[0].day_code;
+  return last==="A"?"B":(last==="B"?"C":"A");
+}
+function go(scr){
+  S.screen=scr; S.form={}; S.tap=null; S.confirmDel=false; S.confirmClose=false;
+  window.scrollTo(0,0); render();
+}
+
+// ---------- render ----------
+function render(){
+  if(!S.data){ return; }
+  var w=weekNum(), p=phaseFor(w);
+  var h="";
+  if(S.screen==="home") h=viewHome(w,p);
+  else if(S.screen==="session") h=viewSession(w,p);
+  else if(S.screen==="checkin") h=viewCheckin();
+  else if(S.screen==="flare") h=viewFlare();
+  else if(S.screen==="bench") h=viewBench();
+  else if(S.screen==="plan") h=viewPlan(w,p);
+  else if(S.screen==="history") h=viewHistory();
+  else if(S.screen==="sess") h=viewSessionDetail();
+  else if(S.screen==="prog") h=viewProgression();
+  else if(S.screen==="progG") h=viewGroup();
+  app.innerHTML=h;
+  wire();
+}
+
+function viewHome(w,p){
+  var d=nextDay();
+  var plan=sessionPlan(w,p,d);
+  var st=plan.stage;
+  var isDeload = DELOADS.indexOf(w)>=0;
+  var ci = (S.data.checkins||[]).filter(function(c){return c.checkin_date===today();})[0];
+  var recent=(S.data.sessions||[]).slice(0,14).reverse();
+  var dots=recent.map(function(x){ return '<div class="dot '+x.traffic_light+'">'+x.day_code+'</div>'; }).join("");
+  var sub = (st&&!st.gym)
+    ? 'No gym today &middot; '+esc(st.t)
+    : 'Suggested: Day '+d+' &middot; '+plan.ex.length+' exercise'+(plan.ex.length===1?"":"s")
+      +(st?' &middot; flare stage '+st.n:'');
+  var f=openFlare();
+  return '<header><h1>Back Rehab</h1><div class="sub">Phase '+p+' &middot; Week '+w+(isDeload?' &middot; DELOAD WEEK':'')+'</div></header>'
+   + flareBanner()
+   + (isDeload&&!st?'<div class="warn">Deload week. Same exercises, half the working sets, everything at RPE 5.</div>':'')
+   + '<button class="big" data-go="session">'+(st&&!st.gym?'Today&rsquo;s plan':'Log gym session')
+     +'<span class="d">'+sub+'</span></button>'
+   + '<button class="big alt" data-go="checkin">Daily check-in'+(ci?' &check;':'')
+     +'<span class="d">'+(ci&&ci.pain!=null?'Logged today &middot; pain '+ci.pain+'/10'
+        :(ci?'Logged today':'Pain score, home routine, walk'))+'</span></button>'
+   + '<button class="big alt" data-go="flare">'+(f?'The open flare':'Log a flare-up')
+     +'<span class="d">'+(f?'Started '+esc(f.started_on)+' &middot; cause, debrief, close it':'Symptoms below the knee, or a setback')+'</span></button>'
+   + '<div class="card"><div class="lbl" style="margin-top:0">Last 14 sessions</div>'
+   + (recent.length?'<div class="dots">'+dots+'</div>':'<div class="hint">Nothing logged yet.</div>')
+   + '</div>'
+   + '<button class="big alt" data-go="prog">Progression<span class="d">Strength index by muscle group</span></button>'
+   + '<button class="big alt" data-go="plan">The plan<span class="d">Phase '+p+' &middot; exercises, cues, daily routine, rules</span></button>'
+   + '<button class="big alt" data-go="bench">Benchmark test<span class="d">Every 4 weeks &middot; calf raise, planks, balance</span></button>'
+   + '<button class="big alt" data-go="history">History<span class="d">Every session, with the loads you used</span></button>';
+}
+
+// A compact read-only badge for a stored light, used in history lists.
+function lightPill(l){ return '<span class="pill '+l+'">'+String(l||"").toUpperCase()+'</span>'; }
+
+function viewSession(w,p){
+  var d=S.form.day||nextDay();
+  var plan=sessionPlan(w,p,d), st=plan.stage;
+  var head='<button class="back" data-go="home">&larr; Back</button>';
+
+  if(st&&!st.gym){
+    return head+'<h2>Today &middot; stage '+st.n+', '+esc(st.t)+'</h2>'
+     +'<div class="warn"><b>No gym at this stage.</b> '+esc(st.sum)+'</div>'
+     +'<div class="card"><div class="lbl" style="margin-top:0">What to do instead</div>'
+     +'<ul style="margin:0;padding-left:17px;font-size:12.5px;color:#8b9bab;line-height:1.7">'
+     + st["do"].map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>'
+     +'<p class="hint">'+esc(FLARE.clearRule)+'</p>'
+     +'<button class="big alt" data-go="checkin">Daily check-in<span class="d">This is what moves you up a stage</span></button>';
+  }
+
+  var last=S.data.lastLoads||{};
+  var rows=plan.ex.map(function(e,i){
+    var lv=last[e.n]||{};
+    var def=planLoad(e,st);
+    var lo=(S.form["l"+i]!==undefined)?S.form["l"+i]:(def!=null?def:"");
+    var rp=(S.form["r"+i]!==undefined)?S.form["r"+i]:(lv.reps!=null?lv.reps:"");
+    var unit=e.t?"sec":"reps";
+    var loadIn = e.u==="bw" ? '<span class="unit">bw</span>'
+      : '<input class="num" type="number" inputmode="decimal" data-f="l'+i+'" value="'+esc(lo)+'" placeholder="-"><span class="unit">kg</span>';
+    return '<div class="row"><div class="nm"><b>'+esc(e.n)+'</b><span>'+esc(e.s)+'</span></div>'
+      + loadIn
+      + '<input class="num" type="number" inputmode="numeric" data-f="r'+i+'" value="'+esc(rp)+'" placeholder="-"><span class="unit">'+unit+'</span></div>';
+  }).join("");
+
+  var held = st ? PROGRAM[plan.phase][d].filter(function(e){ return (e.sp||1)>st.sp; }) : [];
+  var legs=!!S.form.legSymptoms;
+
+  return head
+   + '<h2>Log session &middot; Phase '+plan.phase+', Week '+w+'</h2>'
+   + (st?'<div class="warn"><b>Flare mode &middot; stage '+st.n+', '+esc(st.t)+'.</b> '+esc(st.sum)
+        +(st.pct?' Loads are prefilled at '+st.pct+'% of what you were lifting before.':'')
+        +(plan.phase!==p?' Exercises come from Phase '+plan.phase+' while you rebuild.':'')+'</div>':'')
+   + '<div class="card"><div class="lbl" style="margin-top:0">Which day</div><div class="chips">'
+   + ["A","B","C"].map(function(x){
+       var nm=x==="A"?"squat/hinge":(x==="B"?"posterior/upper":"single leg");
+       return '<button data-day="'+x+'"'+(d===x?' class="on"':'')+'>Day '+x+' &middot; '+nm+'</button>';}).join("")
+   + '</div></div>'
+   + '<div class="card"><div class="lbl" style="margin-top:0">'+esc(PAIN.prompt)+'</div>'
+   + '<div class="toggle" style="padding-top:2px"><b>Any symptoms below the knee?</b><button class="sw'+(legs?" on bad":"")+'" data-sw="legSymptoms"><i></i></button></div>'
+   + (legs?'<input data-f="symptomNote" placeholder="Where, and did it move up or down the leg?" value="'+esc(S.form.symptomNote||"")+'" style="margin-bottom:10px">':'')
+   + painInput(S.form.pain, legs)
+   + '</div>'
+   + '<div class="card"><div class="lbl" style="margin-top:0">Loads &middot; '
+   + (st&&st.pct?'prefilled at '+st.pct+'%':'prefilled from last time')+'</div>'
+   + '<p class="hint" style="margin-bottom:6px">Only change what changed. Blanks are fine.</p>'+rows+'</div>'
+   + (held.length?'<div class="card"><div class="lbl" style="margin-top:0">Held back at this stage</div>'
+      +'<p class="hint" style="margin:0">'+held.map(function(e){return esc(e.n);}).join(" &middot; ")
+      +'. These come back as you move up the ladder.</p></div>':'')
+   + '<div class="card"><div class="lbl" style="margin-top:0">Note (optional)</div>'
+   + '<textarea data-f="notes" rows="2" placeholder="Anything worth remembering">'+esc(S.form.notes||"")+'</textarea></div>'
+   + '<button class="save" data-save="session"'+(S.form.pain!=null?"":" disabled")+'>'
+     +(S.form.pain!=null?"Save session":"Score your pain first")+'</button>';
+}
+
+function viewCheckin(){
+  var ci=(S.data.checkins||[]).filter(function(c){return c.checkin_date===today();})[0]||{};
+  if(S.form.pain===undefined&&ci.pain!=null) S.form.pain=ci.pain;
+  if(S.form.legSymptoms===undefined) S.form.legSymptoms=(ci.traffic_light==="red"&&ci.pain==null)?true:false;
+  if(S.form.homeRoutine===undefined) S.form.homeRoutine=!!ci.home_routine;
+  if(S.form.walkMinutes===undefined&&ci.walk_minutes!=null) S.form.walkMinutes=ci.walk_minutes;
+  var hr=!!S.form.homeRoutine;
+  var wm=S.form.walkMinutes;
+  var legs=!!S.form.legSymptoms;
+  return '<button class="back" data-go="home">&larr; Back</button><h2>Daily check-in</h2>'
+   + '<div class="card"><div class="lbl" style="margin-top:0">'+esc(PAIN.prompt)+', this morning</div>'
+   + '<div class="toggle" style="padding-top:2px"><b>Any symptoms below the knee?</b><button class="sw'
+   + (legs?" on bad":"")+'" data-sw="legSymptoms"><i></i></button></div>'
+   + painInput(S.form.pain, legs)+'</div>'
+   + '<div class="card"><div class="toggle" style="padding-top:2px"><b>15-minute home routine done</b>'
+   + '<button class="sw'+(hr?" on":"")+'" data-sw="homeRoutine"><i></i></button></div>'
+   + '<div class="lbl">Walking</div><div class="chips">'
+   + [0,15,20,30,45,60].map(function(m){return '<button data-walk="'+m+'"'+(wm===m?' class="on"':'')+'>'+m+' min</button>';}).join("")
+   + '</div></div>'
+   + '<div class="card"><div class="lbl" style="margin-top:0">Note (optional)</div>'
+   + '<textarea data-f="notes" rows="2" placeholder="Sleep, stiffness, anything unusual">'+esc(S.form.notes||"")+'</textarea></div>'
+   + '<button class="save" data-save="checkin"'+(S.form.pain!=null?"":" disabled")+'>'
+     +(S.form.pain!=null?"Save check-in":"Score your pain first")+'</button>';
+}
+
+function viewFlare(){
+  var out='<button class="back" data-go="home">&larr; Back</button>';
+  var emerg='<div class="warn">Saddle numbness, bladder or bowel changes, or weakness in both legs '
+   +'means emergency care today, not a log entry.</div>';
+  var f=openFlare();
+
+  if(f && !S.form.newFlare){
+    if(S.form.symptomNote===undefined) S.form.symptomNote=f.symptom_note||"";
+    if(S.form.cause===undefined) S.form.cause=f.suspected_cause||"";
+    if(S.form.debrief===undefined) S.form.debrief=f.debrief||"";
+    return out+'<h2>Open flare &middot; started '+esc(f.started_on)+'</h2>'+emerg
+     + flareBanner()
+     + '<div class="card"><div class="lbl" style="margin-top:0">What you are feeling</div>'
+     + '<textarea data-f="symptomNote" rows="2">'+esc(S.form.symptomNote)+'</textarea>'
+     + '<div class="lbl">Suspected cause</div>'
+     + '<textarea data-f="cause" rows="2">'+esc(S.form.cause)+'</textarea>'
+     + '<div class="lbl">The debrief</div>'
+     + '<textarea data-f="debrief" rows="3" placeholder="What you did in the 72 hours before, and what you will change">'+esc(S.form.debrief)+'</textarea>'
+     + '<p class="hint">'+esc(FLARE.debrief)+'</p></div>'
+     + '<button class="save" data-save="editFlare">Save</button>'
+     + '<div class="mini"><button data-f2="new">This is a new, separate flare</button></div>';
+  }
+
+  var sev=S.form.severity!==undefined?S.form.severity:5;
+  var legs=S.form.legSymptoms!==undefined?S.form.legSymptoms:true;
+  return out+'<h2>Log a flare-up</h2>'+emerg
+   + '<div class="ok">Saving this switches the app into flare mode: the session screen rebuilds '
+   + 'itself to stage 0 and climbs back up as your clear days accumulate.</div>'
+   + '<div class="card"><div class="lbl" style="margin-top:0">Started on</div>'
+   + '<input type="date" data-f="date" value="'+esc(S.form.date||today())+'">'
+   + '<div class="lbl">Severity</div>'+painInput(sev, legs)
+   + '<div class="toggle"><b>Symptoms below the knee</b><button class="sw'+(legs?" on bad":"")+'" data-sw="legSymptoms"><i></i></button></div>'
+   + '</div>'
+   + '<div class="card"><div class="lbl" style="margin-top:0">What are you feeling</div>'
+   + '<textarea data-f="symptomNote" rows="2" placeholder="Where exactly, and how far down">'+esc(S.form.symptomNote||"")+'</textarea>'
+   + '<div class="lbl">Suspected cause</div>'
+   + '<textarea data-f="cause" rows="2" placeholder="What happened in the 72 hours before">'+esc(S.form.cause||"")+'</textarea>'
+   + '<div class="lbl">What will you change</div>'
+   + '<textarea data-f="debrief" rows="2" placeholder="The debrief. Can be filled in later.">'+esc(S.form.debrief||"")+'</textarea></div>'
+   + '<button class="save" data-save="flare">Save flare</button>';
+}
+
+function viewBench(){
+  var f=[["calfL","Calf raise L","reps"],["calfR","Calf raise R","reps"],
+         ["plankL","Side plank L","sec"],["plankR","Side plank R","sec"],
+         ["birdDog","Bird dog hold","sec"],["balL","Balance L, eyes shut","sec"],
+         ["balR","Balance R, eyes shut","sec"],["walkTol","Walk tolerance","min"],
+         ["sitTol","Sit tolerance","min"]];
+  var prev=(S.data.benchmarks||[])[0];
+  var map={calfL:"calf_raise_l",calfR:"calf_raise_r",plankL:"side_plank_l",plankR:"side_plank_r",
+           birdDog:"bird_dog_hold",balL:"balance_l",balR:"balance_r",walkTol:"walk_tolerance_min",sitTol:"sit_tolerance_min"};
+  var rows=f.map(function(x){
+    var pv=prev?prev[map[x[0]]]:null;
+    return '<div class="row"><div class="nm"><b>'+x[1]+'</b><span>'+(pv!=null?"last: "+pv+" "+x[2]:"no previous")+'</span></div>'
+      +'<input class="num" type="number" inputmode="numeric" data-f="'+x[0]+'" value="'+esc(S.form[x[0]]||"")+'" placeholder="-"><span class="unit">'+x[2]+'</span></div>';
+  }).join("");
+  return '<button class="back" data-go="home">&larr; Back</button><h2>Benchmark test</h2>'
+   + '<div class="card"><p class="hint" style="margin:0">Targets: calf raise 25+ reps and under 20% side difference &middot; side plank 60s+ &middot; bird dog 30s+ &middot; balance 20s+ &middot; walking 45min+ &middot; sitting 60min+</p></div>'
+   + '<div class="card">'+rows+'</div>'
+   + '<div class="card"><div class="lbl" style="margin-top:0">Note</div>'
+   + '<textarea data-f="notes" rows="2" placeholder="Optional">'+esc(S.form.notes||"")+'</textarea></div>'
+   + '<button class="save" data-save="bench">Save benchmark</button>';
+}
+
+function viewHistory(){
+  var out='<button class="back" data-go="home">&larr; Back</button><h2>History</h2>';
+  var ss=S.data.sessions||[];
+  out+='<div class="card"><div class="lbl" style="margin-top:0">Sessions</div>';
+  out+= ss.length? ss.slice(0,60).map(function(x){
+    var lf=(x.lifts||[]).filter(function(l){ return l.load!=null||l.reps!=null; });
+    var top=lf.slice(0,3).map(function(l){ return esc(l.n)+' '+liftText(l); }).join(' &middot; ');
+    return '<button class="tapper hist" data-sess="'+x.id+'">'
+      +lightPill(lightOf(x))
+      +'<span style="flex:1"><b>'+x.session_date+'</b> &middot; Day '+x.day_code+' &middot; P'+x.phase
+      +(x.pain!=null?' &middot; <span class="pnum">pain '+x.pain+'/10</span>':'')
+      +(x.flare_stage!=null?' &middot; flare st'+x.flare_stage:'')
+      +(x.leg_symptoms?' &middot; leg symptoms':'')
+      +(top?'<br><span style="color:#8b9bab;font-size:12px">'+top+(lf.length>3?' &middot; +'+(lf.length-3)+' more':'')+'</span>':'')
+      +(x.notes?'<br><span style="color:#7b8b9b;font-size:12px">'+esc(x.notes)+'</span>':'')
+      +'</span><span style="color:#4d6070;font-size:16px">&rsaquo;</span></button>';
+  }).join("") : '<div class="hint">Nothing yet.</div>';
+  out+= ss.length?'<p class="hint">Tap a session to see every load, fix a number, or delete it.</p>':'';
+  out+='</div>';
+  var fl=S.data.flares||[];
+  if(fl.length){
+    out+='<div class="card"><div class="lbl" style="margin-top:0">Flares</div>'+fl.map(function(x){
+      return '<div class="hist"><span class="pill red">'+(x.severity!=null?x.severity+"/10":"-")+'</span><div><b>'+x.started_on+'</b>'
+       +(x.resolved_on?' &rarr; closed '+x.resolved_on:' &middot; still open')
+       +(x.symptom_note?'<br><span style="color:#8b9bab;font-size:12.5px">'+esc(x.symptom_note)+'</span>':'')+'</div></div>';
+    }).join("")+'</div>';
+  }
+  var bm=S.data.benchmarks||[];
+  if(bm.length){
+    out+='<div class="card"><div class="lbl" style="margin-top:0">Benchmarks</div>'+bm.map(function(x){
+      return '<div class="hist"><div><b>'+x.test_date+'</b><br><span style="color:#8b9bab;font-size:12.5px">calf '
+       +(x.calf_raise_l||"-")+"/"+(x.calf_raise_r||"-")+' &middot; plank '+(x.side_plank_l||"-")+"/"+(x.side_plank_r||"-")+'s</span></div></div>';
+    }).join("")+'</div>';
+  }
+  var ci=S.data.checkins||[];
+  if(ci.length){
+    out+='<div class="card"><div class="lbl" style="margin-top:0">Recent check-ins</div><div class="dots">'
+     + ci.slice(0,28).reverse().map(function(c){
+         return '<div class="dot '+(lightOf(c)||"")+'" title="'+esc(c.checkin_date)+'">'
+           +(c.pain!=null?c.pain:Number(c.checkin_date.slice(8,10)))+'</div>';}).join("")
+     + '</div></div>';
+  }
+  return out;
+}
+
+function exList(arr){
+  return arr.map(function(e){
+    return '<div class="row" style="display:block">'
+      +'<b style="font-size:14.5px">'+esc(e.n)+'</b>'
+      +'<div style="font-size:12px;color:#6d9fd4;margin-top:2px">'+esc(e.s)+'</div>'
+      +(e.c?'<div class="hint" style="margin-top:3px">'+esc(e.c)+'</div>':'')
+      +'</div>';
+  }).join("");
+}
+
+function viewPlan(w,p){
+  var tab=S.form.tab||"gym";
+  var d=S.form.day||nextDay();
+  var ph=PHASES[p];
+  var out='<button class="back" data-go="home">&larr; Back</button><h2>The plan</h2>';
+
+  out+='<div class="card"><div class="lbl" style="margin-top:0">Phase '+p+' &middot; '+esc(ph.t)+' &middot; '+esc(ph.w)+'</div>'
+     +'<p class="hint" style="margin-top:0">'+esc(ph.g)+'</p>'
+     +'<ul style="margin:8px 0 0;padding-left:17px;font-size:12.5px;color:#8b9bab;line-height:1.6">'
+     + ph.r.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")
+     +'</ul></div>';
+
+  out+='<div class="chips" style="margin-bottom:12px">'
+     +'<button data-tab="gym"'+(tab==="gym"?' class="on"':'')+'>Gym sessions</button>'
+     +'<button data-tab="daily"'+(tab==="daily"?' class="on"':'')+'>Daily routine</button>'
+     +'<button data-tab="rules"'+(tab==="rules"?' class="on"':'')+'>Rules</button>'
+     +'</div>';
+
+  if(tab==="gym"){
+    out+='<div class="card"><div class="chips" style="margin-top:0">'
+      + ["A","B","C"].map(function(x){
+          var nm=x==="A"?"squat/hinge":(x==="B"?"posterior/upper":"single leg");
+          return '<button data-day="'+x+'"'+(d===x?' class="on"':'')+'>Day '+x+' &middot; '+nm+'</button>';}).join("")
+      +'</div></div>'
+      +'<div class="card">'+exList(PROGRAM[p][d])+'</div>'
+      +'<p class="hint">Warm up 5 minutes every session: 3 min walk or bike, 10 bodyweight hinges, 10 glute bridges, 8 gentle cat-camel, 10 band pull-aparts. Rest 2-3 min on main lifts, 60-90s on accessories.</p>';
+  } else if(tab==="daily"){
+    out+='<div class="card"><div class="lbl" style="margin-top:0">15 minutes, every day</div>'+exList(HOME)+'</div>'
+      +'<div class="card"><div class="lbl" style="margin-top:0">Nervous system</div>'+exList(NERVE)
+      +'<p class="hint">Benchmark: single-leg calf raise to failure. Target 25+ reps and under 20% difference between sides. Your most objective marker of nerve recovery.</p></div>'
+      +'<div class="ok"><b>Walking is the highest-value thing you can do.</b> 20-30 min daily at a brisk pace, separate from the routine above. On a red day it is often the only thing you should do &mdash; and you should still do it.</div>';
+  } else {
+    var bcol={green:"#2fe08f",amber:"#f5c542",red:"#ff6b57"};
+    out+='<div class="card"><div class="lbl" style="margin-top:0">What your score means</div>'
+      +'<p class="hint" style="margin-top:0">You log the number. The band follows from it and from '
+      +'whether anything is happening below the knee, and it is the band that drives the flare '
+      +'protocol and the phase rules.</p>'
+      + PAIN.bands.map(function(b){
+          var rng=(b.l==="red")?b.f+'+/10, or any leg symptom':b.f+'-'+b.t+'/10';
+          return '<p class="hint"><b style="color:'+bcol[b.l]+'">'+b.l.toUpperCase()+'</b> '
+            +'<span class="pnum" style="color:'+bcol[b.l]+'">'+rng+'</span> &mdash; '+esc(b.c)+' '+esc(b.a)+'</p>';
+        }).join("")
+      +'<p class="hint">'+esc(PAIN.note)+'</p></div>'
+      +'<div class="card"><div class="lbl" style="margin-top:0">Never</div>'
+      +'<ul style="margin:0;padding-left:17px;font-size:12.5px;color:#8b9bab;line-height:1.7">'
+      +'<li>Loaded lumbar flexion &mdash; no sit-ups, weighted crunches or loaded toe-touches</li>'
+      +'<li>Loaded rotation before week 13</li>'
+      +'<li>Barbell back squat during Phases 1 and 2</li>'
+      +'<li>Training to failure, at any point in this programme</li>'
+      +'<li>Heavy bending or lifting in the first 60-90 minutes after waking</li>'
+      +'<li>Pushing through a rep that changes your back position &mdash; that rep is the last rep</li>'
+      +'</ul></div>'
+      +'<div class="warn"><b>Emergency, same day &mdash; not a physio call.</b> Numbness in the saddle or groin area, bladder or bowel changes, weakness in both legs, or foot drop.</div>';
+  }
+  return out;
+}
+
+
+// ==================== muscle groups, index and charts ====================
+// A muscle group keeps one colour everywhere it appears. The eight hues are the
+// validated categorical order, stepped for a dark surface and checked for
+// colour-vision separation against this app's card background.
+var GCOL = {};
+(function(){
+  var pal=["#3987e5","#d95926","#199e70","#c98500","#d55181","#008300","#9085e9","#e66767"];
+  for(var i=0;i<GROUPS.length;i++) GCOL[GROUPS[i].k]=pal[i%pal.length];
+})();
+
+// Every exercise the programme has ever prescribed, keyed by the name stored on a
+// session row. Sessions logged under an older phase stay readable after the
+// exercise has left the current one.
+var EX = {};
+(function(){
+  for(var p in PROGRAM) for(var d in PROGRAM[p]) PROGRAM[p][d].forEach(function(e){
+    if(!EX[e.n]) EX[e.n]={g:e.g||null,u:e.u,t:!!e.t,s:e.s,sp:e.sp||1};
+  });
+})();
+function gLabel(k){ for(var i=0;i<GROUPS.length;i++) if(GROUPS[i].k===k) return GROUPS[i].l; return k; }
+
+// One comparable number per logged lift.
+//   weighted  -> Epley estimated 1RM, so more reps at the same weight is progress.
+//                Reps are clamped to 1-15 so one stray entry cannot swing the estimate.
+//   timed     -> load scaled by how long it was carried.
+//   bodyweight-> reps or seconds, the only thing that changes.
+// A weighted lift with no load logged is skipped, not scored as zero: a blank is
+// missing data, not a light day.
+function liftMetric(l){
+  var m=EX[l.n]; if(!m) return null;
+  var reps=(l.reps==null||l.reps==="")?null:Number(l.reps);
+  var load=(l.load==null||l.load==="")?null:Number(l.load);
+  if(reps!=null&&isNaN(reps)) reps=null;
+  if(load!=null&&isNaN(load)) load=null;
+  if(m.u==="bw") return (reps&&reps>0)?reps:null;
+  if(!load||load<=0) return null;
+  if(m.t) return load*(1+Math.min(reps||30,120)/60);
+  return load*(1+Math.min(Math.max(reps||1,1),15)/30);
+}
+function liftText(l){
+  var m=EX[l.n]||{};
+  var u=m.t?"s":"reps";
+  var a=(l.load==null||l.load==="")?null:Number(l.load);
+  var b=(l.reps==null||l.reps==="")?null:Number(l.reps);
+  if(a&&b) return a+" kg x "+b+" "+u;
+  if(a) return a+" kg";
+  if(b) return b+" "+u;
+  return "not logged";
+}
+
+// Progression is an index, not a weight. Each exercise is scored against your own
+// first logged value for it (100 = that session), and a muscle group's line is the
+// average of its exercises' indices. That is what makes phases comparable: the
+// exercises change, the index does not.
+function progression(){
+  var ss=(S.data.sessions||[]).slice().sort(function(a,b){ return a.session_date<b.session_date?-1:1; });
+  var byEx={};
+  ss.forEach(function(x){
+    var w=x.week||1;
+    (x.lifts||[]).forEach(function(l){
+      var m=liftMetric(l); if(m==null) return;
+      if(!byEx[l.n]) byEx[l.n]=[];
+      byEx[l.n].push({w:w,m:m,d:x.session_date,load:l.load,reps:l.reps});
+    });
+  });
+  var G={}, order=[];
+  GROUPS.forEach(function(g){ G[g.k]={k:g.k,l:g.l,ex:[],pts:[]}; order.push(g.k); });
+  for(var n in byEx){
+    var meta=EX[n]; if(!meta||!meta.g||!G[meta.g]) continue;
+    var arr=byEx[n], wk={};
+    arr.forEach(function(x){ (wk[x.w]=wk[x.w]||[]).push(x.m); });
+    var raw=Object.keys(wk).map(Number).sort(function(a,b){return a-b;}).map(function(w){
+      return {w:w, v:wk[w].reduce(function(a,b){return a+b;},0)/wk[w].length};
+    });
+    var base=raw[0].v; if(!base) continue;
+    G[meta.g].ex.push({n:n, raw:raw,
+      pts:raw.map(function(p){ return {w:p.w, v:100*p.v/base}; }),
+      first:arr[0], last:arr[arr.length-1], count:arr.length});
+  }
+  order.forEach(function(k){ G[k].pts=chainIndex(G[k].ex); });
+  return {g:G, order:order};
+}
+
+// The group line is chain-linked rather than an average of per-exercise indices.
+// Averaging would enter every newly introduced exercise at 100 and so drag the whole
+// group back to the start each time a phase swaps its exercises - week 5 of Phase 2
+// would read as no progress since week 1. Chaining only ever moves the level by the
+// ratio between two appearances of the SAME exercise: a new lift joins at the level
+// the group has already reached and starts contributing from its second appearance.
+// A week that links to nothing holds the level instead of resetting it.
+function chainIndex(exList){
+  var weeks={}, all={};
+  exList.forEach(function(e){ e.raw.forEach(function(p){
+    if(!weeks[p.w]) weeks[p.w]={};
+    weeks[p.w][e.n]=p.v; all[p.w]=1; }); });
+  var ws=Object.keys(all).map(Number).sort(function(a,b){return a-b;});
+  var seen={}, level=100, out=[];
+  ws.forEach(function(w){
+    var row=weeks[w], names=Object.keys(row), links=[];
+    names.forEach(function(n){ var pv=seen[n]; if(pv&&pv.v>0) links.push(pv.level*row[n]/pv.v); });
+    if(links.length){
+      // Geometric mean: an index is multiplicative, so its ratios average that way.
+      var t=0; links.forEach(function(x){ t+=Math.log(x); });
+      level=Math.exp(t/links.length);
+    }
+    out.push({w:w, v:level, n:names.length, linked:links.length});
+    names.forEach(function(n){ seen[n]={v:row[n], level:level}; });
+  });
+  return out;
+}
+
+function lastPt(pts){ return pts.length?pts[pts.length-1]:null; }
+function deltaChip(pts){
+  var p=lastPt(pts); if(!p||pts.length<2) return '<span class="chip fl">one session</span>';
+  var d=Math.round(p.v-100);
+  return '<span class="chip '+(d>=0?"up":"dn")+'">'+(d>=0?"+":"")+d+'% since week '+pts[0].w+'</span>';
+}
+
+// A single-series line chart. Every chart here draws one series, which keeps colour
+// doing one job and keeps the plot legible at phone width.
+function chartSVG(pts, col, o){
+  o=o||{};
+  if(!pts.length) return "";
+  var sp=!!o.spark, W=o.w||320, H=o.h||(sp?38:150);
+  var pl=sp?2:30, pr=sp?2:34, pt=sp?5:12, pb=sp?5:22;
+  var base=(o.base===undefined)?100:o.base;
+  var xs=pts.map(function(p){return p.w;}), ys=pts.map(function(p){return p.v;});
+  var x0=Math.min.apply(null,xs), x1=Math.max.apply(null,xs);
+  var lo,hi;
+  if(o.lo!=null&&o.hi!=null){ lo=o.lo; hi=o.hi; }
+  else {
+    var all=base==null?ys:ys.concat([base]);
+    lo=Math.min.apply(null,all); hi=Math.max.apply(null,all);
+    var pad=Math.max(5,(hi-lo)*0.2); lo-=pad; hi+=pad;
+  }
+  function X(w){ return x1===x0 ? pl+(W-pl-pr)/2 : pl+(w-x0)/(x1-x0)*(W-pl-pr); }
+  function Y(v){ return pt+(hi-v)/(hi-lo)*(H-pt-pb); }
+  var fmt=o.fmt||function(v){ return Math.round(v); };
+  var g="";
+  // Recessive hairlines, one shade off the surface - never dashed.
+  (o.marks||[]).forEach(function(m){
+    g+='<line x1="'+pl+'" y1="'+Y(m.v).toFixed(1)+'" x2="'+(W-pr)+'" y2="'+Y(m.v).toFixed(1)
+      +'" stroke="#26333f" stroke-width="1"/>';
+    if(!sp&&m.l) g+='<text x="'+(pl-5)+'" y="'+(Y(m.v)+3.5).toFixed(1)
+      +'" text-anchor="end" font-size="9.5" fill="#5b6b7b">'+m.l+'</text>';
+  });
+  if(base!=null){
+    g+='<line x1="'+pl+'" y1="'+Y(base).toFixed(1)+'" x2="'+(W-pr)+'" y2="'+Y(base).toFixed(1)
+      +'" stroke="#2f3d4b" stroke-width="1"/>';
+    if(!sp) g+='<text x="'+(pl-5)+'" y="'+(Y(base)+3.5).toFixed(1)
+      +'" text-anchor="end" font-size="9.5" fill="#6b7b8b">'+base+'</text>';
+  }
+  if(!sp){
+    var xf=o.xfmt||function(p){ return "wk "+p.w; };
+    g+='<text x="'+pl+'" y="'+(H-7)+'" font-size="9.5" fill="#6b7b8b">'+esc(xf(pts[0]))+'</text>';
+    if(x1!==x0) g+='<text x="'+(W-pr)+'" y="'+(H-7)+'" text-anchor="end" font-size="9.5" fill="#6b7b8b">'
+      +esc(xf(pts[pts.length-1]))+'</text>';
+  }
+  var dd=pts.map(function(p,i){ return (i?"L":"M")+X(p.w).toFixed(1)+" "+Y(p.v).toFixed(1); }).join(" ");
+  g+='<path d="'+dd+'" fill="none" stroke="'+col+'" stroke-width="'+(sp?1.8:2)
+    +'" stroke-linecap="round" stroke-linejoin="round"/>';
+  if(!sp) pts.forEach(function(p,i){
+    var on=(o.tap===i);
+    g+='<circle cx="'+X(p.w).toFixed(1)+'" cy="'+Y(p.v).toFixed(1)+'" r="'+(on?5:4)
+      +'" fill="'+(o.dot?o.dot(p):col)+'" stroke="#1a232e" stroke-width="2"/>';
+  });
+  var lp=pts[pts.length-1];
+  if(sp){
+    g+='<circle cx="'+X(lp.w).toFixed(1)+'" cy="'+Y(lp.v).toFixed(1)+'" r="2.8" fill="'+col+'"/>';
+  } else {
+    // Only the endpoint is labelled; the axis and the tap layer carry the rest.
+    g+='<text x="'+(W-pr+5)+'" y="'+(Y(lp.v)+3.5).toFixed(1)+'" font-size="11" font-weight="700" fill="#c8d4e0">'
+      +fmt(lp.v)+'</text>';
+  }
+  if(!sp && o.tapable){
+    var bw=(W-pl-pr)/Math.max(1,pts.length);
+    pts.forEach(function(p,i){
+      // pointer-events="all" so the band is tappable despite having no visible fill;
+      // each band spans a whole point's width, which keeps the target well above the
+      // ~24px minimum on a phone.
+      g+='<rect data-tap="'+i+'" x="'+(X(p.w)-bw/2).toFixed(1)+'" y="0" width="'+bw.toFixed(1)
+        +'" height="'+H+'" fill="transparent" pointer-events="all"/>';
+    });
+    if(o.tap!=null && pts[o.tap]){
+      var p=pts[o.tap];
+      g+='<line x1="'+X(p.w).toFixed(1)+'" y1="'+pt+'" x2="'+X(p.w).toFixed(1)+'" y2="'+(H-pb)
+        +'" stroke="#4d6070" stroke-width="1"/>';
+    }
+  }
+  return '<svg class="ch" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" role="img">'+g+'</svg>';
+}
+
+// ==================== the 0-10 pain scale ====================
+// Andreas logs a number because that is what he and his physio talk in. The traffic
+// light is derived from it rather than typed, because the flare ladder, the deload
+// trigger and the phase-progression rule are all written in terms of the light - and
+// because a number alone cannot express the one thing that matters most: anything
+// below the knee is Red at any score.
+function bandFor(p){
+  if(p==null) return null;
+  for(var i=0;i<PAIN.bands.length;i++){ var b=PAIN.bands[i]; if(p>=b.f&&p<=b.t) return b; }
+  return PAIN.bands[PAIN.bands.length-1];
+}
+function bandByLight(l){
+  for(var i=0;i<PAIN.bands.length;i++) if(PAIN.bands[i].l===l) return PAIN.bands[i];
+  return null;
+}
+function lightFor(p, legs){
+  if(legs) return "red";
+  var b=bandFor(p);
+  return b?b.l:null;
+}
+// Rows logged before the scale existed have a light but no number. Everything that
+// reads history goes through these two so those rows still display and still count.
+function lightOf(row){ return row.traffic_light || lightFor(row.pain, row.leg_symptoms); }
+function painOf(row){ return (row && row.pain!=null) ? row.pain : null; }
+
+function painInput(sel, legs){
+  var lo=PAIN.min, hi=PAIN.max;
+  var btn=function(n){
+    var b=bandFor(n), on=(sel===n);
+    return '<button class="'+b.l.charAt(0)+(on?" on":"")+'" data-pain="'+n+'">'+n+'</button>';
+  };
+  var nums="";
+  for(var n=lo+1;n<=hi;n++) nums+=btn(n);
+  var b0=bandFor(lo);
+  var out='<button class="pain0'+(sel===lo?" on":"")+'" data-pain="'+lo+'">'+lo
+    +' &middot; '+esc(PAIN.anchors[0].t)+'</button>'
+    +'<div class="pain">'+nums+'</div>'
+    +'<div class="anch">'+PAIN.anchors.slice(1).map(function(a){
+        return '<span>'+a.n+' '+esc(a.t)+'</span>'; }).join("")+'</div>';
+  var l=lightFor(sel, legs);
+  if(l){
+    var b=bandByLight(l);
+    out+='<div class="derived '+l+'"><b>'+l.toUpperCase()
+      +(legs&&sel!=null&&bandFor(sel).l!=="red"?' &mdash; symptoms below the knee override the number':'')
+      +'</b>'+esc(b?b.a:"")+'</div>';
+  }
+  return out;
+}
+
+// Worst score logged on each day, sessions and check-ins together, over a window.
+// This is the line the physio reads, so it takes the worst of the day rather than an
+// average that would flatter a bad afternoon.
+function painSeries(days){
+  var by={};
+  (S.data.sessions||[]).forEach(function(x){
+    if(x.pain!=null) by[x.session_date]=Math.max(by[x.session_date]==null?-1:by[x.session_date], x.pain); });
+  (S.data.checkins||[]).forEach(function(c){
+    if(c.pain!=null) by[c.checkin_date]=Math.max(by[c.checkin_date]==null?-1:by[c.checkin_date], c.pain); });
+  var ks=Object.keys(by).sort();
+  if(!ks.length) return [];
+  var end=new Date(today()+"T00:00:00").getTime();
+  var start=end-(days-1)*86400000;
+  var out=[];
+  ks.forEach(function(k){
+    var t=new Date(k+"T00:00:00").getTime();
+    if(t>=start) out.push({w:Math.round((t-start)/86400000), v:by[k], d:k});
+  });
+  return out;
+}
+
+// ==================== flare mode ====================
+function openFlare(){
+  var f=(S.data.flares||[]).filter(function(x){return !x.resolved_on;});
+  return f.length?f[0]:null;
+}
+// The last thing that counted as a setback: the flare starting, a Red session or
+// morning check-in, or a session logged with symptoms below the knee. Everything
+// downstream is measured from this date, so one bad day resets the ladder.
+function setbackDate(f){
+  var a=f.started_on;
+  (S.data.sessions||[]).forEach(function(x){
+    if((x.traffic_light==="red"||x.leg_symptoms)&&x.session_date>=f.started_on&&x.session_date>a) a=x.session_date; });
+  (S.data.checkins||[]).forEach(function(c){
+    if(c.traffic_light==="red"&&c.checkin_date>=f.started_on&&c.checkin_date>a) a=c.checkin_date; });
+  return a;
+}
+function clearDays(f){
+  return Math.max(0, Math.round((new Date(today()+"T00:00:00")-new Date(setbackDate(f)+"T00:00:00"))/86400000));
+}
+function stageByN(n){ for(var i=0;i<FLARE.stages.length;i++) if(FLARE.stages[i].n===n) return FLARE.stages[i]; return null; }
+function computedStage(f){
+  var cd=clearDays(f), st=FLARE.stages[0];
+  FLARE.stages.forEach(function(x){ if(cd>=x.d) st=x; });
+  return st;
+}
+// A manual override holds only until the next setback; after that the ladder takes
+// over again, so a step-up cannot outlive the day it was justified.
+function flareStage(f){
+  if(f.stage_override!=null && f.override_on && f.override_on>setbackDate(f)){
+    var o=stageByN(Number(f.stage_override)); if(o) return o;
+  }
+  return computedStage(f);
+}
+function nextStage(f){
+  var cur=flareStage(f);
+  for(var i=0;i<FLARE.stages.length;i++) if(FLARE.stages[i].n===cur.n+1) return FLARE.stages[i];
+  return null;
+}
+function daysUntilNext(f){
+  var nx=nextStage(f); if(!nx) return null;
+  return Math.max(0, nx.d-clearDays(f));
+}
+function roundLoad(v){
+  if(v==null||isNaN(v)) return null;
+  return v>=20 ? Math.round(v/2.5)*2.5 : Math.round(v*2)/2;
+}
+// Rewrite a prescription for the stage you are on: cap the working sets, replace the
+// RPE, and state the load percentage so the number in the box has a reason.
+function stageSets(str, st){
+  var out=String(str||"");
+  if(st.sets) out=out.replace(/^(\d+)\s*x/, function(m,n){ return Math.min(Number(n),st.sets)+" x"; });
+  out=out.replace(/\s*@\s*RPE\s*[\d\-– ]*/i,"");
+  if(st.rpe) out+=" @ RPE "+st.rpe;
+  if(st.pct) out+=" · "+st.pct+"% of pre-flare";
+  return out;
+}
+// What today's session actually is. With no open flare this is simply the programme.
+function sessionPlan(w,p,day){
+  var f=openFlare();
+  if(!f) return {ex:PROGRAM[p][day], phase:p, stage:null, flare:null};
+  var st=flareStage(f);
+  if(!st.gym) return {ex:[], phase:p, stage:st, flare:f};
+  var pool=st.pool?st.pool:p;
+  if(!PROGRAM[pool]) pool=p;
+  var ex=PROGRAM[pool][day].filter(function(e){ return (e.sp||1)<=st.sp; }).map(function(e){
+    var c={}; for(var k in e) c[k]=e[k];
+    c.s=stageSets(e.s,st);
+    return c;
+  });
+  return {ex:ex, phase:pool, stage:st, flare:f};
+}
+function planLoad(e, st){
+  var lv=(S.data.lastLoads||{})[e.n]||{};
+  if(lv.load==null) return null;
+  if(st&&st.pct) return roundLoad(Number(lv.load)*st.pct/100);
+  return lv.load;
+}
+function currentPlan(){
+  var w=weekNum(), p=phaseFor(w), d=S.form.day||nextDay();
+  return sessionPlan(w,p,d);
+}
+
+
+// ==================== screens: flare banner, progression, session detail ====================
+function flareBanner(){
+  var f=openFlare(); if(!f) return "";
+  var st=flareStage(f), cd=clearDays(f), nx=nextStage(f), dn=daysUntilNext(f);
+  var bars=FLARE.stages.map(function(x){
+    return '<div class="'+(x.n<st.n?"done":(x.n===st.n?"on":""))+'"></div>'; }).join("");
+  var over=(f.stage_override!=null&&f.override_on&&f.override_on>setbackDate(f));
+  var btns='';
+  if(st.n>0) btns+='<button data-fl="down">Step back</button>';
+  if(st.n<FLARE.stages[FLARE.stages.length-1].n) btns+='<button data-fl="up">Step up</button>';
+  btns+='<button data-fl="close" class="danger">'+(S.confirmClose?"Tap again to close":"Close flare")+'</button>';
+  return '<div class="warn"><b>Flare mode &middot; Stage '+st.n+' &mdash; '+esc(st.t)+'</b>'
+   +'<div class="stage">'+bars+'</div>'+esc(st.sum)
+   +'<div style="margin-top:7px;font-size:12.5px;color:#d9a99f">'
+   + cd+' clear day'+(cd===1?"":"s")+' since '+setbackDate(f)
+   + (nx?' &middot; stage '+nx.n+' ('+esc(nx.t)+') in '+dn+' day'+(dn===1?"":"s")
+        :' &middot; a clear week here closes the flare')
+   + (over?' &middot; stage set by hand':'')+'</div>'
+   +'<div class="mini">'+btns+'</div></div>';
+}
+
+
+// The pain trend, and the one chart Andreas actually shows his physio. Plotted on the
+// fixed 0-10 scale rather than an auto-fitted one, so a quiet fortnight looks quiet
+// instead of being stretched to fill the box, with the band boundaries as hairlines.
+function painCard(){
+  var pts=painSeries(42);
+  if(!pts.length) return '<div class="card"><div class="lbl" style="margin-top:0">Pain</div>'
+    +'<p class="hint" style="margin:0">Nothing scored yet. Every session and check-in you log from '
+    +'now on adds a point here.</p></div>';
+  var last=pts[pts.length-1];
+  var worst=0, sum=0;
+  pts.forEach(function(p){ if(p.v>worst) worst=p.v; sum+=p.v; });
+  var avg=sum/pts.length;
+  var col=function(p){ var b=bandFor(p.v);
+    return b.l==="green"?"#2fe08f":(b.l==="amber"?"#f5c542":"#ff6b57"); };
+  return '<div class="card"><div class="lbl" style="margin-top:0">Pain &middot; last 6 weeks</div>'
+   +'<div style="font-size:34px;font-weight:700;letter-spacing:-1px;line-height:1">'+last.v
+   +'<span style="font-size:14px;color:#7b8b9b;font-weight:600">/10 &middot; '+esc(last.d)+'</span></div>'
+   +'<div class="legend" style="margin-top:10px"><i style="background:'+col(last)+'"></i>'
+   +'Worst score each day &middot; dots coloured by band</div>'
+   + chartSVG(pts, "#6d9fd4", {base:null, lo:-0.6, hi:10.6, dot:col,
+       marks:[{v:3.5,l:"3"},{v:6.5,l:"6"}],
+       xfmt:function(p){ return p.d.slice(5); }, fmt:function(v){ return Math.round(v); }})
+   +'<p class="hint" style="margin-top:8px">'+pts.length+' day'+(pts.length===1?"":"s")+' scored'
+   +' &middot; average '+(Math.round(avg*10)/10)+' &middot; worst '+worst
+   +'. Below the lower line is Green, above the upper is Red.</p></div>';
+}
+
+function viewProgression(){
+  var pr=progression();
+  var out='<button class="back" data-go="home">&larr; Back</button><h2>Progression</h2>';
+  var any=false; pr.order.forEach(function(k){ if(pr.g[k].pts.length) any=true; });
+  if(!any) return out+painCard()
+    +'<div class="card"><p class="hint" style="margin:0">No strength trend yet. '
+    +'Log a few sessions with loads in them and this fills itself in.</p></div>';
+  out+=painCard();
+  out+='<div class="card"><p class="hint" style="margin:0">Every exercise is scored against '
+   +'<b>your own first logged value for it</b> &mdash; 100 is where you started. A muscle group is the '
+   +'average of its exercises, which is what lets the line survive the exercises changing between '
+   +'phases. Same weight for more reps counts as progress.</p></div>';
+  out+='<div class="tiles">'+pr.order.map(function(k){
+    var g=pr.g[k], c=GCOL[k], lp=lastPt(g.pts), body;
+    if(g.pts.length>=2){
+      body='<div class="v">'+Math.round(lp.v)+'<small> idx</small></div>'+deltaChip(g.pts)
+          +chartSVG(g.pts,c,{spark:1});
+    } else {
+      body='<div class="v" style="color:#4a5866">&mdash;</div><div class="dim">'
+          +(g.ex.length?'one session so far':'nothing logged yet')+'</div>';
+    }
+    return '<button class="tile" data-grp="'+k+'"><div class="gl"><i style="background:'+c+'"></i>'
+      +esc(g.l)+'</div>'+body+'</button>';
+  }).join("")+'</div>';
+  out+='<p class="hint">Tap a group to see the exercises behind it. When a phase swaps in new '
+   +'exercises the line carries its level across rather than restarting, so a change of '
+   +'programme never reads as lost strength. Deload weeks dip it on purpose, and a load you '
+   +'left blank counts as missing, never as zero.</p>';
+  return out;
+}
+
+function viewGroup(){
+  var pr=progression(), g=pr.g[S.sel];
+  var out='<button class="back" data-go="prog">&larr; Progression</button>';
+  if(!g) return out+'<div class="ctr">No such group.</div>';
+  var c=GCOL[g.k], lp=lastPt(g.pts);
+  out+='<h2><span style="display:inline-block;width:11px;height:11px;border-radius:3px;background:'
+    +c+';margin-right:7px"></span>'+esc(g.l)+'</h2>';
+  if(!g.pts.length) return out+'<div class="card"><p class="hint" style="margin:0">Nothing logged for '
+    +'this group yet.</p></div>';
+  var d=Math.round(lp.v-100);
+  out+='<div class="card"><div class="lbl" style="margin-top:0">Index now</div>'
+   +'<div style="font-size:34px;font-weight:700;letter-spacing:-1px;line-height:1">'+Math.round(lp.v)
+   +'<span style="font-size:14px;color:#7b8b9b;font-weight:600"> &middot; week '+lp.w+'</span></div>'
+   +(g.pts.length>1?'<div style="margin-top:4px">'+deltaChip(g.pts)+'</div>':'')
+   +'<div class="legend" style="margin-top:12px"><i style="background:'+c+'"></i>'
+   +esc(g.l)+' index, all exercises averaged</div>'
+   +chartSVG(g.pts,c,{tapable:1,tap:S.tap})
+   +(S.tap!=null&&g.pts[S.tap]
+      ?'<p class="hint" style="margin-top:8px">Week '+g.pts[S.tap].w+' &middot; index '
+        +Math.round(g.pts[S.tap].v)+' &middot; from '+g.pts[S.tap].n+' exercise'
+        +(g.pts[S.tap].n===1?"":"s")+'</p>'
+      :'<p class="hint" style="margin-top:8px">Tap the chart to read a week.</p>')
+   +'</div>';
+
+  out+='<div class="card"><div class="lbl" style="margin-top:0">The exercises behind it</div>'
+   + g.ex.slice().sort(function(a,b){ return lastPt(b.pts).v-lastPt(a.pts).v; }).map(function(e){
+      var el=lastPt(e.pts), ed=Math.round(el.v-100);
+      return '<div class="exrow"><div class="nm"><b>'+esc(e.n)+'</b><span>'
+        +liftText(e.first)+' &rarr; '+liftText(e.last)+' &middot; '+e.count+' session'
+        +(e.count===1?"":"s")+'</span></div>'
+        +'<div style="width:74px;flex:none">'+(e.pts.length>1?chartSVG(e.pts,c,{spark:1,w:74}):'')+'</div>'
+        +'<div style="width:44px;text-align:right;font-size:13px;font-weight:700;flex:none;color:'
+        +(e.pts.length<2?"#6b7b8b":(ed>=0?"#7fe8b5":"#ffb4a6"))+'">'
+        +(e.pts.length<2?"&mdash;":(ed>=0?"+":"")+ed+"%")+'</div></div>';
+    }).join("")+'</div>';
+
+  out+='<button class="big alt" data-tbl="1">'+(S.form.tbl?"Hide the numbers":"Show the numbers")
+   +'<span class="d">Every week as a table</span></button>';
+  if(S.form.tbl){
+    out+='<div class="card" style="overflow-x:auto"><table class="tbl"><thead><tr><th>Week</th>'
+     +'<th>Index</th><th>Change</th><th>Linked by</th></tr></thead><tbody>'
+     + g.pts.map(function(p,i){
+         return '<tr><td>'+p.w+'</td><td>'+Math.round(p.v)+'</td><td>'
+           +(Math.round(p.v-100)>=0?"+":"")+Math.round(p.v-100)+'%</td><td>'
+           +(p.linked?p.linked+' of '+p.n
+             :(i===0?'baseline':'held &mdash; nothing repeated'))+'</td></tr>';
+       }).join("")+'</tbody></table></div>';
+  }
+  return out;
+}
+
+function viewSessionDetail(){
+  var x=null;
+  (S.data.sessions||[]).forEach(function(y){ if(y.id===S.sel) x=y; });
+  var out='<button class="back" data-go="history">&larr; History</button>';
+  if(!x) return out+'<div class="ctr">That session is gone.</div>';
+  var lifts=x.lifts||[];
+  if(S.form.pain===undefined&&x.pain!=null) S.form.pain=x.pain;
+  if(S.form.date===undefined) S.form.date=x.session_date;
+  if(S.form.notes===undefined) S.form.notes=x.notes||"";
+  if(S.form.legSymptoms===undefined) S.form.legSymptoms=!!x.leg_symptoms;
+  var legs=!!S.form.legSymptoms;
+  var rows=lifts.map(function(l,i){
+    var m=EX[l.n]||{};
+    var lo=(S.form["l"+i]!==undefined)?S.form["l"+i]:(l.load!=null?l.load:"");
+    var rp=(S.form["r"+i]!==undefined)?S.form["r"+i]:(l.reps!=null?l.reps:"");
+    var unit=m.t?"sec":"reps";
+    var loadIn=(m.u==="bw")?'<span class="unit">bw</span>'
+      :'<input class="num" type="number" inputmode="decimal" data-f="l'+i+'" value="'+esc(lo)+'" placeholder="-"><span class="unit">kg</span>';
+    return '<div class="row"><div class="nm"><b>'+esc(l.n)+'</b><span>'
+      +(m.g?esc(gLabel(m.g)):"")+'</span></div>'+loadIn
+      +'<input class="num" type="number" inputmode="numeric" data-f="r'+i+'" value="'+esc(rp)+'" placeholder="-"><span class="unit">'+unit+'</span></div>';
+  }).join("");
+  return out+'<h2>'+esc(x.session_date)+' &middot; Day '+esc(x.day_code)+'</h2>'
+   +'<div class="card"><div class="lbl" style="margin-top:0">Date</div>'
+   +'<input type="date" data-f="date" value="'+esc(S.form.date)+'">'
+   +'<div class="lbl">'+esc(PAIN.prompt)+'</div>'
+   +'<div class="toggle" style="padding-top:2px"><b>Symptoms below the knee</b><button class="sw'+(legs?" on bad":"")
+   +'" data-sw="legSymptoms"><i></i></button></div>'
+   +painInput(S.form.pain, legs)
+   +(x.pain==null?'<p class="hint">This session was logged as <b>'+esc(String(x.traffic_light).toUpperCase())
+      +'</b> before the 0-10 scale existed. Scoring it now fills in the number.</p>':'')
+   +'<p class="hint" style="margin:0">Phase '+x.phase+', week '+(x.week||"?")
+   +(x.flare_stage!=null?' &middot; logged at flare stage '+x.flare_stage:'')+'</p></div>'
+   +'<div class="card"><div class="lbl" style="margin-top:0">What you lifted</div>'
+   +(rows||'<div class="hint">No exercises stored on this session.</div>')+'</div>'
+   +'<div class="card"><div class="lbl" style="margin-top:0">Note</div>'
+   +'<textarea data-f="notes" rows="2">'+esc(S.form.notes)+'</textarea></div>'
+   +'<button class="save" data-save="editSession">Save changes</button>'
+   +'<div class="mini"><button class="danger" data-del="1">'
+   +(S.confirmDel?"Tap again to delete this session":"Delete this session")+'</button></div>';
+}
+
+
+// The server's lastLoads takes the most recent value for each exercise, blanks
+// included, so one session where you skipped filling a box erased the weight the app
+// would otherwise prefill next time. Recompute it here carrying the last number you
+// actually entered forward, load and reps independently.
+function adopt(d){
+  var last={};
+  var ss=(d.sessions||[]).slice().sort(function(a,b){ return a.session_date<b.session_date?-1:1; });
+  ss.forEach(function(x){
+    (x.lifts||[]).forEach(function(l){
+      if(!l||!l.n) return;
+      if(!last[l.n]) last[l.n]={load:null,reps:null};
+      if(l.load!=null&&l.load!=="") last[l.n].load=l.load;
+      if(l.reps!=null&&l.reps!=="") last[l.n].reps=l.reps;
+    });
+  });
+  d.lastLoads=last;
+  S.data=d;
+  return d;
+}
+
+// ---------- events ----------
+function wire(){
+  app.querySelectorAll("[data-go]").forEach(function(b){ b.onclick=function(){ go(b.dataset.go); }; });
+  app.querySelectorAll("[data-pain]").forEach(function(b){ b.onclick=function(){ S.form.pain=Number(b.dataset.pain); render(); }; });
+  app.querySelectorAll("[data-day]").forEach(function(b){ b.onclick=function(){
+    // Switching day changes which exercise each input belongs to, so the typed
+    // loads are cleared rather than silently landing on the wrong lift.
+    Object.keys(S.form).forEach(function(k){ if(/^[lr]\d+$/.test(k)) delete S.form[k]; });
+    S.form.day=b.dataset.day; render(); }; });
+  app.querySelectorAll("[data-tab]").forEach(function(b){ b.onclick=function(){ S.form.tab=b.dataset.tab; window.scrollTo(0,0); render(); }; });
+  app.querySelectorAll("[data-walk]").forEach(function(b){ b.onclick=function(){ S.form.walkMinutes=Number(b.dataset.walk); render(); }; });
+  app.querySelectorAll("[data-sw]").forEach(function(b){ b.onclick=function(){ S.form[b.dataset.sw]=!S.form[b.dataset.sw]; render(); }; });
+  app.querySelectorAll("[data-sess]").forEach(function(b){ b.onclick=function(){ S.sel=Number(b.dataset.sess); go("sess"); }; });
+  app.querySelectorAll("[data-grp]").forEach(function(b){ b.onclick=function(){ S.sel=b.dataset.grp; go("progG"); }; });
+  app.querySelectorAll("[data-tap]").forEach(function(b){ b.onclick=function(){ S.tap=Number(b.dataset.tap); render(); }; });
+  app.querySelectorAll("[data-tbl]").forEach(function(b){ b.onclick=function(){ S.form.tbl=!S.form.tbl; render(); }; });
+  app.querySelectorAll("[data-f2]").forEach(function(b){ b.onclick=function(){ S.form.newFlare=true; render(); }; });
+  app.querySelectorAll("[data-fl]").forEach(function(b){ b.onclick=function(){ flareAction(b.dataset.fl, b); }; });
+  app.querySelectorAll("[data-del]").forEach(function(b){ b.onclick=function(){
+    if(!S.confirmDel){ S.confirmDel=true; render(); return; } delSession(b); }; });
+  app.querySelectorAll("[data-f]").forEach(function(el){
+    el.oninput=function(){
+      var v=el.value;
+      if(el.type==="range"){ S.form[el.dataset.f]=Number(v); render(); return; }
+      S.form[el.dataset.f]=v;
+    };
+  });
+  app.querySelectorAll("[data-save]").forEach(function(b){ b.onclick=function(){ save(b.dataset.save, b); }; });
+}
+
+// Reload everything and land on a screen. Every write goes through here so the
+// traffic lights, the flare stage and the chart are never left showing stale data.
+function refresh(btn, screen){
+  return api("bootstrap").then(function(d){ adopt(d); touch(); go(screen); })
+    .catch(function(e){
+      btn.disabled=false;
+      btn.textContent = isAuthError(e) ? "Session expired — reopen the app" : "Retry — " + e.message;
+    });
+}
+function flareAction(kind, btn){
+  var f=openFlare(); if(!f) return;
+  if(kind==="close" && !S.confirmClose){ S.confirmClose=true; render(); return; }
+  var payload={id:f.id}, top=FLARE.stages[FLARE.stages.length-1].n;
+  if(kind==="close"){ payload.resolvedOn=today(); }
+  else {
+    var cur=flareStage(f).n;
+    payload.stageOverride=Math.max(0,Math.min(top, cur+(kind==="up"?1:-1)));
+    payload.overrideOn=today();
+  }
+  var here=S.screen;
+  btn.disabled=true; btn.textContent="Saving...";
+  api("updateFlare",payload).then(function(){ return refresh(btn, here); })
+    .catch(function(e){ btn.disabled=false; btn.textContent="Retry — "+e.message; });
+}
+function delSession(btn){
+  btn.disabled=true; btn.textContent="Deleting...";
+  api("deleteSession",{id:S.sel}).then(function(){ return refresh(btn,"history"); })
+    .catch(function(e){ btn.disabled=false; btn.textContent="Retry — "+e.message; });
+}
+
+function num(v){ if(v===""||v==null) return null; var n=Number(v); return isNaN(n)?null:n; }
+
+function save(kind, btn){
+  btn.disabled=true; btn.textContent="Saving...";
+  var w=weekNum(), p=phaseFor(w), pr, back="home";
+
+  if(kind==="session"){
+    var plan=currentPlan();
+    var d=S.form.day||nextDay();
+    var lifts=plan.ex.map(function(e,i){
+      var lv=(S.data.lastLoads||{})[e.n]||{};
+      var def=planLoad(e,plan.stage);
+      var lo=(S.form["l"+i]!==undefined)?num(S.form["l"+i]):(def!=null?def:null);
+      var rp=(S.form["r"+i]!==undefined)?num(S.form["r"+i]):(lv.reps!=null?lv.reps:null);
+      return {n:e.n, load:lo, reps:rp};
+    });
+    pr=api("saveSession",{date:today(),phase:plan.phase,week:w,day:d,
+      pain:S.form.pain, light:lightFor(S.form.pain,!!S.form.legSymptoms),
+      legSymptoms:!!S.form.legSymptoms,symptomNote:S.form.symptomNote,lifts:lifts,notes:S.form.notes,
+      flareStage:plan.stage?plan.stage.n:null});
+
+  } else if(kind==="editSession"){
+    var row=null;
+    (S.data.sessions||[]).forEach(function(y){ if(y.id===S.sel) row=y; });
+    if(!row){ btn.disabled=false; btn.textContent="That session is gone"; return; }
+    var edited=(row.lifts||[]).map(function(l,i){
+      var lo=(S.form["l"+i]!==undefined)?num(S.form["l"+i]):(l.load!=null?l.load:null);
+      var rp=(S.form["r"+i]!==undefined)?num(S.form["r"+i]):(l.reps!=null?l.reps:null);
+      return {n:l.n, load:lo, reps:rp};
+    });
+    var np=(S.form.pain!=null)?S.form.pain:(row.pain!=null?row.pain:null);
+    pr=api("updateSession",{id:S.sel, date:S.form.date||row.session_date,
+      pain:np, light:(np!=null?lightFor(np,!!S.form.legSymptoms):row.traffic_light),
+      legSymptoms:!!S.form.legSymptoms,
+      notes:S.form.notes||null, lifts:edited});
+    back="history";
+
+  } else if(kind==="editFlare"){
+    var f=openFlare();
+    if(!f){ btn.disabled=false; btn.textContent="No open flare"; return; }
+    pr=api("updateFlare",{id:f.id, symptomNote:S.form.symptomNote||null,
+      cause:S.form.cause||null, debrief:S.form.debrief||null});
+
+  } else if(kind==="checkin"){
+    pr=api("saveCheckin",{date:today(), pain:S.form.pain,
+      light:lightFor(S.form.pain,!!S.form.legSymptoms), homeRoutine:!!S.form.homeRoutine,
+      walkMinutes:S.form.walkMinutes,notes:S.form.notes});
+
+  } else if(kind==="flare"){
+    pr=api("saveFlare",{date:S.form.date||today(),severity:S.form.severity!==undefined?S.form.severity:5,
+      legSymptoms:S.form.legSymptoms!==undefined?!!S.form.legSymptoms:true,
+      symptomNote:S.form.symptomNote,cause:S.form.cause,debrief:S.form.debrief});
+
+  } else {
+    pr=api("saveBenchmark",{date:today(),calfL:num(S.form.calfL),calfR:num(S.form.calfR),
+      plankL:num(S.form.plankL),plankR:num(S.form.plankR),birdDog:num(S.form.birdDog),
+      balL:num(S.form.balL),balR:num(S.form.balR),walkTol:num(S.form.walkTol),
+      sitTol:num(S.form.sitTol),notes:S.form.notes});
+  }
+
+  // A Red is what starts flare mode. Logging one with no flare open opens it, so
+  // the next session adapts without you having to remember a second step.
+  if((kind==="session"||kind==="checkin")
+     && lightFor(S.form.pain,!!S.form.legSymptoms)==="red" && !openFlare()){
+    var legs = !!S.form.legSymptoms;
+    var note = S.form.symptomNote || null;
+    pr = pr.then(function(){
+      return api("saveFlare",{date:today(),severity:5,legSymptoms:legs,symptomNote:note,
+        cause:null,debrief:null});
+    });
+  }
+
+  pr.then(function(){ return refresh(btn, back); })
+    .catch(function(e){
+      btn.disabled=false;
+      btn.textContent = isAuthError(e) ? "Session expired — reopen the app" : "Retry — " + e.message;
+    });
+}
+
+// ---------- boot ----------
+function lockScreen(msg){
+  app.innerHTML='<header><h1>Back Rehab</h1></header>'
+   +(msg?'<div class="warn">'+esc(msg)+'</div>':'')
+   +'<div class="card"><div class="lbl" style="margin-top:0">Passcode</div>'
+   +'<input id="pc" type="password" inputmode="numeric" placeholder="Your passcode">'
+   +'<p class="hint">Stays unlocked for '+UNLOCK_DAYS+' days after each use.</p>'
+   +'</div><button class="save" id="go">Unlock</button>';
+  var btn=document.getElementById("go");
+  btn.onclick=function(){
+    var v=document.getElementById("pc").value;
+    if(!v){ return; }
+    btn.disabled=true; btn.textContent="Checking...";
+    S.pc=v;
+    api("bootstrap")
+      .then(function(d){ remember(v); adopt(d); go("home"); })
+      .catch(function(e){
+        if(isAuthError(e)){ lockScreen("Wrong passcode."); }
+        else { connError("Could not reach the server — your passcode was not checked."); }
+      });
+  };
+}
+
+// A failed network call must not look like a failed passcode. Supabase pauses free
+// projects after about a week idle, so the first call after a gap can time out while
+// the database wakes; dropping to the lock screen there would look like lost data.
+function connError(msg){
+  app.innerHTML='<header><h1>Back Rehab</h1></header>'
+   +'<div class="warn">'+esc(msg||"Could not reach the server.")+'<br><br>'
+   +'If the app has been idle for a while the database may be waking up. Give it a few '
+   +'seconds and try again. Nothing you have logged is affected.</div>'
+   +'<button class="save" id="retry">Try again</button>';
+  document.getElementById("retry").onclick=boot;
+}
+function setupScreen(){
+  app.innerHTML='<header><h1>Back Rehab</h1><div class="sub">First-time setup</div></header>'
+   +'<div class="card"><div class="lbl" style="margin-top:0">Choose a passcode</div>'
+   +'<input id="pc" type="password" inputmode="numeric" placeholder="At least 4 characters">'
+   +'<p class="hint">This is the only thing protecting your data. Pick something you will not forget.</p>'
+   +'<div class="lbl">Programme start date</div>'
+   +'<input id="st" type="date" value="'+today()+'">'
+   +'<p class="hint">Week 1 of Phase 1 begins on this date. Use today if you are starting now.</p>'
+   +'</div><button class="save" id="go">Create</button>';
+  document.getElementById("go").onclick=function(){
+    var v=document.getElementById("pc").value;
+    var st=document.getElementById("st").value;
+    if(v.length<4){ alert("At least 4 characters"); return; }
+    fetch(API,{method:"POST",headers:{"content-type":"application/json"},
+      body:JSON.stringify({action:"setPasscode",passcode:v,programStart:st})})
+      .then(function(r){return r.json();})
+      .then(function(){ S.pc=v; remember(v); return api("bootstrap"); })
+      .then(function(d){ adopt(d); go("home"); })
+      .catch(function(){ connError("Could not finish setup."); });
+  };
+}
+
+function boot(){
+  app.innerHTML='<div class="ctr">Loading...</div>';
+  fetch(API,{method:"POST",headers:{"content-type":"application/json"},
+    body:JSON.stringify({action:"status"})})
+    .then(function(r){return r.json();})
+    .then(function(j){
+      if(!j.hasPasscode){ setupScreen(); return; }
+      var pc=storedPasscode();
+      if(!pc){ lockScreen(); return; }
+      S.pc=pc;
+      return api("bootstrap")
+        .then(function(d){ adopt(d); touch(); go("home"); })
+        .catch(function(e){
+          if(isAuthError(e)){ forget(); lockScreen("Please enter your passcode again."); }
+          else { connError(); }
+        });
+    })
+    .catch(function(){ connError(); });
+}
+boot();
+</script>
+</body>
+</html>

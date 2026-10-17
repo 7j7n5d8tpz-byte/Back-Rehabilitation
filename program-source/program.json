@@ -1,0 +1,1263 @@
+{
+ "_comment": "SINGLE SOURCE OF TRUTH. Edit here, then run: python3 build.py. That regenerates the PDF and rewrites the app's data block. Never edit the exercise tables in the PDF or the app by hand.",
+ "_app_name_warning": "app.name is the key the tracker uses to prefill last session's load. Renaming it orphans that exercise's history. Change app.name only if you mean to reset it.",
+ "meta": {
+  "title": "Building Back",
+  "title2": "Stronger",
+  "kicker": "Rehabilitation & Strength",
+  "subtitle": "A 24-week sustainable strength program<br>for a recurrent L5/S1 disc herniation",
+  "prepared_for": "Andreas",
+  "date": "31 July 2026",
+  "revised": "3 August 2026",
+  "training": "3 full-body gym sessions/week, ~60 min",
+  "home": "15 minutes daily rehab + walking",
+  "starting_point": "~6 weeks post June 2026 flare, improving but symptomatic"
+ },
+ "deloads": [
+  10,
+  18,
+  24
+ ],
+ "phases": {
+  "1": {
+   "section": 3,
+   "title": "Re-entry",
+   "weeks": "weeks 1-4",
+   "heading": "Phase 1 — Re-entry (weeks 1–4)",
+   "goal_pdf": "establish a symptom-free baseline, rebuild trunk endurance and hip strength, and prove to your nervous system that loading is safe. You are not trying to get stronger in these four weeks. You are collecting evidence about what your back tolerates.",
+   "rules_pdf": "<b>Rules for this phase.</b> Everything at RPE 5–6. No hip hinge under external load — the hinge pattern is trained through back extensions and pull-throughs, which give you the posterior chain without the lever arm. Controlled tempo: 2 seconds down, no bounce. If you finish a session thinking “that was easy,” the phase is working as intended.",
+   "goal_app": "Establish a symptom-free baseline and rebuild trunk endurance. You are not trying to get stronger — you are collecting evidence about what your back tolerates.",
+   "rules_app": [
+    "Everything at RPE 5-6, four or more reps left in the tank.",
+    "No hip hinge under external load yet.",
+    "2 seconds down, no bounce.",
+    "If it feels easy, the phase is working."
+   ],
+   "footer_pdf": "<b>Passing out of Phase 1</b><br>Move to Phase 2 when you have completed <b>four consecutive weeks with no Red days</b> and you finish sessions feeling the same or better than when you started. If week 4 has been anything other than clean, repeat weeks 3–4. Repeating a phase costs you two weeks; a fourth herniation costs you six months.",
+   "days": {
+    "A": {
+     "label": "squat emphasis",
+     "mins": "~50 min",
+     "exercises": [
+      {
+       "name": "Goblet squat",
+       "sets": "3 × 10",
+       "rpe": "5–6",
+       "cue": "Stop above the depth where your pelvis tucks under. Heels on a 2cm plate if that helps you stay upright.",
+       "app": {
+        "sets": "3 x 10 @ RPE 5-6",
+        "cue": "Stop above the depth where your pelvis tucks under."
+       },
+       "group": "quads",
+       "spine": 2
+      },
+      {
+       "name": "Machine chest press",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "Back flat against the pad throughout.",
+       "group": "chest",
+       "spine": 1
+      },
+      {
+       "name": "Chest-supported DB row",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "Incline bench takes your lower back out of the equation entirely.",
+       "app": {
+        "cue": "Incline bench takes your lower back out of it entirely."
+       },
+       "group": "back",
+       "spine": 1
+      },
+      {
+       "name": "Machine hip thrust or glute bridge",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "Finish with a glute squeeze, ribs down. Do not hyperextend at the top.",
+       "app": {
+        "name": "Hip thrust / glute bridge",
+        "cue": "Ribs down. Do not hyperextend at the top."
+       },
+       "group": "post",
+       "spine": 1
+      },
+      {
+       "name": "Half-kneeling Pallof press",
+       "sets": "3 × 8/side",
+       "rpe": "6",
+       "cue": "3-second hold at full extension. Resist rotation; do not produce it.",
+       "app": {
+        "sets": "3 x 8 per side",
+        "cue": "3s hold. Resist rotation, do not produce it."
+       },
+       "group": "trunk",
+       "spine": 1
+      },
+      {
+       "name": "Suitcase carry",
+       "sets": "3 × 30 s/side",
+       "rpe": "6",
+       "cue": "Stay perfectly vertical. Weight is right when staying vertical is hard.",
+       "app": {
+        "sets": "3 x 30s per side",
+        "timed": true,
+        "cue": "Stay perfectly vertical. That is the exercise."
+       },
+       "group": "trunk",
+       "spine": 2
+      },
+      {
+       "name": "Standing calf raise",
+       "sets": "2 × 15",
+       "rpe": "7",
+       "cue": "S1 supplies your calf — this is rehab as well as training. Full range, 2s lower.",
+       "app": {
+        "cue": "Full range, 2s lower. S1 rehab as well as training."
+       },
+       "group": "calf",
+       "spine": 1
+      }
+     ]
+    },
+    "B": {
+     "label": "posterior chain & upper body",
+     "mins": "~50 min",
+     "exercises": [
+      {
+       "name": "Leg press",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "Feet high on the platform. <b>Restrict the depth</b> — stop well before your pelvis lifts off the pad.",
+       "app": {
+        "name": "Leg press (depth restricted)",
+        "cue": "Feet high. Stop well before your pelvis lifts off the pad."
+       },
+       "group": "quads",
+       "spine": 2
+      },
+      {
+       "name": "Lat pulldown, neutral grip",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "Minimal lean-back. Keep the torso near vertical.",
+       "app": {
+        "cue": "Torso near vertical, minimal lean-back."
+       },
+       "group": "back",
+       "spine": 1
+      },
+      {
+       "name": "Incline dumbbell press",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "Feet flat, no arch. Set the bench at 30°.",
+       "app": {
+        "name": "Incline DB press",
+        "cue": "Feet flat, no arch. Bench at 30 degrees."
+       },
+       "group": "chest",
+       "spine": 1
+      },
+      {
+       "name": "45° back extension, bodyweight",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "Rise to <b>neutral only</b>, never past straight. Driven by glutes, not by the low back.",
+       "app": {
+        "name": "45 deg back extension",
+        "sets": "3 x 12 bodyweight",
+        "unit": "bw",
+        "cue": "Rise to neutral only, never past straight. Glute-driven."
+       },
+       "group": "post",
+       "spine": 2
+      },
+      {
+       "name": "Cable pull-through",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "Your hinge pattern practice. Short range, spine locked neutral.",
+       "app": {
+        "cue": "Your hinge practice. Short range, spine locked neutral."
+       },
+       "group": "post",
+       "spine": 3
+      },
+      {
+       "name": "Side plank (forearm)",
+       "sets": "3 × 20–30 s/side",
+       "rpe": "6",
+       "cue": "Knees bent if the full version is hard. Completes the McGill “big three” with your home work.",
+       "app": {
+        "name": "Side plank",
+        "sets": "3 x 20-30s per side",
+        "unit": "bw",
+        "timed": true,
+        "cue": "Knees bent if needed. Completes the McGill big three."
+       },
+       "group": "trunk",
+       "spine": 1
+      },
+      {
+       "name": "Cable face pull",
+       "sets": "2 × 15",
+       "rpe": "6",
+       "cue": "Upper back and rear delts; keeps posture honest.",
+       "app": {
+        "cue": "Upper back and rear delts. Keeps posture honest."
+       },
+       "group": "back",
+       "spine": 1
+      }
+     ]
+    },
+    "C": {
+     "label": "single leg & upper body",
+     "mins": "~50 min",
+     "exercises": [
+      {
+       "name": "Split squat (rear foot on floor)",
+       "sets": "3 × 10/leg",
+       "rpe": "6",
+       "cue": "Hold a rack upright with one hand for balance. Torso upright.",
+       "app": {
+        "name": "Split squat (rear foot down)",
+        "sets": "3 x 10 per leg",
+        "cue": "Hold a rack for balance. Torso upright."
+       },
+       "group": "quads",
+       "spine": 2
+      },
+      {
+       "name": "Seated cable row, neutral grip",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "Do not let your lower back round at the stretch. Shorten the range if it does.",
+       "app": {
+        "name": "Seated cable row",
+        "cue": "Do not let the low back round at the stretch. Shorten the range if it does."
+       },
+       "group": "back",
+       "spine": 2
+      },
+      {
+       "name": "Seated DB shoulder press",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "High back support, ribs down, no lumbar arch.",
+       "group": "delts",
+       "spine": 2
+      },
+      {
+       "name": "Barbell or machine hip thrust",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "Chin tucked, ribs down. The movement happens at the hip, not the spine.",
+       "app": {
+        "name": "Hip thrust",
+        "cue": "Chin tucked. Movement at the hip, not the spine."
+       },
+       "group": "post",
+       "spine": 1
+      },
+      {
+       "name": "Cable hip abduction",
+       "sets": "3 × 12/side",
+       "rpe": "6",
+       "cue": "Glute medius. Weak abductors make the lumbar spine do pelvic stabilising work.",
+       "app": {
+        "sets": "3 x 12 per side",
+        "cue": "Weak abductors make the lumbar spine stabilise the pelvis."
+       },
+       "group": "post",
+       "spine": 1
+      },
+      {
+       "name": "Farmer carry (two hands)",
+       "sets": "3 × 40 s",
+       "rpe": "6",
+       "cue": "Tall, braced, small steps.",
+       "app": {
+        "name": "Farmer carry",
+        "sets": "3 x 40s",
+        "timed": true
+       },
+       "group": "trunk",
+       "spine": 2
+      },
+      {
+       "name": "Cable lateral raise",
+       "sets": "3 × 15",
+       "rpe": "6–7",
+       "cue": "Your only direct side-delt work. Tri-set it with the arm work below — same cable station, so it costs you no extra time.",
+       "app": {
+        "sets": "3 x 15",
+        "cue": "Your only side-delt work now. Tri-set it with the curl and pushdown, same cable station."
+       },
+       "group": "delts",
+       "spine": 1
+      },
+      {
+       "name": "Cable curl + rope pushdown",
+       "sets": "2 × 12 each",
+       "rpe": "7",
+       "cue": "Superset. Arms can be trained hard from day one — no spinal cost.",
+       "app": {
+        "name": "Curl + pushdown",
+        "sets": "2 x 12 each",
+        "cue": "Superset. No spinal cost, so train these hard."
+       },
+       "group": "arms",
+       "spine": 1
+      }
+     ]
+    }
+   }
+  },
+  "2": {
+   "section": 4,
+   "title": "Build",
+   "weeks": "weeks 5-12",
+   "heading": "Phase 2 — Build (weeks 5–12)",
+   "goal_pdf": "this is where the muscle gets built. Loads climb into a genuinely productive range, the hip hinge is reintroduced under load, and volume increases. RPE 6–8. Reps 6–12.",
+   "rules_pdf": "<b>What changes.</b> The trap bar deadlift enters — from elevated blocks or the high handles, never from the floor in this phase. The elevated start position keeps your torso more upright and cuts the shear demand on your lumbar spine while still loading the hips and posterior chain hard. Dumbbell RDLs appear with a deliberately short range. Everything else gets heavier.",
+   "goal_app": "Where the muscle gets built. Loads climb into a productive range and the hip hinge returns under load.",
+   "rules_app": [
+    "RPE 6-8, reps 6-12.",
+    "Trap bar from blocks or high handles only — never the floor.",
+    "RDLs deliberately short range.",
+    "Only progress a lift if last week was green."
+   ],
+   "footer_pdf": "<b>Passing out of Phase 2</b><br>Move to Phase 3 when you have completed <b>eight weeks with no more than two Amber days and zero Red days</b>, your trap bar has climbed meaningfully, and your single-leg calf raise benchmark (Section 7) is within 20% side to side.",
+   "days": {
+    "A": {
+     "label": "hinge emphasis",
+     "mins": "~60 min",
+     "exercises": [
+      {
+       "name": "Trap bar deadlift, from blocks",
+       "sets": "4 × 6",
+       "rpe": "6–7",
+       "cue": "High handles or 10–15cm blocks. Brace, hips lead, bar path vertical. Reset every rep — no touch-and-go.",
+       "app": {
+        "name": "Trap bar deadlift (blocks)",
+        "sets": "4 x 6 @ RPE 6-7",
+        "cue": "High handles or 10-15cm blocks. Hips lead. Reset every rep, no touch-and-go."
+       },
+       "group": "post",
+       "spine": 3
+      },
+      {
+       "name": "Safety-bar or goblet squat",
+       "sets": "3 × 8–10",
+       "rpe": "7",
+       "cue": "SSB if your gym has one — upright torso, no shoulder strain, far kinder to the lumbar spine than a straight bar.",
+       "app": {
+        "name": "Safety-bar / goblet squat",
+        "sets": "3 x 8-10",
+        "cue": "SSB if your gym has one. Upright torso, far kinder than a straight bar."
+       },
+       "group": "quads",
+       "spine": 2
+      },
+      {
+       "name": "Chest-supported row",
+       "sets": "4 × 10",
+       "rpe": "7",
+       "cue": "Heavier than Phase 1. Chest stays on the pad.",
+       "group": "back",
+       "spine": 1
+      },
+      {
+       "name": "Machine or DB flat press",
+       "sets": "3 × 10",
+       "rpe": "7",
+       "cue": "Controlled, no bounce.",
+       "app": {
+        "name": "Machine / DB flat press"
+       },
+       "group": "chest",
+       "spine": 1
+      },
+      {
+       "name": "Half-kneeling Pallof press",
+       "sets": "3 × 10/side",
+       "rpe": "7",
+       "cue": "3s hold. Progress by moving further from the anchor before adding weight.",
+       "app": {
+        "sets": "3 x 10 per side",
+        "cue": "Progress by stepping further from the anchor before adding weight."
+       },
+       "group": "trunk",
+       "spine": 1
+      },
+      {
+       "name": "Suitcase carry",
+       "sets": "3 × 30 s/side",
+       "rpe": "7",
+       "cue": "Add load steadily — this is one of the best trunk exercises you will do.",
+       "app": {
+        "sets": "3 x 30s per side",
+        "timed": true,
+        "cue": "Add load steadily. One of the best trunk exercises you will do."
+       },
+       "group": "trunk",
+       "spine": 2
+      }
+     ]
+    },
+    "B": {
+     "label": "upper body & glutes",
+     "mins": "~60 min",
+     "exercises": [
+      {
+       "name": "Barbell / machine hip thrust",
+       "sets": "4 × 8",
+       "rpe": "7–8",
+       "cue": "This can get genuinely heavy safely. Your best glute builder in this program.",
+       "app": {
+        "sets": "4 x 8 @ RPE 7-8",
+        "cue": "Can get genuinely heavy safely. Your best glute builder here."
+       },
+       "group": "post",
+       "spine": 2
+      },
+      {
+       "name": "Weighted 45° back extension",
+       "sets": "3 × 10",
+       "rpe": "7",
+       "cue": "Plate on chest. Still to neutral only. Builds spinal-erector endurance, which is protective.",
+       "app": {
+        "name": "Weighted 45 deg back extension",
+        "cue": "Plate on chest. Still to neutral only. Builds protective erector endurance."
+       },
+       "group": "post",
+       "spine": 3
+      },
+      {
+       "name": "Assisted pull-up or lat pulldown",
+       "sets": "4 × 8",
+       "rpe": "7",
+       "cue": "Progress toward unassisted. Avoid kipping or swinging.",
+       "app": {
+        "name": "Assisted pull-up / pulldown",
+        "cue": "Progress toward unassisted. No kipping or swinging."
+       },
+       "group": "back",
+       "spine": 1
+      },
+      {
+       "name": "Incline dumbbell press",
+       "sets": "4 × 8",
+       "rpe": "7",
+       "cue": "",
+       "app": {
+        "name": "Incline DB press"
+       },
+       "group": "chest",
+       "spine": 1
+      },
+      {
+       "name": "Seated DB shoulder press",
+       "sets": "3 × 10",
+       "rpe": "7",
+       "cue": "Back supported, ribs down.",
+       "group": "delts",
+       "spine": 2
+      },
+      {
+       "name": "Side plank with top-leg lift",
+       "sets": "3 × 30 s/side",
+       "rpe": "7",
+       "cue": "Progression from Phase 1's static hold.",
+       "app": {
+        "name": "Side plank with leg lift",
+        "sets": "3 x 30s per side",
+        "unit": "bw",
+        "timed": true,
+        "cue": "Progression from the Phase 1 static hold."
+       },
+       "group": "trunk",
+       "spine": 1
+      },
+      {
+       "name": "Standing calf raise",
+       "sets": "3 × 12",
+       "rpe": "8",
+       "cue": "Track this — see the S1 benchmark in Section 7.",
+       "app": {
+        "cue": "Track this against your benchmark."
+       },
+       "group": "calf",
+       "spine": 1
+      }
+     ]
+    },
+    "C": {
+     "label": "single leg emphasis",
+     "mins": "~60 min",
+     "exercises": [
+      {
+       "name": "Bulgarian split squat",
+       "sets": "4 × 8/leg",
+       "rpe": "7",
+       "cue": "Dumbbells at your sides, not on your back. Brutal for the quads and glutes, near-zero spinal load.",
+       "app": {
+        "sets": "4 x 8 per leg",
+        "cue": "Dumbbells at your sides, not on your back. Brutal legs, near-zero spinal load."
+       },
+       "group": "quads",
+       "spine": 2
+      },
+      {
+       "name": "Dumbbell RDL",
+       "sets": "3 × 10",
+       "rpe": "6–7",
+       "cue": "Short range — stop at mid-shin or wherever your back position starts to change, whichever comes first.",
+       "app": {
+        "name": "Dumbbell RDL (short range)",
+        "sets": "3 x 10 @ RPE 6-7",
+        "cue": "Stop at mid-shin or where your back position starts to change, whichever comes first."
+       },
+       "group": "post",
+       "spine": 3
+      },
+      {
+       "name": "Single-arm DB or cable row",
+       "sets": "3 × 10/side",
+       "rpe": "7",
+       "cue": "Supported on a bench. Also an anti-rotation demand.",
+       "app": {
+        "name": "Single-arm DB / cable row",
+        "sets": "3 x 10 per side",
+        "cue": "Supported on a bench. Also an anti-rotation demand."
+       },
+       "group": "back",
+       "spine": 2
+      },
+      {
+       "name": "Dip (assisted) or flat DB press",
+       "sets": "3 × 10",
+       "rpe": "7",
+       "cue": "",
+       "app": {
+        "name": "Dip (assisted) / flat DB press"
+       },
+       "group": "chest",
+       "spine": 2
+      },
+      {
+       "name": "Step-up, 40cm box",
+       "sets": "3 × 10/leg",
+       "rpe": "7",
+       "cue": "Drive through the top foot; do not push off the floor. Highly functional.",
+       "app": {
+        "sets": "3 x 10 per leg",
+        "cue": "Drive through the top foot. Do not push off the floor."
+       },
+       "group": "quads",
+       "spine": 2
+      },
+      {
+       "name": "Farmer carry",
+       "sets": "3 × 40 s",
+       "rpe": "7–8",
+       "cue": "Go heavy here. This builds grip, traps, and trunk simultaneously.",
+       "app": {
+        "sets": "3 x 40s",
+        "timed": true,
+        "cue": "Go heavy. Grip, traps and trunk at once."
+       },
+       "group": "trunk",
+       "spine": 2
+      },
+      {
+       "name": "Cable lateral raise",
+       "sets": "3 × 12–15",
+       "rpe": "7–8",
+       "cue": "Tri-set it with the arm work below — same cable station, so it costs you no extra time.",
+       "app": {
+        "sets": "3 x 12-15",
+        "cue": "Tri-set it with the curl and pushdown. Same cable station, costs you no extra time."
+       },
+       "group": "delts",
+       "spine": 1
+      },
+      {
+       "name": "Curl + pushdown superset",
+       "sets": "3 × 12 each",
+       "rpe": "8",
+       "cue": "",
+       "app": {
+        "name": "Curl + pushdown",
+        "sets": "3 x 12 each"
+       },
+       "group": "arms",
+       "spine": 1
+      }
+     ]
+    }
+   }
+  },
+  "3": {
+   "section": 5,
+   "title": "Strength",
+   "weeks": "weeks 13-24",
+   "heading": "Phase 3 — Strength (weeks 13–24)",
+   "goal_pdf": "consolidate. Lower reps, heavier loads, more demanding variations — but the same spine-sparing exercise selection. This is the phase you can stay in indefinitely.",
+   "rules_pdf": "<b>What changes.</b> Main lifts drop to 4–6 reps at RPE 7–8. Loaded rotation is introduced, carefully, through cable chops. The trap bar may come down toward the floor <b>only</b> if the previous eight weeks were entirely Green and you can maintain a neutral spine at that start position — check this with your physio, and film a set from the side. There is no requirement to ever pull from the floor.",
+   "goal_app": "Consolidate. Heavier loads, same spine-sparing exercise selection. You can stay in this phase indefinitely.",
+   "rules_app": [
+    "Main lifts 4-6 reps at RPE 7-8.",
+    "Loaded rotation introduced carefully via cable chops.",
+    "Floor pulls only after 8 fully green weeks, and only with your physio's sign-off.",
+    "There is no requirement to ever pull from the floor."
+   ],
+   "footer_pdf": "",
+   "days": {
+    "A": {
+     "label": "hinge emphasis",
+     "mins": "~60 min",
+     "exercises": [
+      {
+       "name": "Trap bar deadlift",
+       "sets": "4 × 5",
+       "rpe": "7–8",
+       "cue": "Lower the blocks only if the last 8 weeks were fully Green. Never grind a rep.",
+       "app": {
+        "sets": "4 x 5 @ RPE 7-8",
+        "cue": "Lower the blocks only after 8 fully green weeks. Never grind a rep."
+       },
+       "group": "post",
+       "spine": 3
+      },
+      {
+       "name": "Safety-bar squat",
+       "sets": "4 × 6",
+       "rpe": "7–8",
+       "cue": "Depth is whatever you can hold neutral. That is your depth — not what anyone else uses.",
+       "app": {
+        "cue": "Depth is whatever you can hold neutral. That is your depth, not anyone else's."
+       },
+       "group": "quads",
+       "spine": 3
+      },
+      {
+       "name": "Chest-supported row",
+       "sets": "4 × 8",
+       "rpe": "8",
+       "cue": "",
+       "group": "back",
+       "spine": 1
+      },
+      {
+       "name": "Flat barbell or DB bench press",
+       "sets": "4 × 6",
+       "rpe": "7–8",
+       "cue": "Modest arch only. Feet flat, glutes on the bench.",
+       "app": {
+        "name": "Flat bench press"
+       },
+       "group": "chest",
+       "spine": 1
+      },
+      {
+       "name": "Half-kneeling cable chop",
+       "sets": "3 × 10/side",
+       "rpe": "7",
+       "cue": "Rotation comes from the <b>thoracic spine and hips</b>. The lumbar spine stays quiet.",
+       "app": {
+        "sets": "3 x 10 per side",
+        "cue": "Rotation from the thoracic spine and hips. The lumbar spine stays quiet."
+       },
+       "group": "trunk",
+       "spine": 3
+      },
+      {
+       "name": "Heavy suitcase carry",
+       "sets": "3 × 30 s/side",
+       "rpe": "8",
+       "cue": "",
+       "app": {
+        "sets": "3 x 30s per side",
+        "timed": true
+       },
+       "group": "trunk",
+       "spine": 2
+      }
+     ]
+    },
+    "B": {
+     "label": "upper body & glutes",
+     "mins": "~60 min",
+     "exercises": [
+      {
+       "name": "Barbell hip thrust",
+       "sets": "4 × 6",
+       "rpe": "8",
+       "cue": "Your heaviest posterior-chain lift. Push it.",
+       "app": {
+        "sets": "4 x 6 @ RPE 8"
+       },
+       "group": "post",
+       "spine": 2
+      },
+      {
+       "name": "Weighted back extension",
+       "sets": "3 × 10",
+       "rpe": "7–8",
+       "cue": "To neutral. Slow eccentric.",
+       "group": "post",
+       "spine": 3
+      },
+      {
+       "name": "Weighted pull-up or pulldown",
+       "sets": "4 × 6",
+       "rpe": "8",
+       "cue": "",
+       "app": {
+        "name": "Weighted pull-up / pulldown"
+       },
+       "group": "back",
+       "spine": 2
+      },
+      {
+       "name": "Standing overhead press",
+       "sets": "4 × 6",
+       "rpe": "7",
+       "cue": "Only if you can press without arching. Squeeze glutes, ribs down. Seated if not.",
+       "app": {
+        "cue": "Only if you can press without arching. Glutes squeezed, ribs down. Seated if not."
+       },
+       "group": "delts",
+       "spine": 3
+      },
+      {
+       "name": "Incline DB press",
+       "sets": "3 × 10",
+       "rpe": "8",
+       "cue": "",
+       "group": "chest",
+       "spine": 1
+      },
+      {
+       "name": "Side plank with reach-through",
+       "sets": "3 × 10/side",
+       "rpe": "7",
+       "cue": "",
+       "app": {
+        "name": "Side plank reach-through",
+        "sets": "3 x 10 per side",
+        "unit": "bw"
+       },
+       "group": "trunk",
+       "spine": 1
+      },
+      {
+       "name": "Single-leg calf raise",
+       "sets": "3 × 12/leg",
+       "rpe": "8",
+       "cue": "Symmetry is the target, not just strength.",
+       "app": {
+        "sets": "3 x 12 per leg"
+       },
+       "group": "calf",
+       "spine": 1
+      }
+     ]
+    },
+    "C": {
+     "label": "single leg emphasis",
+     "mins": "~60 min",
+     "exercises": [
+      {
+       "name": "Bulgarian split squat",
+       "sets": "4 × 6/leg",
+       "rpe": "8",
+       "cue": "Heavier dumbbells, fewer reps.",
+       "app": {
+        "sets": "4 x 6 per leg"
+       },
+       "group": "quads",
+       "spine": 2
+      },
+      {
+       "name": "Single-leg RDL, dumbbell",
+       "sets": "3 × 8/leg",
+       "rpe": "7",
+       "cue": "Hip hinge, balance and glute-medius work in one. Light load, high control.",
+       "app": {
+        "name": "Single-leg RDL",
+        "sets": "3 x 8 per leg",
+        "cue": "Hinge, balance and glute medius in one. Light load, high control."
+       },
+       "group": "post",
+       "spine": 3
+      },
+      {
+       "name": "Walking lunge",
+       "sets": "3 × 10/leg",
+       "rpe": "7",
+       "cue": "",
+       "app": {
+        "sets": "3 x 10 per leg"
+       },
+       "group": "quads",
+       "spine": 3
+      },
+      {
+       "name": "Single-arm cable row",
+       "sets": "3 × 10/side",
+       "rpe": "8",
+       "cue": "",
+       "app": {
+        "sets": "3 x 10 per side"
+       },
+       "group": "back",
+       "spine": 2
+      },
+      {
+       "name": "Dip or close-grip press",
+       "sets": "3 × 8",
+       "rpe": "8",
+       "cue": "",
+       "app": {
+        "name": "Dip / close-grip press"
+       },
+       "group": "chest",
+       "spine": 2
+      },
+      {
+       "name": "Heavy farmer carry",
+       "sets": "4 × 40 s",
+       "rpe": "8",
+       "cue": "",
+       "app": {
+        "sets": "4 x 40s",
+        "timed": true
+       },
+       "group": "trunk",
+       "spine": 2
+      },
+      {
+       "name": "Cable lateral raise",
+       "sets": "3 × 12–15",
+       "rpe": "8",
+       "cue": "Tri-set it with the arm work below — same cable station, so it costs you no extra time.",
+       "app": {
+        "sets": "3 x 12-15",
+        "cue": "Tri-set it with the curl and pushdown. Same cable station, costs you no extra time."
+       },
+       "group": "delts",
+       "spine": 1
+      },
+      {
+       "name": "Curl + pushdown superset",
+       "sets": "3 × 12 each",
+       "rpe": "8",
+       "cue": "",
+       "app": {
+        "name": "Curl + pushdown",
+        "sets": "3 x 12 each"
+       },
+       "group": "arms",
+       "spine": 1
+      }
+     ]
+    }
+   }
+  }
+ },
+ "home_routine": [
+  {
+   "name": "Sciatic nerve slide",
+   "dose": "2 × 10/leg",
+   "cue": "Sit tall, slump slightly. Straighten the knee while you look up; bend the knee while you look down. Slow and smooth. This should feel like gentle traffic through the leg, never like a stretch or a symptom. Back off immediately if it does.",
+   "app": {
+    "dose": "2 x 10 per leg",
+    "cue": "Straighten the knee while looking up, bend it while looking down. Gentle traffic, never a stretch or a symptom."
+   }
+  },
+  {
+   "name": "Prone press-up",
+   "dose": "10 reps",
+   "cue": "Lie face down, press your upper body up on your hands, hips stay down. Hold 2s. <b>Only if extension makes you feel better</b> — most L5/S1 disc presentations respond to extension, but test it. If it worsens symptoms, replace with 90/90 breathing.",
+   "app": {
+    "dose": "10 reps, 2s hold",
+    "cue": "Only if extension makes you feel better. If it worsens things, do 90/90 breathing instead."
+   }
+  },
+  {
+   "name": "90/90 diaphragmatic breathing",
+   "dose": "8 breaths",
+   "cue": "On your back, feet on a wall or chair, knees at 90°. Breathe into your belly and low ribs, long slow exhale. Resets a guarded, over-braced trunk.",
+   "app": {
+    "name": "90/90 breathing",
+    "dose": "8 breaths",
+    "cue": "Feet up, knees at 90. Breathe into belly and low ribs. Resets an over-braced trunk."
+   }
+  },
+  {
+   "name": "Glute bridge",
+   "dose": "15 reps",
+   "cue": "Ribs down, squeeze at the top, 2s hold."
+  },
+  {
+   "name": "Dead bug",
+   "dose": "8/side",
+   "cue": "You already do this. Keep the low back flat against the floor — that is the whole exercise.",
+   "app": {
+    "dose": "8 per side",
+    "cue": "Low back stays flat against the floor. That is the whole exercise."
+   }
+  },
+  {
+   "name": "Bird dog",
+   "dose": "8/side, 5s hold",
+   "cue": "You already do this. Draw a small square with the extended hand and foot for a progression.",
+   "app": {
+    "dose": "8 per side, 5s hold",
+    "cue": "Draw a small square with the extended hand and foot to progress."
+   }
+  },
+  {
+   "name": "Side plank",
+   "dose": "2 × 25 s/side",
+   "cue": "Completes the McGill “big three”. Knees bent version is fine.",
+   "app": {
+    "dose": "2 x 25s per side",
+    "cue": "Knees bent version is fine."
+   }
+  },
+  {
+   "name": "Half-kneeling hip flexor stretch",
+   "dose": "2 × 30 s/side",
+   "cue": "Tuck the pelvis first, then lean. Tight hip flexors make your lumbar spine compensate all day.",
+   "app": {
+    "dose": "2 x 30s per side",
+    "cue": "Tuck the pelvis first, then lean."
+   }
+  }
+ ],
+ "nerve_work": [
+  {
+   "name": "Single-leg stand",
+   "dose": "30 s per leg",
+   "cue": "Progress: eyes open on the floor → eyes closed on the floor → eyes open on a cushion → eyes closed on a cushion.",
+   "app": {
+    "dose": "30s per leg",
+    "cue": "Progress: eyes open, then eyes closed, then on a cushion."
+   }
+  },
+  {
+   "name": "Heel walks and toe walks",
+   "dose": "20 m each",
+   "cue": "Simple, and directly tests the L5 and S1 myotomes.",
+   "app": {
+    "name": "Heel and toe walks",
+    "dose": "20m each",
+    "cue": "Directly tests the L5 and S1 myotomes."
+   }
+  }
+ ],
+ "benchmarks": [
+  {
+   "test": "Single-leg calf raise",
+   "how": "Full range to failure, one leg, hand on wall for balance only",
+   "target": "25+ reps, <20% side-to-side difference"
+  },
+  {
+   "test": "Side plank hold",
+   "how": "Forearm side plank, both sides, to failure",
+   "target": "60 s+, near-symmetrical"
+  },
+  {
+   "test": "Bird dog hold",
+   "how": "Longest clean hold, no hip drop",
+   "target": "30 s+ per side"
+  },
+  {
+   "test": "Single-leg balance, eyes closed",
+   "how": "On the floor, hands on hips",
+   "target": "20 s+, both sides"
+  },
+  {
+   "test": "Walking tolerance",
+   "how": "Longest continuous brisk walk without symptoms",
+   "target": "45 min+"
+  },
+  {
+   "test": "Sitting tolerance",
+   "how": "Longest continuous sit before symptoms",
+   "target": "60 min+"
+  }
+ ],
+ "substitutions": [
+  {
+   "from": "Trap bar deadlift",
+   "to": "Hip thrust + back extension",
+   "why": "Same posterior chain, zero spinal shear from a loaded hinge."
+  },
+  {
+   "from": "Any hinge (RDL, pull-through)",
+   "to": "Hip thrust, glute bridge, reverse hyper",
+   "why": "Removes the flexion moment entirely while still loading glutes and hamstrings."
+  },
+  {
+   "from": "Goblet / SSB squat",
+   "to": "Leg press (depth-restricted) or belt squat",
+   "why": "Loads the legs hard without axial compression through the spine."
+  },
+  {
+   "from": "Seated cable row",
+   "to": "Chest-supported row",
+   "why": "Removes the need for your spine to resist the load at all."
+  },
+  {
+   "from": "Standing overhead press",
+   "to": "Seated DB press, back supported",
+   "why": "Eliminates the lumbar arch that standing pressing invites."
+  },
+  {
+   "from": "Bulgarian split squat",
+   "to": "Rear-foot-down split squat or step-up",
+   "why": "Less hip-flexor stretch, less pelvic tilt demand."
+  },
+  {
+   "from": "Side plank",
+   "to": "Side plank from the knees, or standing Pallof",
+   "why": "Same anti-lateral-flexion demand, lower total load."
+  },
+  {
+   "from": "Cable lateral raise",
+   "to": "Seated DB lateral raise, or machine lateral raise",
+   "why": "Seated removes any temptation to lean away from the load."
+  },
+  {
+   "from": "Everything (a Red week)",
+   "to": "Walking, nerve slides, Big Three at reduced range",
+   "why": "See Section 8."
+  }
+ ],
+ "changelog": [
+  {
+   "date": "31 July 2026",
+   "note": "Original 24-week program issued."
+  },
+  {
+   "date": "3 August 2026",
+   "note": "Cable lateral raise added to Day A and Day C in all three phases. The program had no direct medial deltoid work; presses cover the anterior head and face pulls the posterior head. Placed on the two shortest/least shoulder-loaded days, and folded into the Day C cable superset as a tri-set, so total added session time is roughly five minutes a week."
+  },
+  {
+   "date": "6 August 2026",
+   "note": "Cable lateral raise removed from Day A in all three phases; Day A was running well over its estimated time, and the raise was the only exercise there not serving the squat, hinge or trunk brief. It stays on Day C, where it is tri-set into the existing cable station and costs no extra time. Phase 1 Day C raised from 2 to 3 sets to partly offset the lost volume; Phases 2 and 3 stay at 3 sets. Side-delt frequency drops from twice to once a week, which is an acceptable trade for a single-joint isolation movement."
+  },
+  {
+   "date": "29 Aug 2026",
+   "note": "Every exercise tagged with a muscle group and a spinal-load class. Flare protocol rewritten as a five-stage return ladder that the phone app now applies automatically to the session it shows you. App gains a full session history with loads, editing, and a progression chart by muscle group."
+  },
+  {
+   "date": "29 Aug 2026",
+   "note": "Pain is now logged as a 0-10 score on both the gym session and the daily check-in, which is what goes to the physio. The traffic light is derived from that number plus the below-the-knee toggle, so the flare ladder and the phase rules are unchanged."
+  }
+ ],
+ "_groups_comment": "group = primary muscle group used by the app's progression chart. spine = spinal load class (1 low, 2 moderate, 3 high) used by the flare protocol to decide which exercises are allowed at each return stage. Both are consumed by build.py.",
+ "muscle_groups": [
+  {
+   "key": "quads",
+   "label": "Legs / squat"
+  },
+  {
+   "key": "post",
+   "label": "Glutes & hinge"
+  },
+  {
+   "key": "back",
+   "label": "Back"
+  },
+  {
+   "key": "chest",
+   "label": "Chest"
+  },
+  {
+   "key": "delts",
+   "label": "Shoulders"
+  },
+  {
+   "key": "trunk",
+   "label": "Trunk"
+  },
+  {
+   "key": "calf",
+   "label": "Calves"
+  },
+  {
+   "key": "arms",
+   "label": "Arms"
+  }
+ ],
+ "flare_protocol": {
+  "_comment": "Drives both Section 8 of the PDF and the app's adaptive flare mode. clear_days is counted from the most recent setback (flare start, any red session or check-in, or any session logged with symptoms below the knee). max_spine filters exercises by their 'spine' tag; pool_phase 0 means use the phase you are currently in.",
+  "intro": "You will have a flare at some point in 24 weeks. Having a written plan for it is the difference between losing a week and losing a season - and it stops you making the panic decision to stop moving entirely, which reliably makes things worse.",
+  "clear_day_rule": "A clear day is a day with no Red logged and no symptoms below the knee. Any Red session, Red morning check-in, or session logged with leg symptoms resets the count to zero and drops you back to the stage that count belongs to.",
+  "stages": [
+   {
+    "n": 0,
+    "key": "settle",
+    "title": "Settle",
+    "clear_days": 0,
+    "gym": false,
+    "summary": "No gym. Walking, reduced-range home routine, nerve slides.",
+    "load_pct": null,
+    "sets_cap": null,
+    "rpe": null,
+    "max_spine": 0,
+    "pool_phase": null,
+    "do": [
+     "Do not go to bed. Bed rest beyond a day makes disc-related pain worse, not better.",
+     "Walk short and often - 5-10 minutes every couple of hours beats one long walk.",
+     "Find your position of relief and use it: prone, prone on elbows, or standing.",
+     "Nerve slides gently, 2 x 10 per leg, twice a day. Reduce range until there is no provocation at all.",
+     "Avoid prolonged sitting entirely. Stand or lie down.",
+     "Contact your physio now. Do not wait to see whether it settles on its own."
+    ]
+   },
+   {
+    "n": 1,
+    "key": "reintroduce",
+    "title": "Reintroduce",
+    "clear_days": 3,
+    "gym": true,
+    "summary": "Back in the gym, spine-neutral work only, half your pre-flare loads.",
+    "load_pct": 50,
+    "sets_cap": 2,
+    "rpe": "4-5",
+    "max_spine": 1,
+    "pool_phase": 1,
+    "do": [
+     "Supported and machine work only - nothing that loads the spine through range.",
+     "Two working sets, never more. You should leave feeling you could have done twice as much.",
+     "Home routine daily at full range again, walks toward 20-30 minutes.",
+     "Any leg symptom during or within 24h of a session sends you back to Settle."
+    ]
+   },
+   {
+    "n": 2,
+    "key": "rebuild",
+    "title": "Rebuild",
+    "clear_days": 7,
+    "gym": true,
+    "summary": "Phase 1 as written minus the hinge, at 70% of pre-flare loads.",
+    "load_pct": 70,
+    "sets_cap": 3,
+    "rpe": "5-6",
+    "max_spine": 2,
+    "pool_phase": 1,
+    "do": [
+     "Squat pattern, carries and rows return. The loaded hinge does not.",
+     "Run this for at least a week even if everything feels fine.",
+     "Re-test the single-leg calf raise and compare it to your last benchmark."
+    ]
+   },
+   {
+    "n": 3,
+    "key": "reload",
+    "title": "Re-load",
+    "clear_days": 14,
+    "gym": true,
+    "summary": "Your normal phase, hinge still held back, 85% of pre-flare loads.",
+    "load_pct": 85,
+    "sets_cap": null,
+    "rpe": "6-7",
+    "max_spine": 2,
+    "pool_phase": 0,
+    "do": [
+     "Back to the phase you were in, with the heavy hinge and loaded rotation still parked.",
+     "Sets as written. Loads are the brake here, not volume.",
+     "Write the debrief now if you have not already."
+    ]
+   },
+   {
+    "n": 4,
+    "key": "full",
+    "title": "Full programme",
+    "clear_days": 21,
+    "gym": true,
+    "summary": "Everything back, 95% of pre-flare loads. One clear week from closing the flare.",
+    "load_pct": 95,
+    "sets_cap": null,
+    "rpe": null,
+    "max_spine": 3,
+    "pool_phase": 0,
+    "do": [
+     "The hinge returns at the lightest load you would call productive, and climbs from there.",
+     "Do not chase the number you were at before the flare. It will come back faster than you think.",
+     "After a clear week here the flare is closed and you are back on the normal progression."
+    ]
+   }
+  ],
+  "close_after_clear_days": 28,
+  "debrief": "Within a week of any flare, write down: what you did in the 72 hours before it; whether the gym or daily life was the more likely cause; and what specifically you will change. Three episodes without a written debrief means the pattern that caused them is still invisible to you. This takes ten minutes and is probably the highest-leverage thing in this entire document.",
+  "spine_labels": {
+   "1": "Low - supported or machine, no spinal loading through range",
+   "2": "Moderate - upright loading, controlled, no hinge under load",
+   "3": "High - loaded hinge, axial squat, loaded rotation"
+  }
+ },
+ "pain_scale": {
+  "_comment": "Single source for the 0-10 pain score. The app logs the number plus the below-the-knee toggle and derives the traffic light from these bands, so the flare ladder, the deload trigger and the phase-progression rule all keep working while the number is what goes to the physio. leg_symptoms_forces means any symptom below the knee is Red regardless of the number.",
+  "min": 0,
+  "max": 10,
+  "leg_symptoms_forces": "red",
+  "prompt": "Worst back pain since the last log",
+  "anchors": [
+   {
+    "n": 0,
+    "t": "nothing at all"
+   },
+   {
+    "n": 3,
+    "t": "noticeable, settles within a day"
+   },
+   {
+    "n": 6,
+    "t": "limits what you do"
+   },
+   {
+    "n": 10,
+    "t": "the worst you have had"
+   }
+  ],
+  "bands": [
+   {
+    "light": "green",
+    "from": 0,
+    "to": 3,
+    "short": "Train and progress as written",
+    "criteria": "No leg symptoms. Back stiffness or ache at or below 3/10 that settles within 24 hours.",
+    "action": "Train as written. Progress as written. This is where the programme is designed to run.",
+    "action_app": "Train and progress as written."
+   },
+   {
+    "light": "amber",
+    "from": 4,
+    "to": 6,
+    "short": "Train, but hold the loads",
+    "criteria": "Back pain 4-6/10, or stiffness that lingers more than 24 hours, but no symptoms below the knee.",
+    "action": "Train, but: hold your loads where they are (do not add weight), cut the number of working sets by roughly a third, drop the hinge pattern for that session, and keep everything at RPE 5. Do not skip the session - movement helps here, load progression does not. Return to Green rules once you have had two consecutive Green days.",
+    "action_app": "Hold your loads, cut sets by a third, drop the hinge, everything at RPE 5. Do not skip the session."
+   },
+   {
+    "light": "red",
+    "from": 7,
+    "to": 10,
+    "short": "Stop loading",
+    "criteria": "Any pain, numbness, tingling or heaviness below the knee, whatever the number. Any new weakness. Symptoms spreading further down the leg than yesterday. Or back pain at 7/10 or above.",
+    "action": "Stop loading. Walking, the daily home routine at reduced range, and nerve slides only. Contact your physio. The app opens a flare for you and rebuilds your sessions from stage 0 upward - see Section 8.",
+    "action_app": "Stop loading. Walking, home routine at reduced range, nerve slides. Contact your physio."
+   }
+  ],
+  "note": "Symptoms moving toward your back are good news even if the number is unchanged. Symptoms moving down the leg mean stop, however mild and whatever the number says."
+ }
+}
