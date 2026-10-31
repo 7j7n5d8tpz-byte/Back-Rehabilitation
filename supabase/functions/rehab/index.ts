@@ -63,6 +63,36 @@ function painScore(v: any): number | null {
   return Number.isFinite(n) && n >= 0 && n <= 10 ? n : null;
 }
 
+// A number inside [lo, hi], or null. Same reasoning as painScore: a bad value becomes a
+// blank field instead of a CHECK violation that loses the whole run.
+function within(v: any, lo: number, hi: number, round = false): number | null {
+  if (v === null || v === undefined || v === "") return null;
+  let n = Number(v);
+  if (round) n = Math.round(n);
+  return Number.isFinite(n) && n >= lo && n <= hi ? n : null;
+}
+
+const SLOTS = ["E", "Q", "L", "RACE", "extra"];
+
+// The run columns the app may write, already validated. Only keys present in the body are
+// returned, so updateRun changes exactly what was sent.
+function runFields(body: any) {
+  const row: Record<string, any> = {};
+  const has = (k: string) => Object.prototype.hasOwnProperty.call(body, k);
+  if (has("date")) row.run_date = body.date;
+  if (has("slot")) row.slot = SLOTS.indexOf(body.slot) >= 0 ? body.slot : null;
+  if (has("durationMin")) row.duration_min = within(body.durationMin, 0.5, 599);
+  if (has("distanceKm")) row.distance_km = within(body.distanceKm, 0, 99);
+  if (has("avgHr")) row.avg_hr = within(body.avgHr, 30, 250, true);
+  if (has("maxHr")) row.max_hr = within(body.maxHr, 30, 250, true);
+  if (has("cadence")) row.cadence_spm = within(body.cadence, 60, 260, true);
+  if (has("rpe")) row.rpe = within(body.rpe, 1, 10, true);
+  if (has("pain")) row.pain = painScore(body.pain);
+  if (has("legSymptoms")) row.leg_symptoms = !!body.legSymptoms;
+  if (has("notes")) row.notes = body.notes || null;
+  return row;
+}
+
 // Copy only the keys the caller is allowed to set, and only when they were actually sent.
 // Anything absent from the body is left untouched in the database.
 function pick(body: any, map: Record<string, string>) {
@@ -113,6 +143,8 @@ Deno.serve(async (req: Request) => {
       const checkins = await rest("checkins?select=*&order=checkin_date.desc&limit=180");
       const benchmarks = await rest("benchmarks?select=*&order=test_date.desc&limit=20");
       const flares = await rest("flares?select=*&order=started_on.desc&limit=20");
+      // The raw Apple Health payload stays in the database; the app never needs it.
+      const runs = await rest("runs?select=id,run_date,started_at,slot,duration_min,distance_km,avg_hr,max_hr,cadence_spm,elevation_m,rpe,pain,leg_symptoms,notes,source,created_at&order=run_date.desc,id.desc&limit=400");
       const last: any = {};
       for (let i = sessions.length - 1; i >= 0; i--) {
         const lf = sessions[i].lifts || [];
@@ -120,7 +152,41 @@ Deno.serve(async (req: Request) => {
           if (lf[j] && lf[j].n) last[lf[j].n] = { load: lf[j].load, reps: lf[j].reps };
         }
       }
-      return json({ settings: s, sessions, checkins, benchmarks, flares, lastLoads: last });
+      return json({ settings: s, sessions, checkins, benchmarks, flares, runs, lastLoads: last });
+    }
+
+    if (action === "saveRun") {
+      const row = runFields(body);
+      if (!row.run_date || !row.duration_min) return json({ error: "date and duration are required" }, 400);
+      row.source = "manual";
+      const r = await rest("runs", { method: "POST", body: JSON.stringify(row), headers: { Prefer: "return=representation" } });
+      return json({ ok: true, row: r && r[0] });
+    }
+
+    // Edits a manual run or confirms an imported one. The Apple Health measurements of an
+    // imported run can be corrected here too: health-ingest only ever inserts new workouts,
+    // so a later sync never overwrites a correction.
+    if (action === "updateRun") {
+      const id = rowId(body.id);
+      if (!id) return json({ error: "bad id" }, 400);
+      const row = runFields(body);
+      if (Object.prototype.hasOwnProperty.call(row, "duration_min") && !row.duration_min) return json({ error: "bad duration" }, 400);
+      if (!Object.keys(row).length) return json({ error: "nothing to update" }, 400);
+      const r = await rest("runs?id=eq." + id, {
+        method: "PATCH", body: JSON.stringify(row), headers: { Prefer: "return=representation" }
+      });
+      if (!r || !r.length) return json({ error: "not found" }, 404);
+      return json({ ok: true, row: r[0] });
+    }
+
+    if (action === "deleteRun") {
+      const id = rowId(body.id);
+      if (!id) return json({ error: "bad id" }, 400);
+      const r = await rest("runs?id=eq." + id, {
+        method: "DELETE", headers: { Prefer: "return=representation" }
+      });
+      if (!r || !r.length) return json({ error: "not found" }, 404);
+      return json({ ok: true });
     }
 
     if (action === "saveSession") {
