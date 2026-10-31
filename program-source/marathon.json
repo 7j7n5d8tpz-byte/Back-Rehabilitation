@@ -1,0 +1,69 @@
+{
+ "_comment": "The marathon plan. build.py validates it and writes it into the app as RUNPLAN. Minutes, not km. E = easy, Q = easy plus quality once earned, L = long. 'qq'/'lq' mark sessions with quality content, which the app only prescribes after 7 days without Amber or Red. Re-plans happen here, at a review, never in the app.",
+ "race": "Copenhagen Marathon",
+ "race_date": "2027-05-09",
+ "start_date": "2026-11-02",
+ "phases": {
+  "base": {"title": "Base", "goal": "Easy running only. Build the habit and the tissue tolerance, not fitness."},
+  "build": {"title": "Build", "goal": "Long run grows. Strides, then steady running, once the back has been quiet for a week."},
+  "specific": {"title": "Specific", "goal": "Marathon-effort running and the longest long runs. Run-walk on everything over 2 hours."},
+  "taper": {"title": "Taper", "goal": "Less volume, same rhythm. Gym at deload dosing."},
+  "race": {"title": "Race week", "goal": "Short and easy. Nothing heavy in the gym after Wednesday."}
+ },
+ "text": {
+  "E": "Easy, talk-test pace (RPE 3-4). Flat and soft if you can.",
+  "Q_easy": "Easy, like E.",
+  "Q_strides": "Easy, then 6 x 20 s strides: relaxed, quick feet, full recovery. Not sprints.",
+  "Q_steady": "10 min easy, 3 x 8 min steady (RPE 6) with 2 min easy between, easy to finish.",
+  "Q_mp": "10 min easy, 2 x 15 min at marathon effort (RPE 5-6) with 3 min easy between, easy to finish.",
+  "Q_taper": "Easy, then 4 x 20 s strides.",
+  "L": "Easy, talk-test pace. Soft surfaces where you can.",
+  "L_runwalk": "Run-walk from the start: 9 min run, 1 min walk. Easy throughout."
+ },
+ "weeks": [
+  {"w": 1,  "start": "2026-11-02", "phase": "base",     "E": 25, "Q": 25, "L": 35,  "q": "Q_easy"},
+  {"w": 2,  "start": "2026-11-09", "phase": "base",     "E": 25, "Q": 30, "L": 40,  "q": "Q_easy"},
+  {"w": 3,  "start": "2026-11-16", "phase": "base",     "E": 30, "Q": 35, "L": 45,  "q": "Q_easy"},
+  {"w": 4,  "start": "2026-11-23", "phase": "base",     "E": 25, "Q": 30, "L": 40,  "q": "Q_easy", "tag": "cutback"},
+  {"w": 5,  "start": "2026-11-30", "phase": "base",     "E": 30, "Q": 40, "L": 50,  "q": "Q_easy"},
+  {"w": 6,  "start": "2026-12-07", "phase": "base",     "E": 35, "Q": 40, "L": 60,  "q": "Q_easy"},
+  {"w": 7,  "start": "2026-12-14", "phase": "base",     "E": 35, "Q": 45, "L": 70,  "q": "Q_easy"},
+  {"w": 8,  "start": "2026-12-21", "phase": "base",     "E": 30, "Q": 40, "L": 60,  "q": "Q_easy", "tag": "cutback"},
+  {"w": 9,  "start": "2026-12-28", "phase": "build",    "E": 40, "Q": 45, "L": 80,  "q": "Q_strides", "qq": true},
+  {"w": 10, "start": "2027-01-04", "phase": "build",    "E": 40, "Q": 50, "L": 90,  "q": "Q_strides", "qq": true},
+  {"w": 11, "start": "2027-01-11", "phase": "build",    "E": 35, "Q": 45, "L": 75,  "q": "Q_easy", "tag": "cutback", "note": "Moved from week 12 to line up with rehab deload week 24."},
+  {"w": 12, "start": "2027-01-18", "phase": "build",    "E": 45, "Q": 50, "L": 100, "q": "Q_strides", "qq": true},
+  {"w": 13, "start": "2027-01-25", "phase": "build",    "E": 45, "Q": 55, "L": 110, "q": "Q_steady", "qq": true},
+  {"w": 14, "start": "2027-02-01", "phase": "build",    "E": 45, "Q": 55, "L": 120, "q": "Q_steady", "qq": true, "l": "L_runwalk"},
+  {"w": 15, "start": "2027-02-08", "phase": "build",    "E": 50, "Q": 55, "L": 130, "q": "Q_steady", "qq": true, "l": "L_runwalk"},
+  {"w": 16, "start": "2027-02-15", "phase": "build",    "E": 45, "Q": 50, "L": 110, "q": "Q_strides", "qq": true, "tag": "cutback"},
+  {"w": 17, "start": "2027-02-22", "phase": "specific", "E": 50, "Q": 60, "L": 140, "q": "Q_mp", "qq": true, "l": "L_runwalk"},
+  {"w": 18, "start": "2027-03-01", "phase": "specific", "E": 50, "Q": 60, "L": 150, "q": "Q_mp", "qq": true, "l": "L_runwalk"},
+  {"w": 19, "start": "2027-03-08", "phase": "specific", "E": 50, "Q": 60, "L": 160, "q": "Q_mp", "qq": true, "l_text": "Run-walk 9:1, then the last 20 min at marathon effort, running through.", "lq": true},
+  {"w": 20, "start": "2027-03-15", "phase": "specific", "E": 40, "Q": 55, "L": 135, "q_text": "10K test: 15 min easy, 10 km steady-hard on a flat route, 10 min easy. Your time sets the race pace.", "qq": true, "l": "L_runwalk", "tag": "cutback", "test": true},
+  {"w": 21, "start": "2027-03-22", "phase": "specific", "E": 50, "Q": 60, "L": 170, "q": "Q_mp", "qq": true, "l": "L_runwalk"},
+  {"w": 22, "start": "2027-03-29", "phase": "specific", "E": 50, "Q": 60, "L": 180, "q": "Q_mp", "qq": true, "l": "L_runwalk", "note": "First 3 hours. Easter week."},
+  {"w": 23, "start": "2027-04-05", "phase": "specific", "E": 45, "Q": 50, "L": 150, "q": "Q_strides", "qq": true, "l": "L_runwalk", "tag": "cutback"},
+  {"w": 24, "start": "2027-04-12", "phase": "specific", "E": 50, "Q": 60, "L": 180, "q": "Q_mp", "qq": true, "l_text": "Run-walk 9:1, then the last 45 min at race pace and race run-walk. The dress rehearsal: race shoes, race breakfast, race gels.", "lq": true, "note": "Peak week."},
+  {"w": 25, "start": "2027-04-19", "phase": "taper",    "E": 45, "Q": 55, "L": 120, "q": "Q_taper", "qq": true, "l": "L_runwalk", "tag": "taper"},
+  {"w": 26, "start": "2027-04-26", "phase": "taper",    "E": 40, "Q": 45, "L": 90,  "q": "Q_taper", "qq": true, "tag": "taper"},
+  {"w": 27, "start": "2027-05-03", "phase": "race",     "E": 30, "Q": 20, "L": null, "e_text": "30 min easy, then 4 x 20 s strides.", "q_text": "Shakeout: 20 min very easy, two days before the race.", "tag": "race"}
+ ],
+ "rules": [
+  {"t": "The morning check-in decides the run", "b": "Green: run as planned. Amber: easy only, 30 min cap, long run at 60%, flat soft route, no strides or steady work. Red, or anything below the knee: no run, walk only."},
+  {"t": "During a flare", "b": "Settle: no running. Reintroduce: walk-run, 20 min max. Rebuild: half the planned minutes, long run 45 min max. Re-load: 75%, easy only. Full: 90%, easy only until the flare closes."},
+  {"t": "Stop and walk home if", "b": "back pain climbs to 4 or more, or anything reaches below the knee. Log the run with that score; the next morning's check-in decides what happens next."},
+  {"t": "Strides and steady work", "b": "Only after 7 days with no Amber or Red. Otherwise the session is run easy at the same length."},
+  {"t": "With the gym", "b": "The day after a long run of 90 min or more: Day B, not the hinge day. No heavy legs in the 48 h before a long run of 2 h or more. Cutback and taper weeks are gym deload weeks too."},
+  {"t": "Run-walk", "b": "Every long run of 2 h or more, and the race: 9 min run, 1 min walk, from the start. Walk breaks cut the continuous load on the spine, and finishing healthy does not need the minutes they cost."},
+  {"t": "Winter", "b": "The treadmill counts minute for minute for E and Q, at 1% incline. Keep the long run outside where you can. On ice, move it a day."},
+  {"t": "A week is a set of runs", "b": "Do the three runs in any order by Sunday. Suggested: Tue E, Thu Q, Sun L, with the gym on Mon, Wed and Fri. Never two runs on consecutive days if the back was Amber in between."}
+ ],
+ "race_day": [
+  "Morning check-in done. Amber: start, run-walk, and be ready to walk it in. Red or leg symptoms: do not start.",
+  "Run-walk 9:1 from the first kilometre, whatever everyone else does.",
+  "Gels every 40 min, the brand you used in the long runs.",
+  "Shoes that have at least two long runs in them.",
+  "Bib, pins, timing chip, and something warm to throw away at the start."
+ ]
+}

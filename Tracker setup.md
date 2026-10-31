@@ -2,7 +2,7 @@
 
 ## Step 1: put the app online (5 minutes, on your Mac)
 
-The app is one file: **`back-rehab-app/index.html`** in this folder.
+The app is the **`back-rehab-app`** folder: `index.html` plus `logic.js` (the marathon and swap rules).
 
 1. Go to **[app.netlify.com/drop](https://app.netlify.com/drop)**
 2. Drag the whole **`back-rehab-app`** folder onto the drop zone — the folder, not the file.
@@ -18,6 +18,27 @@ The app is one file: **`back-rehab-app/index.html`** in this folder.
 4. Open it from the home screen. It runs full-screen with no browser chrome and stays logged in.
 
 ## What it does
+
+The app has four tabs: **Today**, **Rehab**, **Marathon** and **Progress**. Logging (gym,
+check-in, run, flare) opens as a sheet over the tab you're on; ✕ or Esc closes it. It follows
+your phone's light or dark setting.
+
+**Today** is the whole day in one list: morning check-in, home routine, today's run, the gym
+and the walk. The run is already adjusted for your back: an Amber check-in makes it easy
+and caps it at 30 minutes (the long run drops to 60%), Red or anything below the knee
+cancels it, and an open flare follows the flare ladder (no running in Settle, walk-run in
+Reintroduce, then 50% / 75% / 90%). Each card shows the reason why. Strides and steady
+work only appear after 7 days without Amber or Red.
+
+**Marathon** has the countdown to Copenhagen (Sun 9 May 2027), this week's three runs
+(E easy, Q quality, L long) as done or left, the 27-week plan, the back rules, the race-day
+checklist, and when Apple Health last sent a run. Do the three runs in any order by
+Sunday. A run you log is matched to E, Q or L from its length; you can always change that.
+
+**Swap an exercise** while logging a gym session: tap *↔ Swap* under it and choose any
+other exercise in the programme. Its last load is filled in. The swap is for that session
+only and is saved on it ("swapped for …"); during a flare the list only offers what your
+stage allows.
 
 **Log gym session** — pre-loaded with the right exercises for your current phase and day, and it suggests the next day in the A→B→C rotation. Loads are prefilled from last time, so you only touch what changed. Pick a traffic light, hit save. Under 30 seconds.
 
@@ -39,15 +60,54 @@ It stays unlocked for **30 days after each use**, and every session you log push
 
 A failed network call no longer looks like a failed passcode: if Supabase is waking from its idle pause you'll get a "try again" screen rather than being asked to log in.
 
+## Apple Health → runs (one-time setup, ~5 minutes)
+
+A web page can't read Apple Health itself, so the **Health Auto Export** app (App Store,
+by Lybron Sobers) sends your Apple Watch runs to the app's database. It needs Premium for
+automations. Use the free one-week trial first and check that a real run comes through
+before buying (lifetime is about €30).
+
+1. Get your secret on the Mac (it's in the Keychain, never in this folder):
+   ```bash
+   security find-generic-password -s back-rehab-health-ingest -w
+   ```
+   AirDrop or Notes it to your phone, and delete it from there once it's pasted in.
+2. In Health Auto Export: **Automations → New → REST API**.
+   - URL: `https://mfzmyahruqghcnhjlkon.supabase.co/functions/v1/health-ingest`
+   - Header: key `Authorization`, value `Bearer ` followed by the secret
+   - Data type: **Workouts** · Format: **JSON** · Export version: **2**
+   - Date range: **Previous 7 Days**. Not "Since Last Sync": that setting is known to miss
+     workouts that reach the phone late, and re-sending a week is harmless (a run is
+     only ever stored once).
+   - Turn off route/GPS data. It isn't used, and it makes the upload big.
+   - Interval: every hour.
+3. **Manual Export** with a date range that includes a run, then check *Activity Logs* says
+   200. The run appears in the app as "New from Apple Health". Tap *How was the back?*,
+   score it, and it counts.
+
+iOS only lets the app read Health while the phone is unlocked, so a run usually shows up
+within an hour, or the next time you unlock. The Marathon tab shows when the last one
+arrived; if that gets old, open Health Auto Export once. You can always log a run by hand.
+
+If the secret ever leaks: generate a new one (ask me), update the header, done.
+
 ## Reviews
 
 **Every 4 weeks** — do the benchmark tests, then tell me "time for a review". I read the data straight from the database, no exporting or copy-pasting. I'll look at whether loads are actually climbing, whether the traffic lights are trending the right way, whether the calf-raise asymmetry is closing, and whether you're ready for the next phase.
 
 **Any time** — if you flare, or something feels off, just say so and I'll pull the data.
 
+**The marathon plan** is reviewed the same way: every 4 weeks, after a flare, or after a
+missed long run. I read the runs and back scores, change `program-source/marathon.json`
+if the weeks ahead need it, and rebuild. The app never rewrites the plan by itself.
+
 ## How it's put together
 
-The **page** is a single static HTML file on Netlify. It holds no keys and no data — it's just the interface, the same as any website's JavaScript.
+The **page** is two static files on Netlify. They hold no keys and no data — just the interface, the same as any website's JavaScript.
+
+The **marathon plan** lives in `program-source/marathon.json` and is built into the app by the same `build.py` run as the programme. `node program-source/test_logic.mjs` checks the back rules, the run matching, the swap list and the plan's progression against the built app.
+
+**Runs from Apple Health** arrive through a second edge function, `health-ingest`. It only accepts requests carrying your secret, can only add running workouts, never returns data, and never overwrites a run that is already stored. Both functions and every database migration are now in `supabase/` in this folder.
 
 The **data** lives in Supabase project **Back Rehab Tracker** (`mfzmyahruqghcnhjlkon`), eu-central-1, free tier. The tables are sealed: row-level security is on with no policies, so the public API key cannot read or write anything. All access goes through one edge function behind your passcode. Verified: anonymous reads return empty, anonymous writes are rejected.
 

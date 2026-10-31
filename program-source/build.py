@@ -29,6 +29,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 DATA = HERE / "program.json"
+MARATHON = HERE / "marathon.json"
 TEMPLATE = HERE / "template.html"
 PDF_OUT = ROOT / "L5-S1 Sustainable Strength Program.pdf"
 APP = ROOT / "back-rehab-app" / "index.html"
@@ -402,6 +403,8 @@ def build_app_block(d):
             bits.append("rpe:" + js(x["rpe"]))
         if x.get("pool_phase") is not None:
             bits.append("pool:" + str(x["pool_phase"]))
+        if x.get("run"):
+            bits.append("run:" + json.dumps(x["run"], ensure_ascii=False))
         bits.append("do:[" + ",".join(js(plain(y)) for y in x["do"]) + "]")
         st.append("   {" + ",".join(bits) + "}")
     lines.append(",\n".join(st))
@@ -428,8 +431,44 @@ def build_app_block(d):
     lines.append("")
 
     lines.append("var DELOADS = [{}];".format(",".join(str(x) for x in d["deloads"])))
+    lines.append("")
+
+    # RUNPLAN (from marathon.json, already validated)
+    m = {k: v for k, v in d["marathon"].items() if not k.startswith("_")}
+    lines.append("var RUNPLAN = " + json.dumps(m, ensure_ascii=False, separators=(",", ":")) + ";")
     lines.append(END)
     return "\n".join(lines)
+
+
+def check_marathon(m):
+    """Stop the build rather than ship a plan the app would misread."""
+    from datetime import date, timedelta
+    errs = []
+    start = date.fromisoformat(m["start_date"])
+    race = date.fromisoformat(m["race_date"])
+    weeks = m["weeks"]
+    for i, wk in enumerate(weeks):
+        n = i + 1
+        if wk["w"] != n:
+            errs.append("week {} is numbered {}".format(n, wk["w"]))
+        if date.fromisoformat(wk["start"]) != start + timedelta(weeks=i):
+            errs.append("week {} starts {}, expected {}".format(n, wk["start"], start + timedelta(weeks=i)))
+        if wk["phase"] not in m["phases"]:
+            errs.append("week {} has unknown phase {}".format(n, wk["phase"]))
+        for key in ("q", "l"):
+            if key in wk and wk[key] not in m["text"]:
+                errs.append("week {} uses unknown text {}".format(n, wk[key]))
+        last = n == len(weeks)
+        if (wk["L"] is None) != last:
+            errs.append("week {}: only the race week has no long run".format(n))
+        for s in ("E", "Q") + (() if last else ("L",)):
+            if not isinstance(wk[s], int) or not 10 <= wk[s] <= 240:
+                errs.append("week {} {} = {!r} minutes".format(n, s, wk[s]))
+    end = start + timedelta(weeks=len(weeks)) - timedelta(days=1)
+    if not (date.fromisoformat(weeks[-1]["start"]) <= race <= end):
+        errs.append("race {} is not in the last week".format(race))
+    if errs:
+        sys.exit("marathon.json:\n  " + "\n  ".join(errs))
 
 
 def patch_app(d):
@@ -457,6 +496,8 @@ def patch_app(d):
 def main():
     d = json.loads(DATA.read_text(encoding="utf-8"))
     check_supersets(d)
+    d["marathon"] = json.loads(MARATHON.read_text(encoding="utf-8"))
+    check_marathon(d["marathon"])
     args = set(sys.argv[1:])
 
     if "--app-only" not in args:

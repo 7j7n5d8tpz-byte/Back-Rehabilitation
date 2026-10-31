@@ -1109,6 +1109,10 @@
   {
    "date": "17 October 2026",
    "note": "A side-to-side leg strength difference was found, so every squat, thrust and calf exercise is now single-leg; the hinge (trap bar, back extension, pull-through) stays two-legged on purpose. The leg press is removed entirely because it tensions the sciatic nerve; step-ups move to Day A in Phases 2-3, so single-leg quad work still comes twice a week (step-up on A, Bulgarian split squat on C). Goblet and safety-bar squats are gone, all hip thrusts and the glute bridge are single-leg, calf raises are single-leg, the Phase 2 dumbbell RDL became a B-stance RDL and the Phase 3 walking lunge became the step-up. Added a standing single-leg leg curl (Phases 2-3; there was no knee-flexion hamstring work, and standing keeps the nerve slack) and the cable face pull to Phases 2-3. Curls and pushdowns removed at Andreas's request; dips stay. New benchmark: single-leg strength gap. Added a bodyweight back-extension hold to Day C in Phases 2-3, so the back extensors are trained twice a week: strength on Day B, endurance on Day C. A short-range kneeling ab rollout is added to Phase 3 Day B for heavier anti-extension work; QL stays isometric (side plank, suitcase carry), with no loaded side bends. Phase 3 gets six supersets (marked SS1, SS2...), chosen with Andreas to fit the layout of his gym; the single-leg calf raise moves from Day B to Day A to partner the row."
+  },
+  {
+   "date": "31 October 2026",
+   "note": "Marathon added (Copenhagen, 9 May 2027): three runs a week from 2 November, kept in marathon.json and gated by the same check-in and flare ladder as the gym. Each flare stage now also says how much running it allows. After week 24 the gym deloads in the running plan's cutback and taper weeks, so the two never peak together. While logging a session an exercise can be swapped for any other in the programme; the swap is for that session only and is recorded on it."
   }
  ],
  "_groups_comment": "group = primary muscle group used by the app's progression chart. spine = spinal load class (1 low, 2 moderate, 3 high) used by the flare protocol to decide which exercises are allowed at each return stage. Both are consumed by build.py.",
@@ -1170,7 +1174,13 @@
      "Nerve slides gently, 2 x 10 per leg, twice a day. Reduce range until there is no provocation at all.",
      "Avoid prolonged sitting entirely. Stand or lie down.",
      "Contact your physio now. Do not wait to see whether it settles on its own."
-    ]
+    ],
+    "run": {
+     "pct": 0,
+     "max": 0,
+     "quality": false,
+     "text": "No running. Walk short and often instead."
+    }
    },
    {
     "n": 1,
@@ -1189,7 +1199,14 @@
      "Two working sets, never more. You should leave feeling you could have done twice as much.",
      "Home routine daily at full range again, walks toward 20-30 minutes.",
      "Any leg symptom during or within 24h of a session sends you back to Settle."
-    ]
+    ],
+    "run": {
+     "pct": 0,
+     "max": 20,
+     "quality": false,
+     "walkrun": true,
+     "text": "Walk-run only: 1 min jog, 2 min walk, 20 min max, flat."
+    }
    },
    {
     "n": 2,
@@ -1207,7 +1224,13 @@
      "Squat pattern, carries and rows return. The loaded hinge does not.",
      "Run this for at least a week even if everything feels fine.",
      "Re-test the single-leg calf raise and compare it to your last benchmark."
-    ]
+    ],
+    "run": {
+     "pct": 50,
+     "max": 45,
+     "quality": false,
+     "text": "Half the planned minutes, easy only. Long run 45 min max."
+    }
    },
    {
     "n": 3,
@@ -1225,7 +1248,12 @@
      "Back to the phase you were in, with the heavy hinge and loaded rotation still parked.",
      "Sets as written. Loads are the brake here, not volume.",
      "Write the debrief now if you have not already."
-    ]
+    ],
+    "run": {
+     "pct": 75,
+     "quality": false,
+     "text": "75% of the planned minutes, easy only."
+    }
    },
    {
     "n": 4,
@@ -1243,7 +1271,12 @@
      "The hinge returns at the lightest load you would call productive, and climbs from there.",
      "Do not chase the number you were at before the flare. It will come back faster than you think.",
      "After a clear week here the flare is closed and you are back on the normal progression."
-    ]
+    ],
+    "run": {
+     "pct": 90,
+     "quality": false,
+     "text": "90% of the planned minutes, easy only until the flare closes."
+    }
    }
   ],
   "close_after_clear_days": 28,
