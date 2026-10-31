@@ -2,134 +2,249 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Back Rehab">
-<meta name="theme-color" content="#111820">
+<meta name="theme-color" content="#0E1319" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F4F5F7" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
 <title>Back Rehab</title>
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%231d3557'/%3E%3Ctext x='90' y='122' font-size='96' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3EL5%3C/text%3E%3C/svg%3E">
 <style>
+/* Tokens. Dark is the default (winter evenings); light follows the phone's setting.
+   Green / amber / red mean back status and nothing else; rehab is copper, marathon blue. */
+:root{
+  --bg:#0E1319; --surface:#161D26; --surface2:#1F2833; --line:#2B3644; --hair:#232E3A;
+  --text:#E9EEF4; --muted:#9AA8B7; --on:#0E1319;
+  --rehab:#E0916A; --rehab-dim:#2E2019; --run:#7DB2EE; --run-dim:#18263A;
+  --green:#5DD38F; --green-dim:#173325; --amber:#F2B84B; --amber-dim:#3A2E14;
+  --red:#F2857A; --red-dim:#3D1F1C;
+  --ph-base:#2E4A6B; --ph-build:#45699A; --ph-specific:#6597CF; --ph-taper:#9CC2EE; --ph-race:#E9EEF4;
+  --acc:var(--run); --acc-dim:var(--run-dim);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#F4F5F7; --surface:#FFFFFF; --surface2:#EEF1F5; --line:#D9DFE6; --hair:#E4E8ED;
+    --text:#13202C; --muted:#536171; --on:#FFFFFF;
+    --rehab:#97481F; --rehab-dim:#F6E6DD; --run:#1D3557; --run-dim:#E1E8F2;
+    --green:#17683A; --green-dim:#E3F1E8; --amber:#855400; --amber-dim:#F7ECD6;
+    --red:#A3322A; --red-dim:#F8E1DE;
+    --ph-base:#B9CBE2; --ph-build:#86A6CF; --ph-specific:#4F78AE; --ph-taper:#2C4F7F; --ph-race:#13202C;
+    color-scheme:light;
+  }
+}
+.t-rehab{--acc:var(--rehab);--acc-dim:var(--rehab-dim)}
+.t-run,.t-today,.t-progress{--acc:var(--run);--acc-dim:var(--run-dim)}
+
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0;background:#111820;color:#e8edf2;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  font-size:16px;-webkit-text-size-adjust:100%}
-body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 20px) 0}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  font-size:17px;line-height:1.35;-webkit-text-size-adjust:100%;font-variant-numeric:tabular-nums}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 100px) 0}
 .wrap{max-width:600px;margin:0 auto;padding:0 16px}
-header{padding:18px 0 12px}
-h1{font-size:19px;margin:0;font-weight:700;letter-spacing:-.3px}
-.sub{font-size:13px;color:#8b9bab;margin-top:3px}
-h2{font-size:17px;margin:0 0 12px;font-weight:700}
-.card{background:#1a232e;border:1px solid #26333f;border-radius:14px;padding:14px;margin-bottom:12px}
-.big{display:block;width:100%;padding:17px;border-radius:14px;border:none;
-  background:#1d3557;color:#fff;font-size:16px;font-weight:600;margin-bottom:10px;text-align:left}
-.big .d{display:block;font-size:12.5px;font-weight:400;color:#a8c2de;margin-top:3px}
-.big.alt{background:#1a232e;border:1px solid #2f3d4b;color:#c8d4e0}
-.big.alt .d{color:#7b8b9b}
-.row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #26333f}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+button{font-family:inherit;cursor:pointer}
+header{padding:22px 0 14px}
+h1{font-size:34px;line-height:40px;margin:0;font-weight:700;letter-spacing:-.4px}
+.sub{font-size:15px;color:var(--muted);margin-top:2px}
+h2{font-size:22px;margin:0 0 12px;font-weight:700}
+h2:focus,h1:focus{outline:none}
+.card{background:var(--surface);border-radius:16px;padding:16px;margin-bottom:12px}
+.big{display:block;width:100%;min-height:56px;padding:15px 16px;border-radius:16px;border:none;
+  background:var(--acc);color:var(--on);font-size:17px;font-weight:700;margin-bottom:10px;text-align:left}
+.big .d{display:block;font-size:13px;font-weight:500;margin-top:3px}
+.big.alt{background:var(--surface);color:var(--text);font-weight:600}
+.big.alt .d{color:var(--muted);opacity:1}
+.row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
 .row:last-child{border-bottom:none}
 .row .nm{flex:1;min-width:0}
-.row .nm b{display:block;font-size:14.5px;font-weight:600}
-.row .nm span{display:block;font-size:11.5px;color:#7b8b9b;margin-top:2px}
-input,textarea,select{background:#111820;border:1px solid #33424f;color:#e8edf2;
-  border-radius:9px;padding:10px;font-size:16px;font-family:inherit;width:100%}
-input:focus,textarea:focus{outline:none;border-color:#4d7fb8}
-.num{width:64px;text-align:center;padding:9px 4px}
-.unit{font-size:11px;color:#7b8b9b;width:22px}
-.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
-.chips button{padding:9px 14px;border-radius:9px;border:1px solid #33424f;
-  background:#1a232e;color:#c8d4e0;font-size:14px}
-.chips button.on{background:#1d3557;border-color:#4d7fb8;color:#fff;font-weight:600}
-.toggle{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.toggle b{font-size:14.5px;font-weight:600}
-.sw{width:50px;height:29px;border-radius:15px;background:#2f3d4b;border:none;position:relative;flex:none}
-.sw i{position:absolute;top:3px;left:3px;width:23px;height:23px;border-radius:50%;background:#8b9bab;transition:.16s}
-.sw.on{background:#1d5c40}.sw.on i{left:24px;background:#2fe08f}.sw.on.bad{background:#6e2119}.sw.on.bad i{background:#ff6b57}
-.save{display:block;width:100%;padding:17px;border-radius:14px;border:none;
-  background:#2fe08f;color:#0c1a13;font-size:16.5px;font-weight:700;margin-top:6px}
+.row .nm b{display:block;font-size:16px;font-weight:600}
+.row .nm span{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+input,textarea,select{background:var(--bg);border:1px solid var(--line);color:var(--text);
+  border-radius:10px;padding:10px 12px;font-size:16px;font-family:inherit;width:100%;min-height:44px}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--acc)}
+.num{width:66px;text-align:center;padding:9px 4px}
+.unit{font-size:12px;color:var(--muted);width:24px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chips button{min-height:44px;padding:9px 14px;border-radius:10px;border:1px solid var(--line);
+  background:var(--surface2);color:var(--text);font-size:15px}
+.chips button.on{background:var(--acc-dim);border-color:var(--acc);color:var(--acc);font-weight:700}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;background:var(--bg);border-radius:12px;padding:4px;margin:6px 0 0}
+.seg button{min-height:44px;border:0;border-radius:9px;background:transparent;color:var(--muted);font-size:15px;font-weight:700}
+.seg button.on{background:var(--acc);color:var(--on)}
+.toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+.toggle b{font-size:16px;font-weight:600}
+.sw{width:51px;height:31px;border-radius:16px;background:var(--line);border:none;position:relative;flex:none}
+.sw i{position:absolute;top:3px;left:3px;width:25px;height:25px;border-radius:50%;background:var(--muted);transition:.16s}
+.sw.on{background:var(--green-dim)}.sw.on i{left:23px;background:var(--green)}
+.sw.on.bad{background:var(--red-dim)}.sw.on.bad i{background:var(--red)}
+.save{display:block;width:100%;min-height:52px;padding:15px;border-radius:14px;border:none;
+  background:var(--acc);color:var(--on);font-size:17px;font-weight:700;margin-top:6px}
 .save:disabled{opacity:.45}
-.back{background:none;border:none;color:#6d9fd4;font-size:15px;padding:8px 0;margin-bottom:2px}
-.lbl{font-size:12px;color:#8b9bab;text-transform:uppercase;letter-spacing:.7px;margin:14px 0 5px;font-weight:600}
-.hint{font-size:12.5px;color:#7b8b9b;line-height:1.5;margin:6px 0 0}
+.back{background:none;border:none;color:var(--acc);font-size:17px;min-height:44px;padding:8px 0;margin:6px 0 2px}
+.lbl{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:14px 0 6px;font-weight:700}
+.hint{font-size:13px;color:var(--muted);line-height:1.5;margin:6px 0 0}
 .dots{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
-.dot{width:26px;height:26px;border-radius:7px;background:#232f3c;font-size:9px;color:#6b7b8b;
-  display:flex;align-items:center;justify-content:center}
-.dot.green{background:#2fe08f;color:#0c1a13;font-weight:700}
-.dot.amber{background:#f5c542;color:#2b2205;font-weight:700}
-.dot.red{background:#ff6b57;color:#3a0f08;font-weight:700}
-.hist{font-size:13.5px;padding:9px 0;border-bottom:1px solid #26333f;display:flex;gap:9px;align-items:baseline}
+.dot{width:26px;height:26px;border-radius:7px;background:var(--surface2);font-size:10px;color:var(--muted);
+  display:flex;align-items:center;justify-content:center;font-weight:800}
+.dot.green{background:var(--green);color:var(--on);border-radius:50%}
+.dot.amber{background:var(--amber);color:var(--on);border-radius:4px}
+.dot.red{background:var(--red);color:var(--on);border-radius:2px;box-shadow:0 0 0 2px var(--surface),0 0 0 3px var(--red)}
+.hist{font-size:15px;padding:11px 0;border-bottom:1px solid var(--line);display:flex;gap:9px;align-items:baseline}
 .hist:last-child{border-bottom:none}
-.pill{font-size:10px;font-weight:700;padding:3px 7px;border-radius:6px;flex:none}
-.pill.green{background:#1d5c40;color:#2fe08f}
-.pill.amber{background:#6b5313;color:#f5c542}
-.pill.red{background:#6e2119;color:#ff6b57}
-.warn{background:#2a1512;border:1px solid #6e2119;color:#ffb4a6;padding:11px 13px;
-  border-radius:11px;font-size:13.5px;line-height:1.5;margin-bottom:12px}
-.ok{background:#12261c;border:1px solid #1d5c40;color:#7fe8b5;padding:11px 13px;
-  border-radius:11px;font-size:13.5px;margin-bottom:12px}
+.pill{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;flex:none;white-space:nowrap}
+.pill.green{background:var(--green-dim);color:var(--green)}.pill.green:before{content:"● "}
+.pill.amber{background:var(--amber-dim);color:var(--amber)}.pill.amber:before{content:"▲ "}
+.pill.red{background:var(--red-dim);color:var(--red)}.pill.red:before{content:"■ "}
+.warn{background:var(--red-dim);color:var(--text);padding:12px 14px;border-radius:14px;font-size:15px;line-height:1.5;margin-bottom:12px}
+.warn b:first-child{color:var(--red)}
+.ok{background:var(--green-dim);color:var(--text);padding:12px 14px;border-radius:14px;font-size:15px;line-height:1.5;margin-bottom:12px}
+.note{background:var(--surface2);padding:10px 12px;border-radius:10px;font-size:14px;line-height:1.45;margin-top:10px}
+.note.amber{background:var(--amber-dim)}.note.red{background:var(--red-dim)}
 .hide{display:none}
-.ctr{text-align:center;padding:52px 20px;color:#8b9bab}
+.ctr{text-align:center;padding:52px 20px;color:var(--muted)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .grid2 .lbl{margin-top:8px}
 
-/* --- progression, history detail and flare mode --- */
+/* progression, history detail and flare mode */
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tile{background:#1a232e;border:1px solid #26333f;border-radius:14px;padding:11px 11px 6px;text-align:left}
-.tile .gl{display:flex;align-items:center;gap:6px;font-size:12px;color:#8b9bab;font-weight:600}
+.tile{background:var(--surface);border:0;border-radius:16px;padding:12px 12px 6px;text-align:left;color:var(--text)}
+.tile .gl{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);font-weight:700}
 .tile .gl i{width:9px;height:9px;border-radius:3px;flex:none}
-.tile .v{font-size:25px;font-weight:700;margin-top:5px;line-height:1.05;letter-spacing:-.5px}
-.tile .v small{font-size:12px;font-weight:600;color:#7b8b9b;letter-spacing:0}
-.tile .dim{font-size:11.5px;color:#6b7b8b;margin-top:4px;line-height:1.35}
-.chip{display:inline-block;font-size:11px;font-weight:700;padding:2px 6px;border-radius:6px;margin-top:4px}
-.chip.up{background:#12261c;color:#7fe8b5}
-.chip.dn{background:#2a1512;color:#ffb4a6}
-.chip.fl{background:#232f3c;color:#8b9bab}
-.exrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #26333f}
+.tile .v{font-size:26px;font-weight:700;margin-top:5px;line-height:1.05;letter-spacing:-.5px}
+.tile .v small{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:0}
+.tile .dim{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.35}
+.chip{display:inline-block;font-size:11px;font-weight:800;padding:2px 6px;border-radius:6px;margin-top:4px}
+.chip.up{background:var(--green-dim);color:var(--green)}
+.chip.dn{background:var(--red-dim);color:var(--red)}
+.chip.fl{background:var(--surface2);color:var(--muted)}
+.exrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
 .exrow:last-child{border-bottom:none}
 .exrow .nm{flex:1;min-width:0}
-.exrow .nm b{display:block;font-size:13.5px;font-weight:600}
-.exrow .nm span{display:block;font-size:11.5px;color:#7b8b9b;margin-top:2px}
-.tbl{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
-.tbl th{text-align:left;color:#8b9bab;font-weight:600;font-size:11px;text-transform:uppercase;
-  letter-spacing:.6px;padding:5px 6px 5px 0;border-bottom:1px solid #26333f}
-.tbl td{padding:6px 6px 6px 0;border-bottom:1px solid #1f2a35;color:#c8d4e0}
-.tbl td:first-child{color:#8b9bab}
+.exrow .nm b{display:block;font-size:15px;font-weight:600}
+.exrow .nm span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;color:var(--muted);font-weight:700;font-size:12px;text-transform:uppercase;
+  letter-spacing:.5px;padding:6px 6px 6px 0;border-bottom:1px solid var(--line)}
+.tbl td{padding:7px 6px 7px 0;border-bottom:1px solid var(--hair)}
+.tbl td:first-child{color:var(--muted)}
 .stage{display:flex;gap:4px;margin:9px 0 3px}
-.stage div{flex:1;height:5px;border-radius:3px;background:#2f3d4b}
-.stage div.on{background:#f5c542}
-.stage div.done{background:#1d5c40}
-.mini{display:flex;gap:7px;margin-top:9px}
-.mini button{flex:1;padding:10px 6px;border-radius:10px;border:1px solid #33424f;
-  background:#1a232e;color:#c8d4e0;font-size:13px;font-weight:600}
-.mini button.danger{border-color:#6e2119;color:#ff9d8b}
+.stage div{flex:1;height:5px;border-radius:3px;background:var(--line)}
+.stage div.on{background:var(--red)}
+.stage div.done{background:var(--red);opacity:.55}
+.mini{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+.mini button{flex:1;min-height:44px;padding:10px 8px;border-radius:10px;border:1px solid var(--line);
+  background:var(--surface);color:var(--text);font-size:14px;font-weight:600}
+.mini button.danger{color:var(--red)}
 .tapper{width:100%;text-align:left;background:none;border:none;padding:0;color:inherit;font:inherit}
-.legend{display:flex;align-items:center;gap:6px;font-size:12px;color:#8b9bab;margin:2px 0 8px}
+.legend{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);margin:2px 0 8px;flex-wrap:wrap}
 .legend i{width:14px;height:3px;border-radius:2px;flex:none}
 svg.ch{display:block;width:100%;height:auto;overflow:visible}
 
-/* --- 0-10 pain scale --- */
-.pain0{display:block;width:100%;padding:12px;border-radius:10px;border:1.5px solid #2f3d4b;
-  background:#232f3c;color:#7fe8b5;font-size:14px;font-weight:700;margin-bottom:5px;text-align:center}
-.pain0.on{background:#1d5c40;border-color:#2fe08f;color:#fff}
+/* 0-10 pain scale */
+.pain0{display:block;width:100%;min-height:44px;padding:12px;border-radius:10px;border:2px solid transparent;
+  background:var(--green-dim);color:var(--green);font-size:15px;font-weight:700;margin-bottom:5px;text-align:center}
+.pain0.on{background:var(--green);color:var(--on);border-color:var(--text)}
 .pain{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
-.pain button{padding:12px 0;border-radius:10px;border:1.5px solid #2f3d4b;background:#232f3c;
-  color:#8b9bab;font-size:15px;font-weight:700}
-.pain button.g{color:#6fd6a6}.pain button.a{color:#e0b53c}.pain button.r{color:#f08a76}
-.pain button.on.g{background:#1d5c40;border-color:#2fe08f;color:#fff}
-.pain button.on.a{background:#6b5313;border-color:#f5c542;color:#fff}
-.pain button.on.r{background:#6e2119;border-color:#ff6b57;color:#fff}
-.anch{display:flex;justify-content:space-between;gap:8px;font-size:10.5px;color:#6b7b8b;margin-top:6px}
-.derived{margin-top:11px;padding:10px 12px;border-radius:11px;font-size:12.5px;line-height:1.5}
-.derived b{display:block;font-size:10.5px;letter-spacing:.8px;margin-bottom:3px}
-.derived.green{background:#12261c;border:1px solid #1d5c40;color:#7fe8b5}
-.derived.amber{background:#241d06;border:1px solid #6b5313;color:#f5c542}
-.derived.red{background:#2a1512;border:1px solid #6e2119;color:#ffb4a6}
+.pain button{min-height:44px;padding:10px 0;border-radius:10px;border:2px solid transparent;font-size:16px;font-weight:700}
+.pain button.g{background:var(--green-dim);color:var(--green)}
+.pain button.a{background:var(--amber-dim);color:var(--amber)}
+.pain button.r{background:var(--red-dim);color:var(--red)}
+.pain button.on{border-color:var(--text);color:var(--on)}
+.pain button.on.g{background:var(--green)}.pain button.on.a{background:var(--amber)}.pain button.on.r{background:var(--red)}
+.anch{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);margin-top:6px}
+.derived{margin-top:11px;padding:10px 12px;border-radius:11px;font-size:14px;line-height:1.5}
+.derived b{display:block;font-size:12px;letter-spacing:.6px;margin-bottom:3px}
+.derived.green{background:var(--green-dim)}.derived.green b{color:var(--green)}.derived.green b:before{content:"● "}
+.derived.amber{background:var(--amber-dim)}.derived.amber b{color:var(--amber)}.derived.amber b:before{content:"▲ "}
+.derived.red{background:var(--red-dim)}.derived.red b{color:var(--red)}.derived.red b:before{content:"■ "}
 .pnum{font-variant-numeric:tabular-nums;font-weight:700}
+
+/* shell: tab bar and sheets */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:5;max-width:600px;margin:0 auto;background:var(--surface);border-top:1px solid var(--line);
+  padding:6px 8px calc(env(safe-area-inset-bottom) + 6px);display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.tabbar button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:52px;
+  border:0;border-radius:12px;background:transparent;color:var(--muted);font-size:11px;font-weight:700}
+.tabbar button[aria-current="page"]{background:var(--surface2);color:var(--text)}
+.tabbar button[aria-current="page"].rehab{color:var(--rehab)}
+.tabbar button[aria-current="page"].run{color:var(--run)}
+.tabbar svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tabbar .badge{position:absolute;margin:-18px 0 0 22px;min-width:16px;height:16px;border-radius:8px;background:var(--run);color:var(--on);font-size:10px;line-height:16px;padding:0 4px}
+.sheet{background:var(--surface);border-radius:22px 22px 0 0;margin:10px -16px 0;padding:6px 16px 24px;min-height:calc(100vh - 10px);animation:up .2s ease-out}
+.sheet .back{display:none}
+.sheet .card{background:var(--surface2)}
+.sheet input,.sheet textarea,.sheet select{background:var(--surface)}
+.sheethead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.grab{width:36px;height:5px;border-radius:3px;background:var(--line);margin:4px auto 8px}
+.x{width:44px;height:44px;border-radius:22px;border:0;background:var(--surface2);color:var(--muted);font-size:18px;flex:none}
+@keyframes up{from{transform:translateY(24px);opacity:.4}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+/* today, marathon */
+.chipline{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.tag{font-size:13px;padding:5px 10px;border-radius:999px;font-weight:700}
+.tag.rehab{background:var(--rehab-dim);color:var(--rehab)}
+.tag.run{background:var(--run-dim);color:var(--run)}
+.tl{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:10px}
+.tl>li{background:var(--surface);border-radius:16px;padding:14px 16px}
+.tlrow{display:flex;align-items:center;gap:12px}
+.tlrow .nm{flex:1;min-width:0}
+.tlrow .nm b{display:block;font-size:17px;font-weight:600}
+.tlrow .nm span{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.tlrow .nm .k{font-size:13px;font-weight:700;color:var(--run);margin:0 0 2px}
+.tlrow .nm .big2{font-size:22px;font-weight:700;color:var(--text);margin:0}
+.step{width:28px;height:28px;border-radius:14px;flex:none;border:2px solid var(--muted);display:flex;align-items:center;justify-content:center}
+.step.rehab{border-color:var(--rehab)}.step.run{border-color:var(--run)}.step.rest{border-style:dashed}
+.step.done{background:var(--green);border-color:var(--green);color:var(--on);font-weight:900;font-size:14px}
+.step.blocked{background:var(--red-dim);border-color:var(--red);color:var(--red);font-weight:900;font-size:14px}
+.btn2{min-height:44px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface2);color:var(--acc);font-size:15px;font-weight:700;flex:none}
+.btn2.full{display:block;width:100%;margin-top:12px}
+.btn1{display:block;width:100%;min-height:44px;margin-top:12px;border-radius:12px;border:0;background:var(--run);color:var(--on);font-size:15px;font-weight:700}
+.stat{font-weight:700}
+.st-green,.tlrow .nm .st-green{color:var(--green)}.st-amber,.tlrow .nm .st-amber{color:var(--amber)}.st-red,.tlrow .nm .st-red{color:var(--red)}
+.hk{display:flex;align-items:center;gap:12px}
+.hk .ic{width:36px;height:36px;border-radius:10px;background:var(--run-dim);display:flex;align-items:center;justify-content:center;flex:none}
+.hk svg{width:20px;height:20px;fill:none;stroke:var(--run);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.count{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.count .n{font-size:56px;line-height:60px;font-weight:700;color:var(--run);letter-spacing:-1px}
+.phasebar{display:grid;grid-template-columns:repeat(27,1fr);gap:2px;align-items:end;margin-top:16px}
+.phasebar i{display:block;border-radius:2px}
+.phasebar i.now{outline:2px solid var(--text);outline-offset:1px}
+.phaselbl{display:grid;grid-template-columns:8fr 8fr 8fr 3fr;gap:2px;font-size:11px;color:var(--muted);font-weight:700;margin-top:6px}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin:4px 0 12px}
+.bar i{display:block;height:100%;background:var(--run);border-radius:3px}
+.wk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.wk button{display:flex;align-items:center;gap:12px;width:100%;padding:10px;border:0;border-radius:14px;background:transparent;color:var(--text);text-align:left;min-height:56px}
+.wk button.today{background:var(--run-dim)}
+.wk .sl{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;background:var(--surface2);color:var(--run);flex:none}
+.wk .sl.done{background:var(--green-dim);color:var(--green)}
+.wk .nm{flex:1;min-width:0}.wk .nm b{display:block;font-size:16px;font-weight:600}.wk .nm span{display:block;font-size:13px;color:var(--muted)}
+.wk .state{font-size:13px;font-weight:700;color:var(--muted)}
+.links{background:var(--surface);border-radius:16px;margin-bottom:12px}
+.links button{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;width:100%;min-height:52px;padding:8px 16px;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--text);font-size:17px;text-align:left}
+.links button:last-child{border-bottom:0}
+.links button span{color:var(--muted);font-size:13px;display:block}
+.plan-tbl{width:100%;border-collapse:collapse;font-size:15px}
+.plan-tbl th{font-size:12px;color:var(--muted);text-align:left;font-weight:700;padding:6px 4px}
+.plan-tbl td{padding:9px 4px;border-top:1px solid var(--line)}
+.plan-tbl tr.now td{background:var(--run-dim)}
+.plan-tbl td.r,.plan-tbl th.r{text-align:right}
+.ph-h{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;margin:16px 0 6px}
+.ph-h i{width:12px;height:12px;border-radius:3px}
+.swap{display:flex;align-items:center;gap:8px;margin:2px 0 0}
+.swapbtn{min-height:44px;min-width:44px;padding:0 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--acc);font-size:13px;font-weight:700;flex:none}
+.swapped{font-size:12px;color:var(--acc);font-weight:700;margin-top:2px}
+.swapped button{background:none;border:0;color:var(--acc);text-decoration:underline;font-size:12px;font-weight:700;min-height:32px;padding:0 4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
 </head>
 <body>
 <div class="wrap" id="app"><div class="ctr">Loading...</div></div>
+<div id="live" class="sr" aria-live="polite"></div>
 
+<script src="logic.js"></script>
 <script>
 var API = "https://mfzmyahruqghcnhjlkon.supabase.co/functions/v1/rehab";
 
@@ -252,11 +367,11 @@ var FLARE = {
   clearRule:"A clear day is a day with no Red logged and no symptoms below the knee. Any Red session, Red morning check-in, or session logged with leg symptoms resets the count to zero and drops you back to the stage that count belongs to.",
   debrief:"Within a week of any flare, write down: what you did in the 72 hours before it; whether the gym or daily life was the more likely cause; and what specifically you will change. Three episodes without a written debrief means the pattern that caused them is still invisible to you. This takes ten minutes and is probably the highest-leverage thing in this entire document.",
   stages:[
-   {n:0,t:"Settle",d:0,gym:0,sum:"No gym. Walking, reduced-range home routine, nerve slides.",sp:0,do:["Do not go to bed. Bed rest beyond a day makes disc-related pain worse, not better.","Walk short and often - 5-10 minutes every couple of hours beats one long walk.","Find your position of relief and use it: prone, prone on elbows, or standing.","Nerve slides gently, 2 x 10 per leg, twice a day. Reduce range until there is no provocation at all.","Avoid prolonged sitting entirely. Stand or lie down.","Contact your physio now. Do not wait to see whether it settles on its own."]},
-   {n:1,t:"Reintroduce",d:3,gym:1,sum:"Back in the gym, spine-neutral work only, half your pre-flare loads.",sp:1,pct:50,sets:2,rpe:"4-5",pool:1,do:["Supported and machine work only - nothing that loads the spine through range.","Two working sets, never more. You should leave feeling you could have done twice as much.","Home routine daily at full range again, walks toward 20-30 minutes.","Any leg symptom during or within 24h of a session sends you back to Settle."]},
-   {n:2,t:"Rebuild",d:7,gym:1,sum:"Phase 1 as written minus the hinge, at 70% of pre-flare loads.",sp:2,pct:70,sets:3,rpe:"5-6",pool:1,do:["Squat pattern, carries and rows return. The loaded hinge does not.","Run this for at least a week even if everything feels fine.","Re-test the single-leg calf raise and compare it to your last benchmark."]},
-   {n:3,t:"Re-load",d:14,gym:1,sum:"Your normal phase, hinge still held back, 85% of pre-flare loads.",sp:2,pct:85,rpe:"6-7",pool:0,do:["Back to the phase you were in, with the heavy hinge and loaded rotation still parked.","Sets as written. Loads are the brake here, not volume.","Write the debrief now if you have not already."]},
-   {n:4,t:"Full programme",d:21,gym:1,sum:"Everything back, 95% of pre-flare loads. One clear week from closing the flare.",sp:3,pct:95,pool:0,do:["The hinge returns at the lightest load you would call productive, and climbs from there.","Do not chase the number you were at before the flare. It will come back faster than you think.","After a clear week here the flare is closed and you are back on the normal progression."]}
+   {n:0,t:"Settle",d:0,gym:0,sum:"No gym. Walking, reduced-range home routine, nerve slides.",sp:0,run:{"pct": 0, "max": 0, "quality": false, "text": "No running. Walk short and often instead."},do:["Do not go to bed. Bed rest beyond a day makes disc-related pain worse, not better.","Walk short and often - 5-10 minutes every couple of hours beats one long walk.","Find your position of relief and use it: prone, prone on elbows, or standing.","Nerve slides gently, 2 x 10 per leg, twice a day. Reduce range until there is no provocation at all.","Avoid prolonged sitting entirely. Stand or lie down.","Contact your physio now. Do not wait to see whether it settles on its own."]},
+   {n:1,t:"Reintroduce",d:3,gym:1,sum:"Back in the gym, spine-neutral work only, half your pre-flare loads.",sp:1,pct:50,sets:2,rpe:"4-5",pool:1,run:{"pct": 0, "max": 20, "quality": false, "walkrun": true, "text": "Walk-run only: 1 min jog, 2 min walk, 20 min max, flat."},do:["Supported and machine work only - nothing that loads the spine through range.","Two working sets, never more. You should leave feeling you could have done twice as much.","Home routine daily at full range again, walks toward 20-30 minutes.","Any leg symptom during or within 24h of a session sends you back to Settle."]},
+   {n:2,t:"Rebuild",d:7,gym:1,sum:"Phase 1 as written minus the hinge, at 70% of pre-flare loads.",sp:2,pct:70,sets:3,rpe:"5-6",pool:1,run:{"pct": 50, "max": 45, "quality": false, "text": "Half the planned minutes, easy only. Long run 45 min max."},do:["Squat pattern, carries and rows return. The loaded hinge does not.","Run this for at least a week even if everything feels fine.","Re-test the single-leg calf raise and compare it to your last benchmark."]},
+   {n:3,t:"Re-load",d:14,gym:1,sum:"Your normal phase, hinge still held back, 85% of pre-flare loads.",sp:2,pct:85,rpe:"6-7",pool:0,run:{"pct": 75, "quality": false, "text": "75% of the planned minutes, easy only."},do:["Back to the phase you were in, with the heavy hinge and loaded rotation still parked.","Sets as written. Loads are the brake here, not volume.","Write the debrief now if you have not already."]},
+   {n:4,t:"Full programme",d:21,gym:1,sum:"Everything back, 95% of pre-flare loads. One clear week from closing the flare.",sp:3,pct:95,pool:0,run:{"pct": 90, "quality": false, "text": "90% of the planned minutes, easy only until the flare closes."},do:["The hinge returns at the lightest load you would call productive, and climbs from there.","Do not chase the number you were at before the flare. It will come back faster than you think.","After a clear week here the flare is closed and you are back on the normal progression."]}
   ]
 };
 
@@ -279,9 +394,16 @@ var PAIN = {
 };
 
 var DELOADS = [10,18,24];
+
+var RUNPLAN = {"race":"Copenhagen Marathon","race_date":"2027-05-09","start_date":"2026-11-02","phases":{"base":{"title":"Base","goal":"Easy running only. Build the habit and the tissue tolerance, not fitness."},"build":{"title":"Build","goal":"Long run grows. Strides, then steady running, once the back has been quiet for a week."},"specific":{"title":"Specific","goal":"Marathon-effort running and the longest long runs. Run-walk on everything over 2 hours."},"taper":{"title":"Taper","goal":"Less volume, same rhythm. Gym at deload dosing."},"race":{"title":"Race week","goal":"Short and easy. Nothing heavy in the gym after Wednesday."}},"text":{"E":"Easy, talk-test pace (RPE 3-4). Flat and soft if you can.","Q_easy":"Easy, like E.","Q_strides":"Easy, then 6 x 20 s strides: relaxed, quick feet, full recovery. Not sprints.","Q_steady":"10 min easy, 3 x 8 min steady (RPE 6) with 2 min easy between, easy to finish.","Q_mp":"10 min easy, 2 x 15 min at marathon effort (RPE 5-6) with 3 min easy between, easy to finish.","Q_taper":"Easy, then 4 x 20 s strides.","L":"Easy, talk-test pace. Soft surfaces where you can.","L_runwalk":"Run-walk from the start: 9 min run, 1 min walk. Easy throughout."},"weeks":[{"w":1,"start":"2026-11-02","phase":"base","E":25,"Q":25,"L":35,"q":"Q_easy"},{"w":2,"start":"2026-11-09","phase":"base","E":25,"Q":30,"L":40,"q":"Q_easy"},{"w":3,"start":"2026-11-16","phase":"base","E":30,"Q":35,"L":45,"q":"Q_easy"},{"w":4,"start":"2026-11-23","phase":"base","E":25,"Q":30,"L":40,"q":"Q_easy","tag":"cutback"},{"w":5,"start":"2026-11-30","phase":"base","E":30,"Q":40,"L":50,"q":"Q_easy"},{"w":6,"start":"2026-12-07","phase":"base","E":35,"Q":40,"L":60,"q":"Q_easy"},{"w":7,"start":"2026-12-14","phase":"base","E":35,"Q":45,"L":70,"q":"Q_easy"},{"w":8,"start":"2026-12-21","phase":"base","E":30,"Q":40,"L":60,"q":"Q_easy","tag":"cutback"},{"w":9,"start":"2026-12-28","phase":"build","E":40,"Q":45,"L":80,"q":"Q_strides","qq":true},{"w":10,"start":"2027-01-04","phase":"build","E":40,"Q":50,"L":90,"q":"Q_strides","qq":true},{"w":11,"start":"2027-01-11","phase":"build","E":35,"Q":45,"L":75,"q":"Q_easy","tag":"cutback","note":"Moved from week 12 to line up with rehab deload week 24."},{"w":12,"start":"2027-01-18","phase":"build","E":45,"Q":50,"L":100,"q":"Q_strides","qq":true},{"w":13,"start":"2027-01-25","phase":"build","E":45,"Q":55,"L":110,"q":"Q_steady","qq":true},{"w":14,"start":"2027-02-01","phase":"build","E":45,"Q":55,"L":120,"q":"Q_steady","qq":true,"l":"L_runwalk"},{"w":15,"start":"2027-02-08","phase":"build","E":50,"Q":55,"L":130,"q":"Q_steady","qq":true,"l":"L_runwalk"},{"w":16,"start":"2027-02-15","phase":"build","E":45,"Q":50,"L":110,"q":"Q_strides","qq":true,"tag":"cutback"},{"w":17,"start":"2027-02-22","phase":"specific","E":50,"Q":60,"L":140,"q":"Q_mp","qq":true,"l":"L_runwalk"},{"w":18,"start":"2027-03-01","phase":"specific","E":50,"Q":60,"L":150,"q":"Q_mp","qq":true,"l":"L_runwalk"},{"w":19,"start":"2027-03-08","phase":"specific","E":50,"Q":60,"L":160,"q":"Q_mp","qq":true,"l_text":"Run-walk 9:1, then the last 20 min at marathon effort, running through.","lq":true},{"w":20,"start":"2027-03-15","phase":"specific","E":40,"Q":55,"L":135,"q_text":"10K test: 15 min easy, 10 km steady-hard on a flat route, 10 min easy. Your time sets the race pace.","qq":true,"l":"L_runwalk","tag":"cutback","test":true},{"w":21,"start":"2027-03-22","phase":"specific","E":50,"Q":60,"L":170,"q":"Q_mp","qq":true,"l":"L_runwalk"},{"w":22,"start":"2027-03-29","phase":"specific","E":50,"Q":60,"L":180,"q":"Q_mp","qq":true,"l":"L_runwalk","note":"First 3 hours. Easter week."},{"w":23,"start":"2027-04-05","phase":"specific","E":45,"Q":50,"L":150,"q":"Q_strides","qq":true,"l":"L_runwalk","tag":"cutback"},{"w":24,"start":"2027-04-12","phase":"specific","E":50,"Q":60,"L":180,"q":"Q_mp","qq":true,"l_text":"Run-walk 9:1, then the last 45 min at race pace and race run-walk. The dress rehearsal: race shoes, race breakfast, race gels.","lq":true,"note":"Peak week."},{"w":25,"start":"2027-04-19","phase":"taper","E":45,"Q":55,"L":120,"q":"Q_taper","qq":true,"l":"L_runwalk","tag":"taper"},{"w":26,"start":"2027-04-26","phase":"taper","E":40,"Q":45,"L":90,"q":"Q_taper","qq":true,"tag":"taper"},{"w":27,"start":"2027-05-03","phase":"race","E":30,"Q":20,"L":null,"e_text":"30 min easy, then 4 x 20 s strides.","q_text":"Shakeout: 20 min very easy, two days before the race.","tag":"race"}],"rules":[{"t":"The morning check-in decides the run","b":"Green: run as planned. Amber: easy only, 30 min cap, long run at 60%, flat soft route, no strides or steady work. Red, or anything below the knee: no run, walk only."},{"t":"During a flare","b":"Settle: no running. Reintroduce: walk-run, 20 min max. Rebuild: half the planned minutes, long run 45 min max. Re-load: 75%, easy only. Full: 90%, easy only until the flare closes."},{"t":"Stop and walk home if","b":"back pain climbs to 4 or more, or anything reaches below the knee. Log the run with that score; the next morning's check-in decides what happens next."},{"t":"Strides and steady work","b":"Only after 7 days with no Amber or Red. Otherwise the session is run easy at the same length."},{"t":"With the gym","b":"The day after a long run of 90 min or more: Day B, not the hinge day. No heavy legs in the 48 h before a long run of 2 h or more. Cutback and taper weeks are gym deload weeks too."},{"t":"Run-walk","b":"Every long run of 2 h or more, and the race: 9 min run, 1 min walk, from the start. Walk breaks cut the continuous load on the spine, and finishing healthy does not need the minutes they cost."},{"t":"Winter","b":"The treadmill counts minute for minute for E and Q, at 1% incline. Keep the long run outside where you can. On ice, move it a day."},{"t":"A week is a set of runs","b":"Do the three runs in any order by Sunday. Suggested: Tue E, Thu Q, Sun L, with the gym on Mon, Wed and Fri. Never two runs on consecutive days if the back was Amber in between."}],"race_day":["Morning check-in done. Amber: start, run-walk, and be ready to walk it in. Red or leg symptoms: do not start.","Run-walk 9:1 from the first kilometre, whatever everyone else does.","Gels every 40 min, the brand you used in the long runs.","Shoes that have at least two long runs in them.","Bib, pins, timing chip, and something warm to throw away at the start."]};
 // >>> END GENERATED
 var UNLOCK_DAYS = 30;
-var S = { pc:null, data:null, screen:"home", form:{} };
+var S = { pc:null, data:null, screen:"today", tab:"today", form:{} };
+
+// The four tab roots, and the logging screens that open as sheets over them. "home" in
+// any older link means "back to the tab you came from".
+var ROOTS = ["today","rehab","run","progress"];
+var SHEETS = {session:"home", checkin:"home", flare:"home", bench:"home", runlog:"home", sess:"history"};
 var app = document.getElementById("app");
 
 // ---------- unlock window ----------
@@ -325,9 +447,31 @@ function nextDay(){
   var last=ss[0].day_code;
   return last==="A"?"B":(last==="B"?"C":"A");
 }
-function go(scr){
-  S.screen=scr; S.form={}; S.tap=null; S.confirmDel=false; S.confirmClose=false;
+function go(scr, form){
+  if(scr==="home") scr=S.tab;
+  if(ROOTS.indexOf(scr)>=0) S.tab=scr;
+  S.screen=scr; S.form=form||{}; S.tap=null; S.confirmDel=false; S.confirmClose=false;
   window.scrollTo(0,0); render();
+  // Move focus to the new screen's heading, so VoiceOver announces where you are.
+  var h=app.querySelector("h1,h2");
+  if(h){ h.setAttribute("tabindex","-1"); try{ h.focus({preventScroll:true}); }catch(e){} }
+}
+function say(msg){ var l=document.getElementById("live"); if(l){ l.textContent=""; setTimeout(function(){ l.textContent=msg; },30); } }
+
+var TABS=[
+  {id:"today",l:"Today",c:"",d:"M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"},
+  {id:"rehab",l:"Rehab",c:"rehab",d:"M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11"},
+  {id:"run",l:"Marathon",c:"run",d:"M4 22V4M4 4h12l-2 4 2 4H4"},
+  {id:"progress",l:"Progress",c:"",d:"M3 3v18h18M7 15l4-4 3 3 5-6"}
+];
+function tabBar(){
+  var pend=pendingRuns().length;
+  return '<nav class="tabbar" aria-label="Main">'+TABS.map(function(t){
+    return '<button data-go="'+t.id+'" class="'+t.c+'"'+(S.tab===t.id?' aria-current="page"':'')+'>'
+      +'<svg aria-hidden="true" viewBox="0 0 24 24"><path d="'+t.d+'"/></svg>'
+      +(t.id==="run"&&pend?'<span class="badge" aria-hidden="true">'+pend+'</span>':'')
+      +t.l+(t.id==="run"&&pend?'<span class="sr">, '+pend+' run'+(pend===1?'':'s')+' to confirm</span>':'')+'</button>';
+  }).join("")+'</nav>';
 }
 
 // ---------- render ----------
@@ -335,7 +479,12 @@ function render(){
   if(!S.data){ return; }
   var w=weekNum(), p=phaseFor(w);
   var h="";
-  if(S.screen==="home") h=viewHome(w,p);
+  if(S.screen==="today") h=viewToday(w,p);
+  else if(S.screen==="rehab") h=viewHome(w,p);
+  else if(S.screen==="run") h=viewRun();
+  else if(S.screen==="runlog") h=viewRunLog();
+  else if(S.screen==="runplan") h=viewRunPlan();
+  else if(S.screen==="progress") h=viewProgression();
   else if(S.screen==="session") h=viewSession(w,p);
   else if(S.screen==="checkin") h=viewCheckin();
   else if(S.screen==="flare") h=viewFlare();
@@ -345,15 +494,32 @@ function render(){
   else if(S.screen==="sess") h=viewSessionDetail();
   else if(S.screen==="prog") h=viewProgression();
   else if(S.screen==="progG") h=viewGroup();
-  app.innerHTML=h;
+  app.className="wrap t-"+S.tab;
+  if(SHEETS[S.screen]){
+    // A sheet covers the tab it was opened from; close (or Esc) goes back there.
+    var close=SHEETS[S.screen];
+    app.innerHTML='<section class="sheet" role="dialog" aria-modal="true" aria-label="'+esc(sheetTitle())+'">'
+      +'<div class="grab" aria-hidden="true"></div>'
+      +'<div class="sheethead"><span></span><button class="x" data-go="'+close+'" aria-label="Close">&#10005;</button></div>'
+      +h+'</section>';
+  } else {
+    app.innerHTML=h+tabBar();
+  }
   wire();
 }
+function sheetTitle(){
+  return {session:"Log gym session",checkin:"Daily check-in",flare:"Flare-up",bench:"Benchmark test",
+    runlog:"Run",sess:"Edit session"}[S.screen]||"";
+}
+document.addEventListener("keydown", function(e){
+  if(e.key==="Escape" && SHEETS[S.screen] && S.data) go(SHEETS[S.screen]);
+});
 
 function viewHome(w,p){
   var d=nextDay();
   var plan=sessionPlan(w,p,d);
   var st=plan.stage;
-  var isDeload = DELOADS.indexOf(w)>=0;
+  var isDeload = isDeloadWeek(w);
   var ci = (S.data.checkins||[]).filter(function(c){return c.checkin_date===today();})[0];
   var recent=(S.data.sessions||[]).slice(0,14).reverse();
   var dots=recent.map(function(x){ return '<div class="dot '+x.traffic_light+'">'+x.day_code+'</div>'; }).join("");
@@ -362,9 +528,11 @@ function viewHome(w,p){
     : 'Suggested: Day '+d+' &middot; '+plan.ex.length+' exercise'+(plan.ex.length===1?"":"s")
       +(st?' &middot; flare stage '+st.n:'');
   var f=openFlare();
-  return '<header><h1>Back Rehab</h1><div class="sub">Phase '+p+' &middot; Week '+w+(isDeload?' &middot; DELOAD WEEK':'')+'</div></header>'
+  var hint=dayBHint();
+  return '<header><div class="sub">Building Back Stronger &middot; Phase '+p+' &middot; Week '+w+(isDeload?' &middot; deload week':'')+'</div><h1>Rehab</h1></header>'
    + flareBanner()
-   + (isDeload&&!st?'<div class="warn">Deload week. Same exercises, half the working sets, everything at RPE 5.</div>':'')
+   + (isDeload&&!st?'<div class="note" style="margin:0 0 12px">Deload week. Same exercises, half the working sets, everything at RPE 5.</div>':'')
+   + (hint?'<div class="note" style="margin:0 0 12px">'+esc(hint)+'</div>':'')
    + '<button class="big" data-go="session">'+(st&&!st.gym?'Today&rsquo;s plan':'Log gym session')
      +'<span class="d">'+sub+'</span></button>'
    + '<button class="big alt" data-go="checkin">Daily check-in'+(ci?' &check;':'')
@@ -375,10 +543,308 @@ function viewHome(w,p){
    + '<div class="card"><div class="lbl" style="margin-top:0">Last 14 sessions</div>'
    + (recent.length?'<div class="dots">'+dots+'</div>':'<div class="hint">Nothing logged yet.</div>')
    + '</div>'
-   + '<button class="big alt" data-go="prog">Progression<span class="d">Strength index by muscle group</span></button>'
-   + '<button class="big alt" data-go="plan">The plan<span class="d">Phase '+p+' &middot; exercises, cues, daily routine, rules</span></button>'
+   + '<button class="big alt" data-go="plan">The programme<span class="d">Phase '+p+' &middot; exercises, cues, daily routine, rules</span></button>'
    + '<button class="big alt" data-go="bench">Benchmark test<span class="d">Every 4 weeks &middot; calf raise, planks, balance</span></button>'
-   + '<button class="big alt" data-go="history">History<span class="d">Every session, with the loads you used</span></button>';
+   + '<button class="big alt" data-go="history">History<span class="d">Every session, run and flare</span></button>';
+}
+
+// Gym deloads: the programme's own weeks, then (after week 24) the run plan's cutbacks.
+function isDeloadWeek(w){ return RL.gymDeload(w, DELOADS, RL.weekOf(RUNPLAN, today())); }
+
+// The day after a long run of 90+ min the hinge day waits: Day B instead of Day A.
+function dayBHint(){
+  if(nextDay()!=="A") return "";
+  var y=RL.addDays(today(),-1), wk=RL.weekOf(RUNPLAN,y);
+  if(!wk) return "";
+  var a=RL.assignWeek(S.data.runs||[], wk, RUNPLAN.race_date);
+  var L=a.done.L;
+  return (L && L.run_date===y && Number(L.duration_min)>=90)
+    ? "Long run yesterday: do Day B today, and keep the hinge day for later in the week." : "";
+}
+
+// ==================== marathon ====================
+// The plan lives in RUNPLAN (program-source/marathon.json); the rules that bend it to the
+// back live in logic.js (RL). These screens only gather the data and draw the result.
+var SLOTNAME={E:"Easy",Q:"Quality",L:"Long",RACE:"Race",extra:"Extra"};
+function runs(){ return S.data.runs||[]; }
+function pendingRuns(){ return runs().filter(function(r){ return r.source==="healthkit" && r.pain==null; }); }
+function runById(id){ var x=null; runs().forEach(function(r){ if(r.id===id) x=r; }); return x; }
+function todaysCheckin(){ return (S.data.checkins||[]).filter(function(c){ return c.checkin_date===today(); })[0]||null; }
+function fmtMin(m){ m=Math.round(Number(m)); return m>=60 ? Math.floor(m/60)+" h"+(m%60?" "+(m%60)+" min":"") : m+" min"; }
+function fmtDate(s){ return new Date(s+"T12:00:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"}); }
+function fmtKm(k){ return k==null||k==="" ? "" : (Math.round(Number(k)*10)/10)+" km"; }
+function runLine(r){ return fmtDate(r.run_date)+" &middot; "+fmtMin(r.duration_min)+(r.distance_km!=null?" &middot; "+fmtKm(r.distance_km):""); }
+// Every Amber or Red day on record, from all three logs, for the intensity gate.
+function badDays(){
+  var ev=[];
+  (S.data.checkins||[]).forEach(function(c){ ev.push({date:c.checkin_date, light:lightOf(c)}); });
+  (S.data.sessions||[]).forEach(function(x){ ev.push({date:x.session_date, light:lightOf(x)}); });
+  runs().forEach(function(r){ if(r.pain!=null||r.leg_symptoms) ev.push({date:r.run_date, light:lightFor(r.pain, r.leg_symptoms)}); });
+  return ev;
+}
+function lightWord(l){ return {green:"● Green",amber:"▲ Amber",red:"■ Red"}[l]||""; }
+
+// Everything Today and the Marathon tab need, computed once per render.
+function runState(){
+  var t=today(), wk=RL.weekOf(RUNPLAN,t);
+  var st={ today:t, wk:wk, daysToRace:RL.daysBetween(t,RUNPLAN.race_date), before:t<RUNPLAN.start_date };
+  if(!wk) return st;
+  var ci=todaysCheckin(), f=openFlare();
+  st.assigned=RL.assignWeek(runs(), wk, RUNPLAN.race_date);
+  st.totals=RL.weekTotals(runs(), wk);
+  st.ranToday=runs().filter(function(r){ return r.run_date===t; });
+  st.slot=RL.suggest(wk, st.assigned, t);
+  st.light=ci?lightOf(ci):null;
+  if(st.slot) st.rx=RL.prescribe({plan:RUNPLAN, wk:wk, slot:st.slot, light:st.light, legs:false,
+    stage:f?flareStage(f):null, quiet:RL.quietDays(t, badDays())});
+  return st;
+}
+
+function pendingCard(){
+  var pend=pendingRuns(); if(!pend.length) return "";
+  var r=pend[0];
+  return '<section class="card" aria-label="New run from Apple Health"><div class="hk"><div class="ic">'
+    +'<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>'
+    +'<div><div class="hint" style="margin:0">New from Apple Health'+(pend.length>1?' &middot; '+pend.length+' runs':'')+'</div>'
+    +'<div style="font-size:17px;font-weight:600">'+runLine(r)+'</div></div></div>'
+    +'<button class="btn1" data-run="'+r.id+'">How was the back?</button></section>';
+}
+
+function viewToday(w,p){
+  var t=today(), rs=runState(), ci=todaysCheckin();
+  var plan=sessionPlan(w,p,nextDay()), st=plan.stage;
+  var gymToday=(S.data.sessions||[]).filter(function(x){ return x.session_date===t; })[0];
+  var dstr=new Date(t+"T12:00:00").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
+  var P=RUNPLAN, items=[], done=0;
+  function li(state, body, extra){ if(state==="done") done++; items.push('<li>'+body+(extra||'')+'</li>'); }
+  function row(stepCls, stepTxt, nm, right){
+    return '<div class="tlrow"><div class="step '+stepCls+'" aria-hidden="true">'+(stepTxt||'')+'</div><div class="nm">'+nm+'</div>'+(right||'')+'</div>';
+  }
+
+  // 1. check-in
+  if(ci){
+    var l=lightOf(ci);
+    li("done", row("done","&#10003;",'<b>Morning check-in</b><span class="stat st-'+l+'">'+lightWord(l)
+      +(ci.pain!=null?' &middot; pain '+ci.pain+'/10':'')+'</span>','<button class="btn2" data-go="checkin">Edit</button>'));
+  } else {
+    li("", row("","",'<b>Morning check-in</b><span>Pain score first: today&rsquo;s run and gym adjust to it</span>',
+      '<button class="btn2" data-go="checkin">Check in</button>'));
+  }
+  // 2. home routine
+  var hr=ci&&ci.home_routine;
+  li(hr?"done":"", row(hr?"done":"rehab", hr?"&#10003;":"", '<b>Home routine &middot; 15 min</b><span>'
+    +(st&&st.n===0?'Reduced range &middot; nerve slides 2 &times; 10':HOME.length+' exercises')+'</span>',
+    hr?'':'<button class="btn2" data-routine="1">Open</button>'));
+  // 3. run
+  if(rs.wk){
+    if(rs.ranToday.length){
+      var rt=rs.ranToday[0];
+      li("done", row("done","&#10003;",'<b>Ran today &middot; '+fmtMin(rt.duration_min)+'</b><span>'
+        +(rt.pain==null?'Back not scored yet':'Back '+rt.pain+'/10')+'</span>','<button class="btn2" data-run="'+rt.id+'">Open</button>'));
+    } else if(!rs.slot){
+      li("done", row("done","&#10003;",'<b>All runs done this week</b><span>Next week starts Monday</span>'));
+    } else {
+      var rx=rs.rx, sl=rs.slot;
+      var title = rx.blocked ? (sl==="RACE"?"Do not start today":"No run today")
+        : rx.walkrun ? "Walk-run &middot; "+rx.min+" min max"
+        : sl==="RACE" ? "Race day"
+        : (sl==="Q"&&!rx.quality ? "Easy" : SLOTNAME[sl])+" run &middot; "+fmtMin(rx.min);
+      var tone = rx.blocked ? "red" : (openFlare()?"red":(rs.light==="amber"?"amber":""));
+      li("", '<div class="tlrow"><div class="step '+(rx.blocked?'blocked':'run')+'" aria-hidden="true">'+(rx.blocked?'&#10005;':'')+'</div>'
+        +'<div class="nm"><p class="k">Run &middot; '+SLOTNAME[sl]+' ('+sl+')'+(rx.reason&&!rx.blocked?' &middot; adjusted':'')+'</p>'
+        +'<p class="big2">'+title+'</p><span>'+esc(rx.blocked?"Walk instead, and check in again tomorrow.":rx.text)+'</span></div></div>'
+        +(rx.reason?'<div class="note '+tone+'">'+esc(rx.reason)+'</div>':'')
+        +(!ci?'<p class="hint">Not checked in yet: this is the plan for a Green morning.</p>':'')
+        +(rx.blocked?'':'<button class="btn2 full" data-newrun="'+sl+'">Log run manually</button>'));
+    }
+  } else if(rs.before){
+    li("", row("run","",'<b>Marathon starts '+fmtDate(P.start_date)+'</b><span>Week 1: '+P.weeks[0].E+', '+P.weeks[0].Q+' and '+P.weeks[0].L+' min, all easy</span>',
+      '<button class="btn2" data-go="run">Plan</button>'));
+  }
+  // 4. gym
+  if(gymToday){
+    li("done", row("done","&#10003;",'<b>Gym &middot; Day '+esc(gymToday.day_code)+' logged</b><span>'+lightWord(lightOf(gymToday))
+      +(gymToday.pain!=null?' &middot; pain '+gymToday.pain+'/10':'')+'</span>'));
+  } else if(st&&!st.gym){
+    li("", row("rest","",'<b>No gym at this stage</b><span>'+esc(st.t)+': '+esc(st.sum)+'</span>'));
+  } else {
+    var gh=dayBHint();
+    li("", row("rehab","",'<b>Gym &middot; Day '+nextDay()+' next</b><span>'+plan.ex.length+' exercises'
+      +(st?' &middot; flare stage '+st.n:'')+(isDeloadWeek(w)?' &middot; deload week':'')+'</span>',
+      '<button class="btn2" data-go="session">Log</button>')+(gh?'<div class="note">'+esc(gh)+'</div>':''));
+  }
+  // 5. walk
+  var wm=ci&&ci.walk_minutes, walked=wm>=20;
+  li(walked?"done":"", row(walked?"done":"rehab", walked?"&#10003;":"", '<b>Walk &middot; 20&ndash;30 min</b><span>'
+    +(wm?wm+' min logged':'Brisk, any time of day. Log it in the check-in')+'</span>'));
+
+  var runTag = rs.wk ? 'Marathon &middot; Wk '+rs.wk.w+' of '+P.weeks.length+' &middot; '+rs.daysToRace+' days'
+    : rs.before ? 'Marathon &middot; starts '+fmtDate(P.start_date)+' &middot; '+rs.daysToRace+' days' : '';
+  return '<header><div class="sub">'+esc(dstr)+'</div><h1>Today</h1>'
+    +'<div class="chipline"><span class="tag rehab">Rehab &middot; Phase '+p+' &middot; Wk '+w+'</span>'
+    +(runTag?'<span class="tag run">'+runTag+'</span>':'')+'</div></header>'
+    + flareBanner()
+    + pendingCard()
+    + '<div style="display:flex;align-items:baseline;justify-content:space-between;margin:4px 0 10px">'
+    + '<h2 style="margin:0">Today&rsquo;s plan</h2><span class="hint" style="margin:0">'+done+' of '+items.length+' done</span></div>'
+    + '<ol class="tl">'+items.join("")+'</ol>';
+}
+
+function viewRun(){
+  var rs=runState(), wk=rs.wk, P=RUNPLAN;
+  var cur=wk?wk.w:(rs.before?0:P.weeks.length+1);
+  var bars=P.weeks.map(function(x){
+    var h=Math.round(8+Math.min(x.L||180,180)/180*28);
+    return '<i style="height:'+h+'px;background:'+(x.w<cur?'var(--run)':'var(--ph-'+x.phase+')')+'"'+(x.w===cur?' class="now"':'')+'></i>';
+  }).join("");
+  var out='<header><div class="sub">'+esc(P.race)+' &middot; '+new Date(P.race_date+"T12:00:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"long",year:"numeric"})+'</div><h1>Marathon</h1></header>';
+  out+='<section class="card" aria-label="Countdown"><div class="count"><div><div class="n">'+Math.max(0,rs.daysToRace)+'</div><div class="sub" style="margin:0">days to go</div></div>'
+    +'<div style="text-align:right">'
+    +(wk?'<div style="font-size:22px;font-weight:700">Week '+wk.w+' <span style="color:var(--muted);font-weight:600">of '+P.weeks.length+'</span></div>'
+        +'<div class="hint" style="margin:0">'+esc(P.phases[wk.phase].title)+(wk.tag?' &middot; '+esc(wk.tag):'')+'</div>'
+      :rs.before?'<div style="font-size:17px;font-weight:700">Starts '+fmtDate(P.start_date)+'</div>':'<div style="font-size:17px;font-weight:700">Race done</div>')
+    +'</div></div>'
+    +'<div class="phasebar" role="img" aria-label="27-week plan: base weeks 1 to 8, build 9 to 16, specific 17 to 24, taper 25 and 26, race week 27.'+(wk?' You are in week '+wk.w+'.':'')+'">'+bars+'</div>'
+    +'<div class="phaselbl" aria-hidden="true"><span>Base</span><span>Build</span><span>Specific</span><span style="text-align:right">Race</span></div>'
+    +'<p class="hint">'+esc(P.phases[(wk||P.weeks[0]).phase].goal)+(wk&&wk.note?' '+esc(wk.note):'')+'</p></section>';
+  out+=pendingCard();
+
+  var show=wk||(rs.before?P.weeks[0]:null);
+  if(show){
+    var a=wk?rs.assigned:{done:{},byId:{}}, tot=wk?rs.totals:{done:0,plan:show.E+show.Q+(show.L||0)};
+    var pct=Math.min(100,Math.round(tot.done/Math.max(1,tot.plan)*100));
+    out+='<section class="card" aria-labelledby="wkh"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px">'
+      +'<h2 id="wkh" style="margin:0">'+(wk?'This week':'Week 1')+'</h2><span class="hint" style="margin:0">'
+      +fmtDate(show.start).replace(/^\w+ /,"")+'&ndash;'+fmtDate(RL.weekEnd(show)).replace(/^\w+ /,"")+' &middot; '+tot.done+' of '+tot.plan+' min</span></div>'
+      +'<div class="bar" role="progressbar" aria-label="Minutes this week" aria-valuemin="0" aria-valuemax="'+tot.plan+'" aria-valuenow="'+tot.done+'"><i style="width:'+pct+'%"></i></div>'
+      +'<ul class="wk">'+RL.slotsOf(show).map(function(s){
+        var r=a.done[s], isToday=wk&&!r&&s===rs.slot&&!rs.ranToday.length;
+        var name = s==="RACE" ? "Race &middot; "+fmtDate(P.race_date)
+          : (s==="Q"&&!show.qq?"Easy":SLOTNAME[s])+" &middot; "+fmtMin(show[s]);
+        var meta = r ? runLine(r)+(r.pain!=null?' &middot; back '+r.pain+'/10':' &middot; back not scored')
+          : (isToday&&rs.rx ? (rs.rx.blocked?'Not today: '+esc(rs.rx.reason):esc(rs.rx.text)) : esc(RL.slotText(P,show,s)));
+        return '<li><button class="'+(isToday?'today':'')+'" '+(r?'data-run="'+r.id+'"':'data-newrun="'+s+'"')+'>'
+          +'<span class="sl'+(r?' done':'')+'" aria-hidden="true">'+(r?'&#10003;':s==="RACE"?'R':s)+'</span>'
+          +'<span class="nm"><b>'+name+'</b><span>'+meta+'</span></span>'
+          +'<span class="state">'+(r?'<span class="st-green">Done</span>':isToday?'<span style="color:var(--run)">Today</span>':'Left')+'</span></button></li>';
+      }).join("")+'</ul>'
+      +(wk&&Object.keys(a.byId).filter(function(k){ return a.byId[k]==="extra"; }).length
+        ?'<p class="hint">Plus '+Object.keys(a.byId).filter(function(k){ return a.byId[k]==="extra"; }).length+' extra run(s), not counted against the plan.</p>':'')
+      +'<p class="hint">Any order, done by Sunday. Suggested: Tue E &middot; Thu Q &middot; Sun L, with the gym on Mon, Wed and Fri.</p></section>';
+  }
+  if(wk&&wk.w>1){
+    var pw=P.weeks[wk.w-2], pt=RL.weekTotals(runs(),pw), pa=RL.assignWeek(runs(),pw,P.race_date);
+    var ok=pt.done>=0.9*pt.plan;
+    out+='<div class="card" style="display:flex;gap:12px;align-items:center"><span class="stat '+(ok?'st-green':'')+'" style="font-size:13px">'+(ok?'&#10003; Complete':'Partly done')+'</span>'
+      +'<span style="flex:1">Week '+pw.w+' &middot; '+pt.done+' of '+pt.plan+' min</span><span class="hint" style="margin:0">long '
+      +(pa.done.L?Math.round(pa.done.L.duration_min):0)+'/'+pw.L+'</span></div>';
+  }
+  out+='<button class="big" data-newrun="">Log a run<span class="d">Apple Health runs arrive by themselves</span></button>';
+  out+='<nav class="links" aria-label="Marathon">'
+    +'<button data-go="runplan">The 27-week plan<span>Every week, by phase</span></button>'
+    +'<button data-runrules="1">Back rules &amp; race day<span>What the check-in and a flare do to the run</span></button>'
+    +'<button data-go="history">Run history<span>Every run, with its back score</span></button></nav>';
+  var hk=runs().filter(function(r){ return r.source==="healthkit"; })
+    .map(function(r){ return r.created_at||""; }).sort().pop();
+  out+='<p class="hint" role="status" style="text-align:center">'+(hk
+    ?'● Apple Health last sent a run '+new Date(hk).toLocaleString("en-GB",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})
+    :'No runs from Apple Health yet. See Tracker setup for the one-time link.')+'</p>';
+  return out;
+}
+
+function viewRunLog(){
+  var F=S.form, r=S.sel?runById(S.sel):null;
+  if(S.sel&&!r) return '<div class="ctr">That run is gone.</div>';
+  if(!F._init){
+    F._init=true;
+    if(r){
+      F.date=r.run_date; F.dur=r.duration_min; F.km=r.distance_km; F.avgHr=r.avg_hr; F.maxHr=r.max_hr;
+      F.cad=r.cadence_spm; F.rpe=r.rpe; if(r.pain!=null) F.pain=r.pain; F.legSymptoms=!!r.leg_symptoms;
+      F.notes=r.notes||""; if(r.slot) F.slot=r.slot;
+    } else {
+      F.date=F.date||today();
+      // A new run starts on the slot it was opened from, or today's suggestion. It never
+      // depends on the minutes, which are typed after this screen is drawn.
+      var w0=RL.weekOf(RUNPLAN, F.date);
+      if(!F.slot) F.slot = w0 ? (RL.suggest(w0, RL.assignWeek(runs(), w0, RUNPLAN.race_date), F.date)||"extra") : "extra";
+      F._pre=true;
+    }
+  }
+  var wk=RL.weekOf(RUNPLAN, F.date||today());
+  var slots=(wk?RL.slotsOf(wk):[]).concat(["extra"]);
+  if(F.slot && slots.indexOf(F.slot)<0) delete F.slot; // the date moved to another week
+  // The suggestion: what this run would count as if nothing were picked.
+  var others=runs().filter(function(x){ return !r||x.id!==r.id; });
+  var me={id:-1, run_date:F.date, duration_min:num(F.dur)||0, slot:null};
+  F._auto = wk ? (RL.assignWeek(others.concat([me]), wk, RUNPLAN.race_date).byId[-1]||"extra") : "extra";
+  var sel=F.slot||F._auto, legs=!!F.legSymptoms;
+  var hk=r&&r.source==="healthkit";
+  function field(k,label,mode,unit){
+    return '<label class="card" style="margin:0;padding:10px 12px;display:flex;flex-direction:column;gap:4px">'
+      +'<span class="lbl" style="margin:0;font-size:11px">'+label+(unit?' ('+unit+')':'')+'</span>'
+      +'<input data-f="'+k+'" inputmode="'+mode+'" value="'+esc(F[k]==null?"":F[k])+'" placeholder="-" style="min-height:32px;padding:4px 0;border:0;background:transparent;font-size:17px;font-weight:700"></label>';
+  }
+  var pace=(num(F.dur)&&num(F.km))?num(F.dur)/num(F.km):null;
+  var out='<h2>'+(r?(hk&&r.pain==null?'Confirm run':'Edit run'):'Log a run')+'</h2>'
+    +(hk?'<p class="hint" style="margin-top:-6px">From Apple Health'+(r.started_at?' &middot; started '+new Date(r.started_at).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"}):'')+'</p>':'')
+    +'<div class="lbl">'+(hk?'Measurements &middot; tap to correct':'The run')+'</div>'
+    +'<div class="grid2" style="grid-template-columns:repeat(3,1fr);gap:8px">'
+    +field("dur","Minutes","decimal")+field("km","Km","decimal")
+    +'<div class="card" style="margin:0;padding:10px 12px"><span class="lbl" style="margin:0;font-size:11px">Pace</span><div style="font-size:17px;font-weight:700;padding:4px 0;color:var(--muted)">'
+    +(pace?(function(s){ return Math.floor(s/60)+':'+String(s%60).padStart(2,"0"); })(Math.round(pace*60))+'/km':'-')+'</div></div>'
+    +field("avgHr","Avg HR","numeric")+field("maxHr","Max HR","numeric")+field("cad","Cadence","numeric")+'</div>'
+    +'<label class="lbl" for="rdate" style="display:block">Date</label><input id="rdate" type="date" data-f="date" data-rerender="1" value="'+esc(F.date)+'">'
+    +'<div class="lbl" id="slot-l">Which run was it?</div>'
+    +'<div class="seg" role="group" aria-labelledby="slot-l">'+slots.map(function(s){
+      return '<button data-slot="'+s+'" aria-pressed="'+(sel===s)+'" class="'+(sel===s?'on':'')+'">'+SLOTNAME[s]+'</button>'; }).join("")+'</div>'
+    +'<p class="hint">'+(!wk?'Outside the 27 weeks, so it counts as an extra.'
+      :F._pre&&!F._picked?'Suggested for this week. Change it if that&rsquo;s wrong.'
+      :F.slot?'Picked by you.'
+      :'Picked from its length'+(wk[sel]?' ('+wk[sel]+' min planned)':'')+'. Change it if that&rsquo;s wrong.')+'</p>'
+    +'<div class="lbl" id="rpe-l">Effort &middot; RPE</div>'
+    +'<div class="seg" role="group" aria-labelledby="rpe-l" style="grid-auto-columns:1fr;gap:3px">'+[1,2,3,4,5,6,7,8,9,10].map(function(n){
+      return '<button data-rpe="'+n+'" aria-pressed="'+(F.rpe===n)+'" aria-label="RPE '+n+'" class="'+(F.rpe===n?'on':'')+'" style="padding:0">'+n+'</button>'; }).join("")+'</div>'
+    +'<div class="card" style="margin-top:14px"><div class="lbl" style="margin-top:0">Back after the run &middot; 0&ndash;10</div>'
+    +'<div class="toggle" style="padding-top:2px"><b>Any symptoms below the knee?</b><button class="sw'+(legs?" on bad":"")+'" data-sw="legSymptoms" aria-pressed="'+legs+'" aria-label="Symptoms below the knee"><i></i></button></div>'
+    +painInput(F.pain, legs)+'</div>'
+    +'<div class="lbl">Note</div><textarea data-f="notes" rows="2" placeholder="Route, surface, how the back felt">'+esc(F.notes||"")+'</textarea>'
+    +'<button class="save" data-save="run"'+(F.pain!=null?"":" disabled")+'>'
+    +(F.pain!=null?(hk&&r.pain==null?"Confirm run":"Save run"):"Score your back first")+'</button>'
+    +(r?'<div class="mini"><button class="danger" data-delrun="1">'+(S.confirmDel?"Tap again to delete this run":"Delete this run")+'</button></div>':'');
+  return out;
+}
+
+function viewRunPlan(){
+  var P=RUNPLAN, tab=S.form.rtab||"weeks", cur=RL.weekOf(P,today());
+  var out='<button class="back" data-go="run">&larr; Marathon</button><h2>The plan</h2>'
+    +'<div class="seg" role="tablist" style="margin-bottom:14px"><button role="tab" data-rtab="weeks" aria-selected="'+(tab==="weeks")+'" class="'+(tab==="weeks"?'on':'')+'">27 weeks</button>'
+    +'<button role="tab" data-rtab="rules" aria-selected="'+(tab==="rules")+'" class="'+(tab==="rules"?'on':'')+'">Back rules &amp; race day</button></div>';
+  if(tab==="weeks"){
+    var order=["base","build","specific","taper","race"];
+    out+=order.map(function(ph){
+      var ws=P.weeks.filter(function(x){ return x.phase===ph; });
+      return '<div class="ph-h"><i style="background:var(--ph-'+ph+')" aria-hidden="true"></i>'+esc(P.phases[ph].title)
+        +' <span class="hint" style="margin:0;font-weight:500">weeks '+ws[0].w+(ws.length>1?'&ndash;'+ws[ws.length-1].w:'')+'</span></div>'
+        +'<div class="card" style="padding:4px 12px"><table class="plan-tbl"><thead><tr><th scope="col">Wk</th><th scope="col">Starts</th>'
+        +'<th scope="col">E &middot; Q &middot; L</th><th scope="col" class="r">Total</th></tr></thead><tbody>'
+        +ws.map(function(x){
+          var now=cur&&cur.w===x.w;
+          return '<tr class="'+(now?'now':'')+'"'+(now?' aria-current="true"':'')+'><td style="font-weight:700">'+x.w+'</td>'
+            +'<td style="color:var(--muted);font-size:13px">'+fmtDate(x.start).replace(/^\w+ /,"")+'</td>'
+            +'<td>'+x.E+' &middot; '+x.Q+' &middot; '+(x.L==null?'Race':x.L)+(x.tag?' <span class="chip fl">'+esc(x.tag)+'</span>':'')
+            +(x.test?' <span class="chip fl">10K test</span>':'')+'</td>'
+            +'<td class="r" style="font-weight:700">'+(x.L==null?'&mdash;':x.E+x.Q+x.L)+'</td></tr>';
+        }).join("")+'</tbody></table></div>';
+    }).join("")
+    +'<p class="hint">Long runs of 2 h or more are run-walk, 9 min / 1 min. After rehab week 24 the gym deloads in the cutback and taper weeks.</p>';
+  } else {
+    out+=P.rules.map(function(r){
+      return '<div class="card"><b style="display:block;font-size:17px;margin-bottom:4px">'+esc(r.t)+'</b><p class="hint" style="margin:0;font-size:15px;color:var(--text)">'+esc(r.b)+'</p></div>';
+    }).join("")
+    +'<div class="card"><b style="display:block;font-size:17px;margin-bottom:6px">Race day</b><ul style="margin:0;padding-left:18px;font-size:15px;line-height:1.6">'
+    +P.race_day.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join("")+'</ul></div>';
+  }
+  return out;
 }
 
 // A compact read-only badge for a stored light, used in history lists.
@@ -393,24 +859,40 @@ function viewSession(w,p){
     return head+'<h2>Today &middot; stage '+st.n+', '+esc(st.t)+'</h2>'
      +'<div class="warn"><b>No gym at this stage.</b> '+esc(st.sum)+'</div>'
      +'<div class="card"><div class="lbl" style="margin-top:0">What to do instead</div>'
-     +'<ul style="margin:0;padding-left:17px;font-size:12.5px;color:#8b9bab;line-height:1.7">'
+     +'<ul style="margin:0;padding-left:17px;font-size:12.5px;color:var(--muted);line-height:1.7">'
      + st["do"].map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>'
      +'<p class="hint">'+esc(FLARE.clearRule)+'</p>'
      +'<button class="big alt" data-go="checkin">Daily check-in<span class="d">This is what moves you up a stage</span></button>';
   }
 
   var last=S.data.lastLoads||{};
+  var names=plan.ex.map(function(e){ return e.n; });
+  // Anything in the programme can be swapped in, except what is already on today's list
+  // and, during a flare, anything that loads the spine more than the stage allows.
+  var catalog=RL.exerciseCatalog(PROGRAM, st?st.sp:null, plan.phase);
   var rows=plan.ex.map(function(e,i){
     var lv=last[e.n]||{};
     var def=planLoad(e,st);
     var lo=(S.form["l"+i]!==undefined)?S.form["l"+i]:(def!=null?def:"");
     var rp=(S.form["r"+i]!==undefined)?S.form["r"+i]:(lv.reps!=null?lv.reps:"");
     var unit=e.t?"sec":"reps";
+    var key=e.from||e.n, open=S.form.swapOpen===i;
     var loadIn = e.u==="bw" ? '<span class="unit">bw</span>'
-      : '<input class="num" type="number" inputmode="decimal" data-f="l'+i+'" value="'+esc(lo)+'" placeholder="-"><span class="unit">kg</span>';
-    return '<div class="row"><div class="nm"><b>'+esc(e.n)+'</b><span>'+esc(e.s)+'</span></div>'
+      : '<input class="num" type="number" inputmode="decimal" data-f="l'+i+'" value="'+esc(lo)+'" placeholder="-" aria-label="'+esc(e.n)+' load, kg"><span class="unit">kg</span>';
+    var picker = !open ? '' : '<div class="swap"><label class="sr" for="swap'+i+'">Swap '+esc(e.n)+' for</label>'
+      +'<select id="swap'+i+'" data-swapsel="'+i+'" data-from="'+esc(key)+'"><option value="">Swap '+esc(e.n)+' for&hellip;</option>'
+      + catalog.map(function(g){
+          var items=g.items.filter(function(x){ return names.indexOf(x.n)<0; });
+          return items.length ? '<optgroup label="'+esc(gLabel(g.g))+'">'+items.map(function(x){
+            return '<option value="'+esc(x.n)+'">'+esc(x.n)+'</option>'; }).join("")+'</optgroup>' : '';
+        }).join("")+'</select></div>';
+    return '<div class="row" style="flex-wrap:wrap"><div class="nm"><b>'+esc(e.n)+'</b><span>'+esc(e.s)+'</span>'
+      + (e.from?'<div class="swapped">&harr; instead of '+esc(e.from)+'<button data-unswap="'+esc(e.from)+'" data-i="'+i+'">Undo</button></div>'
+        :'<button class="swapped" style="background:none;border:0;padding:0;min-height:32px" data-swapopen="'+i+'" aria-expanded="'+open+'">&harr; Swap</button>')
+      + '</div>'
       + loadIn
-      + '<input class="num" type="number" inputmode="numeric" data-f="r'+i+'" value="'+esc(rp)+'" placeholder="-"><span class="unit">'+unit+'</span></div>';
+      + '<input class="num" type="number" inputmode="numeric" data-f="r'+i+'" value="'+esc(rp)+'" placeholder="-" aria-label="'+esc(e.n)+' '+unit+'"><span class="unit">'+unit+'</span>'
+      + (picker?'<div style="flex-basis:100%">'+picker+'</div>':'')+'</div>';
   }).join("");
 
   var held = st ? PROGRAM[plan.phase][d].filter(function(e){ return (e.sp||1)>st.sp; }) : [];
@@ -433,7 +915,7 @@ function viewSession(w,p){
    + '</div>'
    + '<div class="card"><div class="lbl" style="margin-top:0">Loads &middot; '
    + (st&&st.pct?'prefilled at '+st.pct+'%':'prefilled from last time')+'</div>'
-   + '<p class="hint" style="margin-bottom:6px">Only change what changed. Blanks are fine.</p>'+rows+'</div>'
+   + '<p class="hint" style="margin-bottom:6px">Only change what changed. Blanks are fine. Swap replaces an exercise for this session only.</p>'+rows+'</div>'
    + (held.length?'<div class="card"><div class="lbl" style="margin-top:0">Held back at this stage</div>'
       +'<p class="hint" style="margin:0">'+held.map(function(e){return esc(e.n);}).join(" &middot; ")
       +'. These come back as you move up the ladder.</p></div>':'')
@@ -496,8 +978,8 @@ function viewFlare(){
   return out+'<h2>Log a flare-up</h2>'+emerg
    + '<div class="ok">Saving this switches the app into flare mode: the session screen rebuilds '
    + 'itself to stage 0 and climbs back up as your clear days accumulate.</div>'
-   + '<div class="card"><div class="lbl" style="margin-top:0">Started on</div>'
-   + '<input type="date" data-f="date" value="'+esc(S.form.date||today())+'">'
+   + '<div class="card"><label class="lbl" for="fdate" style="margin-top:0;display:block">Started on</label>'
+   + '<input id="fdate" type="date" data-f="date" value="'+esc(S.form.date||today())+'">'
    + '<div class="lbl">Severity</div>'+painInput(sev, legs)
    + '<div class="toggle"><b>Symptoms below the knee</b><button class="sw'+(legs?" on bad":"")+'" data-sw="legSymptoms"><i></i></button></div>'
    + '</div>'
@@ -545,24 +1027,37 @@ function viewHistory(){
       +(x.pain!=null?' &middot; <span class="pnum">pain '+x.pain+'/10</span>':'')
       +(x.flare_stage!=null?' &middot; flare st'+x.flare_stage:'')
       +(x.leg_symptoms?' &middot; leg symptoms':'')
-      +(top?'<br><span style="color:#8b9bab;font-size:12px">'+top+(lf.length>3?' &middot; +'+(lf.length-3)+' more':'')+'</span>':'')
-      +(x.notes?'<br><span style="color:#7b8b9b;font-size:12px">'+esc(x.notes)+'</span>':'')
-      +'</span><span style="color:#4d6070;font-size:16px">&rsaquo;</span></button>';
+      +(top?'<br><span style="color:var(--muted);font-size:12px">'+top+(lf.length>3?' &middot; +'+(lf.length-3)+' more':'')+'</span>':'')
+      +(x.notes?'<br><span style="color:var(--muted);font-size:12px">'+esc(x.notes)+'</span>':'')
+      +'</span><span style="color:var(--muted);font-size:16px">&rsaquo;</span></button>';
   }).join("") : '<div class="hint">Nothing yet.</div>';
   out+= ss.length?'<p class="hint">Tap a session to see every load, fix a number, or delete it.</p>':'';
   out+='</div>';
+  var rr=runs();
+  if(rr.length){
+    out+='<div class="card"><div class="lbl" style="margin-top:0">Runs</div>'+rr.slice(0,60).map(function(r){
+      var l=(r.pain!=null||r.leg_symptoms)?lightFor(r.pain,r.leg_symptoms):null;
+      return '<button class="tapper hist" data-run="'+r.id+'">'
+        +(l?lightPill(l):'<span class="pill" style="background:var(--run-dim);color:var(--run)">TO CONFIRM</span>')
+        +'<span style="flex:1"><b>'+fmtDate(r.run_date)+'</b> &middot; '+(r.slot?SLOTNAME[r.slot]:'Run')+' &middot; '+fmtMin(r.duration_min)
+        +(r.distance_km!=null?' &middot; '+fmtKm(r.distance_km):'')
+        +(r.pain!=null?' &middot; <span class="pnum">back '+r.pain+'/10</span>':'')
+        +(r.source==="healthkit"?'<br><span class="hint" style="margin:0">Apple Health'+(r.avg_hr?' &middot; avg HR '+r.avg_hr:'')+'</span>':'')
+        +'</span><span style="color:var(--muted);font-size:16px" aria-hidden="true">&rsaquo;</span></button>';
+    }).join("")+'</div>';
+  }
   var fl=S.data.flares||[];
   if(fl.length){
     out+='<div class="card"><div class="lbl" style="margin-top:0">Flares</div>'+fl.map(function(x){
       return '<div class="hist"><span class="pill red">'+(x.severity!=null?x.severity+"/10":"-")+'</span><div><b>'+x.started_on+'</b>'
        +(x.resolved_on?' &rarr; closed '+x.resolved_on:' &middot; still open')
-       +(x.symptom_note?'<br><span style="color:#8b9bab;font-size:12.5px">'+esc(x.symptom_note)+'</span>':'')+'</div></div>';
+       +(x.symptom_note?'<br><span style="color:var(--muted);font-size:12.5px">'+esc(x.symptom_note)+'</span>':'')+'</div></div>';
     }).join("")+'</div>';
   }
   var bm=S.data.benchmarks||[];
   if(bm.length){
     out+='<div class="card"><div class="lbl" style="margin-top:0">Benchmarks</div>'+bm.map(function(x){
-      return '<div class="hist"><div><b>'+x.test_date+'</b><br><span style="color:#8b9bab;font-size:12.5px">calf '
+      return '<div class="hist"><div><b>'+x.test_date+'</b><br><span style="color:var(--muted);font-size:12.5px">calf '
        +(x.calf_raise_l||"-")+"/"+(x.calf_raise_r||"-")+' &middot; plank '+(x.side_plank_l||"-")+"/"+(x.side_plank_r||"-")+'s</span></div></div>';
     }).join("")+'</div>';
   }
@@ -581,7 +1076,7 @@ function exList(arr){
   return arr.map(function(e){
     return '<div class="row" style="display:block">'
       +'<b style="font-size:14.5px">'+esc(e.n)+'</b>'
-      +'<div style="font-size:12px;color:#6d9fd4;margin-top:2px">'+esc(e.s)+'</div>'
+      +'<div style="font-size:12px;color:var(--acc);margin-top:2px">'+esc(e.s)+'</div>'
       +(e.c?'<div class="hint" style="margin-top:3px">'+esc(e.c)+'</div>':'')
       +'</div>';
   }).join("");
@@ -595,7 +1090,7 @@ function viewPlan(w,p){
 
   out+='<div class="card"><div class="lbl" style="margin-top:0">Phase '+p+' &middot; '+esc(ph.t)+' &middot; '+esc(ph.w)+'</div>'
      +'<p class="hint" style="margin-top:0">'+esc(ph.g)+'</p>'
-     +'<ul style="margin:8px 0 0;padding-left:17px;font-size:12.5px;color:#8b9bab;line-height:1.6">'
+     +'<ul style="margin:8px 0 0;padding-left:17px;font-size:12.5px;color:var(--muted);line-height:1.6">'
      + ph.r.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")
      +'</ul></div>';
 
@@ -619,7 +1114,7 @@ function viewPlan(w,p){
       +'<p class="hint">Benchmark: single-leg calf raise to failure. Target 25+ reps and under 20% difference between sides. Your most objective marker of nerve recovery.</p></div>'
       +'<div class="ok"><b>Walking is the highest-value thing you can do.</b> 20-30 min daily at a brisk pace, separate from the routine above. On a red day it is often the only thing you should do &mdash; and you should still do it.</div>';
   } else {
-    var bcol={green:"#2fe08f",amber:"#f5c542",red:"#ff6b57"};
+    var bcol={green:"var(--green)",amber:"var(--amber)",red:"var(--red)"};
     out+='<div class="card"><div class="lbl" style="margin-top:0">What your score means</div>'
       +'<p class="hint" style="margin-top:0">You log the number. The band follows from it and from '
       +'whether anything is happening below the knee, and it is the band that drives the flare '
@@ -631,7 +1126,7 @@ function viewPlan(w,p){
         }).join("")
       +'<p class="hint">'+esc(PAIN.note)+'</p></div>'
       +'<div class="card"><div class="lbl" style="margin-top:0">Never</div>'
-      +'<ul style="margin:0;padding-left:17px;font-size:12.5px;color:#8b9bab;line-height:1.7">'
+      +'<ul style="margin:0;padding-left:17px;font-size:12.5px;color:var(--muted);line-height:1.7">'
       +'<li>Loaded lumbar flexion &mdash; no sit-ups, weighted crunches or loaded toe-touches</li>'
       +'<li>Loaded rotation before week 13</li>'
       +'<li>Barbell back squat during Phases 1 and 2</li>'
@@ -787,36 +1282,36 @@ function chartSVG(pts, col, o){
   // Recessive hairlines, one shade off the surface - never dashed.
   (o.marks||[]).forEach(function(m){
     g+='<line x1="'+pl+'" y1="'+Y(m.v).toFixed(1)+'" x2="'+(W-pr)+'" y2="'+Y(m.v).toFixed(1)
-      +'" stroke="#26333f" stroke-width="1"/>';
+      +'" style="stroke:var(--hair)" stroke-width="1"/>';
     if(!sp&&m.l) g+='<text x="'+(pl-5)+'" y="'+(Y(m.v)+3.5).toFixed(1)
-      +'" text-anchor="end" font-size="9.5" fill="#5b6b7b">'+m.l+'</text>';
+      +'" text-anchor="end" font-size="10" style="fill:var(--muted)">'+m.l+'</text>';
   });
   if(base!=null){
     g+='<line x1="'+pl+'" y1="'+Y(base).toFixed(1)+'" x2="'+(W-pr)+'" y2="'+Y(base).toFixed(1)
-      +'" stroke="#2f3d4b" stroke-width="1"/>';
+      +'" style="stroke:var(--line)" stroke-width="1"/>';
     if(!sp) g+='<text x="'+(pl-5)+'" y="'+(Y(base)+3.5).toFixed(1)
-      +'" text-anchor="end" font-size="9.5" fill="#6b7b8b">'+base+'</text>';
+      +'" text-anchor="end" font-size="10" style="fill:var(--muted)">'+base+'</text>';
   }
   if(!sp){
     var xf=o.xfmt||function(p){ return "wk "+p.w; };
-    g+='<text x="'+pl+'" y="'+(H-7)+'" font-size="9.5" fill="#6b7b8b">'+esc(xf(pts[0]))+'</text>';
-    if(x1!==x0) g+='<text x="'+(W-pr)+'" y="'+(H-7)+'" text-anchor="end" font-size="9.5" fill="#6b7b8b">'
+    g+='<text x="'+pl+'" y="'+(H-7)+'" font-size="10" style="fill:var(--muted)">'+esc(xf(pts[0]))+'</text>';
+    if(x1!==x0) g+='<text x="'+(W-pr)+'" y="'+(H-7)+'" text-anchor="end" font-size="10" style="fill:var(--muted)">'
       +esc(xf(pts[pts.length-1]))+'</text>';
   }
   var dd=pts.map(function(p,i){ return (i?"L":"M")+X(p.w).toFixed(1)+" "+Y(p.v).toFixed(1); }).join(" ");
-  g+='<path d="'+dd+'" fill="none" stroke="'+col+'" stroke-width="'+(sp?1.8:2)
+  g+='<path d="'+dd+'" fill="none" style="stroke:'+col+'" stroke-width="'+(sp?1.8:2)
     +'" stroke-linecap="round" stroke-linejoin="round"/>';
   if(!sp) pts.forEach(function(p,i){
     var on=(o.tap===i);
     g+='<circle cx="'+X(p.w).toFixed(1)+'" cy="'+Y(p.v).toFixed(1)+'" r="'+(on?5:4)
-      +'" fill="'+(o.dot?o.dot(p):col)+'" stroke="#1a232e" stroke-width="2"/>';
+      +'" style="fill:'+(o.dot?o.dot(p):col)+';stroke:var(--surface)" stroke-width="2"/>';
   });
   var lp=pts[pts.length-1];
   if(sp){
-    g+='<circle cx="'+X(lp.w).toFixed(1)+'" cy="'+Y(lp.v).toFixed(1)+'" r="2.8" fill="'+col+'"/>';
+    g+='<circle cx="'+X(lp.w).toFixed(1)+'" cy="'+Y(lp.v).toFixed(1)+'" r="2.8" style="fill:'+col+'"/>';
   } else {
     // Only the endpoint is labelled; the axis and the tap layer carry the rest.
-    g+='<text x="'+(W-pr+5)+'" y="'+(Y(lp.v)+3.5).toFixed(1)+'" font-size="11" font-weight="700" fill="#c8d4e0">'
+    g+='<text x="'+(W-pr+5)+'" y="'+(Y(lp.v)+3.5).toFixed(1)+'" font-size="11" font-weight="700" style="fill:var(--text)">'
       +fmt(lp.v)+'</text>';
   }
   if(!sp && o.tapable){
@@ -831,10 +1326,10 @@ function chartSVG(pts, col, o){
     if(o.tap!=null && pts[o.tap]){
       var p=pts[o.tap];
       g+='<line x1="'+X(p.w).toFixed(1)+'" y1="'+pt+'" x2="'+X(p.w).toFixed(1)+'" y2="'+(H-pb)
-        +'" stroke="#4d6070" stroke-width="1"/>';
+        +'" style="stroke:var(--muted)" stroke-width="1"/>';
     }
   }
-  return '<svg class="ch" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" role="img">'+g+'</svg>';
+  return '<svg class="ch" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" role="img" aria-label="'+esc(o.label||("Chart, "+pts.length+" points, latest "+fmt(pts[pts.length-1].v)))+'">'+g+'</svg>';
 }
 
 // ==================== the 0-10 pain scale ====================
@@ -921,6 +1416,9 @@ function setbackDate(f){
     if((x.traffic_light==="red"||x.leg_symptoms)&&x.session_date>=f.started_on&&x.session_date>a) a=x.session_date; });
   (S.data.checkins||[]).forEach(function(c){
     if(c.traffic_light==="red"&&c.checkin_date>=f.started_on&&c.checkin_date>a) a=c.checkin_date; });
+  // A run scored Red, or with leg symptoms, is a setback exactly like a Red session.
+  (S.data.runs||[]).forEach(function(r){
+    if(lightFor(r.pain,r.leg_symptoms)==="red"&&r.run_date>=f.started_on&&r.run_date>a) a=r.run_date; });
   return a;
 }
 function clearDays(f){
@@ -964,14 +1462,16 @@ function stageSets(str, st){
   return out;
 }
 // What today's session actually is. With no open flare this is simply the programme.
+// Swaps (S.form.swaps, this session only) are applied to the programmed list first, so a
+// flare stage still filters and doses whatever was swapped in.
 function sessionPlan(w,p,day){
-  var f=openFlare();
-  if(!f) return {ex:PROGRAM[p][day], phase:p, stage:null, flare:null};
+  var f=openFlare(), sw=S.form&&S.form.swaps;
+  if(!f) return {ex:RL.applySwaps(PROGRAM[p][day], sw, PROGRAM, p), phase:p, stage:null, flare:null};
   var st=flareStage(f);
   if(!st.gym) return {ex:[], phase:p, stage:st, flare:f};
   var pool=st.pool?st.pool:p;
   if(!PROGRAM[pool]) pool=p;
-  var ex=PROGRAM[pool][day].filter(function(e){ return (e.sp||1)<=st.sp; }).map(function(e){
+  var ex=RL.applySwaps(PROGRAM[pool][day], sw, PROGRAM, pool).filter(function(e){ return (e.sp||1)<=st.sp; }).map(function(e){
     var c={}; for(var k in e) c[k]=e[k];
     c.s=stageSets(e.s,st);
     return c;
@@ -1003,7 +1503,7 @@ function flareBanner(){
   btns+='<button data-fl="close" class="danger">'+(S.confirmClose?"Tap again to close":"Close flare")+'</button>';
   return '<div class="warn"><b>Flare mode &middot; Stage '+st.n+' &mdash; '+esc(st.t)+'</b>'
    +'<div class="stage">'+bars+'</div>'+esc(st.sum)
-   +'<div style="margin-top:7px;font-size:12.5px;color:#d9a99f">'
+   +'<div style="margin-top:7px;font-size:12.5px;color:var(--muted)">'
    + cd+' clear day'+(cd===1?"":"s")+' since '+setbackDate(f)
    + (nx?' &middot; stage '+nx.n+' ('+esc(nx.t)+') in '+dn+' day'+(dn===1?"":"s")
         :' &middot; a clear week here closes the flare')
@@ -1025,13 +1525,13 @@ function painCard(){
   pts.forEach(function(p){ if(p.v>worst) worst=p.v; sum+=p.v; });
   var avg=sum/pts.length;
   var col=function(p){ var b=bandFor(p.v);
-    return b.l==="green"?"#2fe08f":(b.l==="amber"?"#f5c542":"#ff6b57"); };
+    return "var(--"+b.l+")"; };
   return '<div class="card"><div class="lbl" style="margin-top:0">Pain &middot; last 6 weeks</div>'
    +'<div style="font-size:34px;font-weight:700;letter-spacing:-1px;line-height:1">'+last.v
-   +'<span style="font-size:14px;color:#7b8b9b;font-weight:600">/10 &middot; '+esc(last.d)+'</span></div>'
+   +'<span style="font-size:14px;color:var(--muted);font-weight:600">/10 &middot; '+esc(last.d)+'</span></div>'
    +'<div class="legend" style="margin-top:10px"><i style="background:'+col(last)+'"></i>'
    +'Worst score each day &middot; dots coloured by band</div>'
-   + chartSVG(pts, "#6d9fd4", {base:null, lo:-0.6, hi:10.6, dot:col,
+   + chartSVG(pts, "var(--run)", {base:null, lo:-0.6, hi:10.6, dot:col,
        marks:[{v:3.5,l:"3"},{v:6.5,l:"6"}],
        xfmt:function(p){ return p.d.slice(5); }, fmt:function(v){ return Math.round(v); }})
    +'<p class="hint" style="margin-top:8px">'+pts.length+' day'+(pts.length===1?"":"s")+' scored'
@@ -1039,13 +1539,46 @@ function painCard(){
    +'. Below the lower line is Green, above the upper is Red.</p></div>';
 }
 
+// Running, on the plan's own week axis. Only finished weeks are drawn: the current week
+// would always look short. A week with no run at all is left out (a gap), never a zero.
+function runCharts(){
+  var P=RUNPLAN, t=today(), cur=RL.weekOf(P,t);
+  var lastDone = cur ? cur.w-1 : (t>P.race_date ? P.weeks.length : 0);
+  var head='<h2 style="margin:8px 0 10px">Running</h2>';
+  if(lastDone<1) return head+'<div class="card"><p class="hint" style="margin:0">'
+    +(t<P.start_date?'The marathon plan starts '+fmtDate(P.start_date)+'. ':'')
+    +'These charts fill in from the end of week 1.</p></div>';
+  var mins=[], longs=[], rows=[];
+  var tone=function(p){ return p.v>=0.9*p.plan?"var(--green)":(p.v>=0.6*p.plan?"var(--amber)":"var(--red)"); };
+  P.weeks.slice(0,lastDone).forEach(function(wk){
+    var tot=RL.weekTotals(runs(),wk), a=RL.assignWeek(runs(),wk,P.race_date), L=a.done.L;
+    rows.push({w:wk.w, m:tot.runs?tot.done:null, pm:tot.plan, l:L?Math.round(L.duration_min):null, pl:wk.L});
+    if(tot.runs) mins.push({w:wk.w, v:tot.done, plan:tot.plan});
+    if(L&&wk.L) longs.push({w:wk.w, v:Number(L.duration_min), plan:wk.L});
+  });
+  var out=head+'<div class="card"><div class="lbl" style="margin-top:0">Minutes per week</div>'
+    +'<div class="legend">Dots: <span class="st-green">● 90%+ of plan</span> <span class="st-amber">● 60&ndash;89%</span> <span class="st-red">● under 60%</span></div>'
+    +(mins.length?chartSVG(mins,"var(--run)",{base:null,dot:tone,fmt:function(v){ return Math.round(v); },label:"Running minutes per week against the plan, weeks "+mins[0].w+" to "+mins[mins.length-1].w+". Every number is in the table below."}):'<p class="hint">No runs logged yet.</p>')+'</div>'
+    +'<div class="card"><div class="lbl" style="margin-top:0">Long run</div>'
+    +(longs.length?chartSVG(longs,"var(--run)",{base:null,dot:tone,fmt:function(v){ return Math.round(v); },label:"Long run per week against the plan. Every number is in the table below."}):'<p class="hint">No long run logged yet.</p>')+'</div>';
+  out+='<button class="big alt" data-rtbl="1">'+(S.form.rtbl?"Hide the numbers":"Show the numbers")+'<span class="d">Every week against the plan</span></button>';
+  if(S.form.rtbl){
+    out+='<div class="card" style="overflow-x:auto"><table class="tbl"><thead><tr><th scope="col">Week</th><th scope="col">Minutes</th><th scope="col">Plan</th><th scope="col">Long</th><th scope="col">Plan</th></tr></thead><tbody>'
+      +rows.map(function(r){ return '<tr><td>'+r.w+'</td><td>'+(r.m==null?'&mdash;':r.m)+'</td><td>'+r.pm+'</td><td>'+(r.l==null?'&mdash;':r.l)+'</td><td>'+(r.pl||'&mdash;')+'</td></tr>'; }).join("")
+      +'</tbody></table></div>';
+  }
+  return out;
+}
+
 function viewProgression(){
   var pr=progression();
-  var out='<button class="back" data-go="home">&larr; Back</button><h2>Progression</h2>';
+  var out='<header><div class="sub">Running, back and strength</div><h1>Progress</h1></header>'
+    +runCharts()+'<h2 style="margin:18px 0 10px">Back &amp; strength</h2>';
   var any=false; pr.order.forEach(function(k){ if(pr.g[k].pts.length) any=true; });
   if(!any) return out+painCard()
     +'<div class="card"><p class="hint" style="margin:0">No strength trend yet. '
-    +'Log a few sessions with loads in them and this fills itself in.</p></div>';
+    +'Log a few sessions with loads in them and this fills itself in.</p></div>'
+    +'<button class="big alt" data-go="history">History<span class="d">Every session, run, flare and benchmark</span></button>';
   out+=painCard();
   out+='<div class="card"><p class="hint" style="margin:0">Every exercise is scored against '
    +'<b>your own first logged value for it</b> &mdash; 100 is where you started. A muscle group is the '
@@ -1057,7 +1590,7 @@ function viewProgression(){
       body='<div class="v">'+Math.round(lp.v)+'<small> idx</small></div>'+deltaChip(g.pts)
           +chartSVG(g.pts,c,{spark:1});
     } else {
-      body='<div class="v" style="color:#4a5866">&mdash;</div><div class="dim">'
+      body='<div class="v" style="color:var(--muted)">&mdash;</div><div class="dim">'
           +(g.ex.length?'one session so far':'nothing logged yet')+'</div>';
     }
     return '<button class="tile" data-grp="'+k+'"><div class="gl"><i style="background:'+c+'"></i>'
@@ -1066,13 +1599,14 @@ function viewProgression(){
   out+='<p class="hint">Tap a group to see the exercises behind it. When a phase swaps in new '
    +'exercises the line carries its level across rather than restarting, so a change of '
    +'programme never reads as lost strength. Deload weeks dip it on purpose, and a load you '
-   +'left blank counts as missing, never as zero.</p>';
+   +'left blank counts as missing, never as zero.</p>'
+   +'<button class="big alt" data-go="history">History<span class="d">Every session, run, flare and benchmark</span></button>';
   return out;
 }
 
 function viewGroup(){
   var pr=progression(), g=pr.g[S.sel];
-  var out='<button class="back" data-go="prog">&larr; Progression</button>';
+  var out='<button class="back" data-go="progress">&larr; Progress</button>';
   if(!g) return out+'<div class="ctr">No such group.</div>';
   var c=GCOL[g.k], lp=lastPt(g.pts);
   out+='<h2><span style="display:inline-block;width:11px;height:11px;border-radius:3px;background:'
@@ -1082,7 +1616,7 @@ function viewGroup(){
   var d=Math.round(lp.v-100);
   out+='<div class="card"><div class="lbl" style="margin-top:0">Index now</div>'
    +'<div style="font-size:34px;font-weight:700;letter-spacing:-1px;line-height:1">'+Math.round(lp.v)
-   +'<span style="font-size:14px;color:#7b8b9b;font-weight:600"> &middot; week '+lp.w+'</span></div>'
+   +'<span style="font-size:14px;color:var(--muted);font-weight:600"> &middot; week '+lp.w+'</span></div>'
    +(g.pts.length>1?'<div style="margin-top:4px">'+deltaChip(g.pts)+'</div>':'')
    +'<div class="legend" style="margin-top:12px"><i style="background:'+c+'"></i>'
    +esc(g.l)+' index, all exercises averaged</div>'
@@ -1102,7 +1636,7 @@ function viewGroup(){
         +(e.count===1?"":"s")+'</span></div>'
         +'<div style="width:74px;flex:none">'+(e.pts.length>1?chartSVG(e.pts,c,{spark:1,w:74}):'')+'</div>'
         +'<div style="width:44px;text-align:right;font-size:13px;font-weight:700;flex:none;color:'
-        +(e.pts.length<2?"#6b7b8b":(ed>=0?"#7fe8b5":"#ffb4a6"))+'">'
+        +(e.pts.length<2?"var(--muted)":(ed>=0?"var(--green)":"var(--red)"))+'">'
         +(e.pts.length<2?"&mdash;":(ed>=0?"+":"")+ed+"%")+'</div></div>';
     }).join("")+'</div>';
 
@@ -1140,12 +1674,13 @@ function viewSessionDetail(){
     var loadIn=(m.u==="bw")?'<span class="unit">bw</span>'
       :'<input class="num" type="number" inputmode="decimal" data-f="l'+i+'" value="'+esc(lo)+'" placeholder="-"><span class="unit">kg</span>';
     return '<div class="row"><div class="nm"><b>'+esc(l.n)+'</b><span>'
-      +(m.g?esc(gLabel(m.g)):"")+'</span></div>'+loadIn
+      +(m.g?esc(gLabel(m.g)):"")+'</span>'
+      +(l.swappedFrom?'<div class="swapped">&harr; swapped for '+esc(l.swappedFrom)+'</div>':'')+'</div>'+loadIn
       +'<input class="num" type="number" inputmode="numeric" data-f="r'+i+'" value="'+esc(rp)+'" placeholder="-"><span class="unit">'+unit+'</span></div>';
   }).join("");
   return out+'<h2>'+esc(x.session_date)+' &middot; Day '+esc(x.day_code)+'</h2>'
-   +'<div class="card"><div class="lbl" style="margin-top:0">Date</div>'
-   +'<input type="date" data-f="date" value="'+esc(S.form.date)+'">'
+   +'<div class="card"><label class="lbl" for="sdate" style="margin-top:0;display:block">Date</label>'
+   +'<input id="sdate" type="date" data-f="date" value="'+esc(S.form.date)+'">'
    +'<div class="lbl">'+esc(PAIN.prompt)+'</div>'
    +'<div class="toggle" style="padding-top:2px"><b>Symptoms below the knee</b><button class="sw'+(legs?" on bad":"")
    +'" data-sw="legSymptoms"><i></i></button></div>'
@@ -1192,6 +1727,7 @@ function wire(){
     // Switching day changes which exercise each input belongs to, so the typed
     // loads are cleared rather than silently landing on the wrong lift.
     Object.keys(S.form).forEach(function(k){ if(/^[lr]\d+$/.test(k)) delete S.form[k]; });
+    delete S.form.swaps; S.form.swapOpen=null;
     S.form.day=b.dataset.day; render(); }; });
   app.querySelectorAll("[data-tab]").forEach(function(b){ b.onclick=function(){ S.form.tab=b.dataset.tab; window.scrollTo(0,0); render(); }; });
   app.querySelectorAll("[data-walk]").forEach(function(b){ b.onclick=function(){ S.form.walkMinutes=Number(b.dataset.walk); render(); }; });
@@ -1200,6 +1736,7 @@ function wire(){
   app.querySelectorAll("[data-grp]").forEach(function(b){ b.onclick=function(){ S.sel=b.dataset.grp; go("progG"); }; });
   app.querySelectorAll("[data-tap]").forEach(function(b){ b.onclick=function(){ S.tap=Number(b.dataset.tap); render(); }; });
   app.querySelectorAll("[data-tbl]").forEach(function(b){ b.onclick=function(){ S.form.tbl=!S.form.tbl; render(); }; });
+  app.querySelectorAll("[data-rtbl]").forEach(function(b){ b.onclick=function(){ S.form.rtbl=!S.form.rtbl; render(); }; });
   app.querySelectorAll("[data-f2]").forEach(function(b){ b.onclick=function(){ S.form.newFlare=true; render(); }; });
   app.querySelectorAll("[data-fl]").forEach(function(b){ b.onclick=function(){ flareAction(b.dataset.fl, b); }; });
   app.querySelectorAll("[data-del]").forEach(function(b){ b.onclick=function(){
@@ -1212,6 +1749,45 @@ function wire(){
     };
   });
   app.querySelectorAll("[data-save]").forEach(function(b){ b.onclick=function(){ save(b.dataset.save, b); }; });
+  // Every on/off switch is named by the label beside it and reports its state.
+  app.querySelectorAll(".sw").forEach(function(b){
+    if(!b.getAttribute("aria-label")) b.setAttribute("aria-label", (b.previousElementSibling&&b.previousElementSibling.textContent)||"Toggle");
+    b.setAttribute("aria-pressed", b.classList.contains("on")?"true":"false"); });
+  // A field without its own <label> is named by the caption printed above it.
+  app.querySelectorAll("input,textarea,select").forEach(function(el){
+    if(el.labels&&el.labels.length || el.getAttribute("aria-label")) return;
+    var prev=el.previousElementSibling;
+    var name=(prev&&prev.classList.contains("lbl")) ? prev.textContent : el.getAttribute("placeholder");
+    if(name) el.setAttribute("aria-label", name);
+  });
+
+  // marathon
+  app.querySelectorAll("[data-run]").forEach(function(b){ b.onclick=function(){ S.sel=Number(b.dataset.run); go("runlog"); }; });
+  app.querySelectorAll("[data-newrun]").forEach(function(b){ b.onclick=function(){
+    S.sel=null; go("runlog", b.dataset.newrun?{slot:b.dataset.newrun}:{}); }; });
+  app.querySelectorAll("[data-slot]").forEach(function(b){ b.onclick=function(){ S.form.slot=b.dataset.slot; S.form._picked=true; render(); }; });
+  app.querySelectorAll("[data-rpe]").forEach(function(b){ b.onclick=function(){ S.form.rpe=Number(b.dataset.rpe); render(); }; });
+  app.querySelectorAll("[data-rtab]").forEach(function(b){ b.onclick=function(){ S.form.rtab=b.dataset.rtab; render(); }; });
+  app.querySelectorAll("[data-runrules]").forEach(function(b){ b.onclick=function(){ go("runplan",{rtab:"rules"}); }; });
+  app.querySelectorAll("[data-routine]").forEach(function(b){ b.onclick=function(){ S.tab="rehab"; go("plan",{tab:"daily"}); }; });
+  app.querySelectorAll("[data-rerender]").forEach(function(el){ el.onchange=function(){ S.form[el.dataset.f]=el.value; render(); }; });
+  app.querySelectorAll("[data-delrun]").forEach(function(b){ b.onclick=function(){
+    if(!S.confirmDel){ S.confirmDel=true; render(); return; } delRun(b); }; });
+
+  // exercise swap (this session only)
+  function clearRow(i){ delete S.form["l"+i]; delete S.form["r"+i]; }
+  app.querySelectorAll("[data-swapopen]").forEach(function(b){ b.onclick=function(){
+    var i=Number(b.dataset.swapopen);
+    S.form.swapOpen = S.form.swapOpen===i ? null : i; render();
+    var sel=document.getElementById("swap"+i); if(sel) sel.focus(); }; });
+  app.querySelectorAll("[data-swapsel]").forEach(function(sel){ sel.onchange=function(){
+    if(!sel.value) return;
+    var i=Number(sel.dataset.swapsel);
+    S.form.swaps=S.form.swaps||{}; S.form.swaps[sel.dataset.from]=sel.value;
+    clearRow(i); S.form.swapOpen=null; render(); say("Swapped for "+sel.value+"."); }; });
+  app.querySelectorAll("[data-unswap]").forEach(function(b){ b.onclick=function(){
+    if(S.form.swaps) delete S.form.swaps[b.dataset.unswap];
+    clearRow(Number(b.dataset.i)); render(); say("Back to "+b.dataset.unswap+"."); }; });
 }
 
 // Reload everything and land on a screen. Every write goes through here so the
@@ -1238,6 +1814,11 @@ function flareAction(kind, btn){
   api("updateFlare",payload).then(function(){ return refresh(btn, here); })
     .catch(function(e){ btn.disabled=false; btn.textContent="Retry — "+e.message; });
 }
+function delRun(btn){
+  btn.disabled=true; btn.textContent="Deleting...";
+  api("deleteRun",{id:S.sel}).then(function(){ return refresh(btn,"home"); })
+    .catch(function(e){ btn.disabled=false; btn.textContent="Retry — "+e.message; });
+}
 function delSession(btn){
   btn.disabled=true; btn.textContent="Deleting...";
   api("deleteSession",{id:S.sel}).then(function(){ return refresh(btn,"history"); })
@@ -1258,7 +1839,9 @@ function save(kind, btn){
       var def=planLoad(e,plan.stage);
       var lo=(S.form["l"+i]!==undefined)?num(S.form["l"+i]):(def!=null?def:null);
       var rp=(S.form["r"+i]!==undefined)?num(S.form["r"+i]):(lv.reps!=null?lv.reps:null);
-      return {n:e.n, load:lo, reps:rp};
+      var o={n:e.n, load:lo, reps:rp};
+      if(e.from) o.swappedFrom=e.from;
+      return o;
     });
     pr=api("saveSession",{date:today(),phase:plan.phase,week:w,day:d,
       pain:S.form.pain, light:lightFor(S.form.pain,!!S.form.legSymptoms),
@@ -1272,7 +1855,9 @@ function save(kind, btn){
     var edited=(row.lifts||[]).map(function(l,i){
       var lo=(S.form["l"+i]!==undefined)?num(S.form["l"+i]):(l.load!=null?l.load:null);
       var rp=(S.form["r"+i]!==undefined)?num(S.form["r"+i]):(l.reps!=null?l.reps:null);
-      return {n:l.n, load:lo, reps:rp};
+      var o={n:l.n, load:lo, reps:rp};
+      if(l.swappedFrom) o.swappedFrom=l.swappedFrom; // editing a session must not erase its swap
+      return o;
     });
     var np=(S.form.pain!=null)?S.form.pain:(row.pain!=null?row.pain:null);
     pr=api("updateSession",{id:S.sel, date:S.form.date||row.session_date,
@@ -1292,6 +1877,14 @@ function save(kind, btn){
       light:lightFor(S.form.pain,!!S.form.legSymptoms), homeRoutine:!!S.form.homeRoutine,
       walkMinutes:S.form.walkMinutes,notes:S.form.notes});
 
+  } else if(kind==="run"){
+    var F=S.form;
+    if(!num(F.dur) || num(F.dur)<=0){ btn.disabled=false; btn.textContent="Enter the minutes first"; return; }
+    var payload={date:F.date||today(), slot:F.slot||F._auto||null, durationMin:num(F.dur),
+      distanceKm:num(F.km), avgHr:num(F.avgHr), maxHr:num(F.maxHr), cadence:num(F.cad),
+      rpe:F.rpe||null, pain:F.pain, legSymptoms:!!F.legSymptoms, notes:F.notes||null};
+    pr = S.sel ? api("updateRun", Object.assign({id:S.sel}, payload)) : api("saveRun", payload);
+
   } else if(kind==="flare"){
     pr=api("saveFlare",{date:S.form.date||today(),severity:S.form.severity!==undefined?S.form.severity:5,
       legSymptoms:S.form.legSymptoms!==undefined?!!S.form.legSymptoms:true,
@@ -1306,7 +1899,7 @@ function save(kind, btn){
 
   // A Red is what starts flare mode. Logging one with no flare open opens it, so
   // the next session adapts without you having to remember a second step.
-  if((kind==="session"||kind==="checkin")
+  if((kind==="session"||kind==="checkin"||kind==="run")
      && lightFor(S.form.pain,!!S.form.legSymptoms)==="red" && !openFlare()){
     var legs = !!S.form.legSymptoms;
     var note = S.form.symptomNote || null;
@@ -1316,8 +1909,9 @@ function save(kind, btn){
     });
   }
 
-  pr.then(function(){ return refresh(btn, back); })
+  pr.then(function(){ say("Saved."); return refresh(btn, back); })
     .catch(function(e){
+      say("Not saved. Your entries are kept.");
       btn.disabled=false;
       btn.textContent = isAuthError(e) ? "Session expired — reopen the app" : "Retry — " + e.message;
     });
@@ -1327,7 +1921,7 @@ function save(kind, btn){
 function lockScreen(msg){
   app.innerHTML='<header><h1>Back Rehab</h1></header>'
    +(msg?'<div class="warn">'+esc(msg)+'</div>':'')
-   +'<div class="card"><div class="lbl" style="margin-top:0">Passcode</div>'
+   +'<div class="card"><label class="lbl" for="pc" style="margin-top:0;display:block">Passcode</label>'
    +'<input id="pc" type="password" inputmode="numeric" placeholder="Your passcode">'
    +'<p class="hint">Stays unlocked for '+UNLOCK_DAYS+' days after each use.</p>'
    +'</div><button class="save" id="go">Unlock</button>';
@@ -1359,10 +1953,10 @@ function connError(msg){
 }
 function setupScreen(){
   app.innerHTML='<header><h1>Back Rehab</h1><div class="sub">First-time setup</div></header>'
-   +'<div class="card"><div class="lbl" style="margin-top:0">Choose a passcode</div>'
+   +'<div class="card"><label class="lbl" for="pc" style="margin-top:0;display:block">Choose a passcode</label>'
    +'<input id="pc" type="password" inputmode="numeric" placeholder="At least 4 characters">'
    +'<p class="hint">This is the only thing protecting your data. Pick something you will not forget.</p>'
-   +'<div class="lbl">Programme start date</div>'
+   +'<label class="lbl" for="st" style="display:block">Programme start date</label>'
    +'<input id="st" type="date" value="'+today()+'">'
    +'<p class="hint">Week 1 of Phase 1 begins on this date. Use today if you are starting now.</p>'
    +'</div><button class="save" id="go">Create</button>';
