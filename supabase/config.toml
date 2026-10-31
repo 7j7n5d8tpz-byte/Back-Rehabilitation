@@ -1,0 +1,12 @@
+# Only what `supabase functions deploy` and `db push` need. The local Docker stack is not
+# used for this project.
+project_id = "back-rehab-tracker"
+
+# Both functions are called without a Supabase JWT: rehab authenticates with the app
+# passcode, health-ingest with a bearer secret. Deploying with JWT verification on would
+# make every request a 401.
+[functions.rehab]
+verify_jwt = false
+
+[functions.health-ingest]
+verify_jwt = false
