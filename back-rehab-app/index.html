@@ -43,6 +43,10 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
   font-size:17px;line-height:1.35;-webkit-text-size-adjust:100%;font-variant-numeric:tabular-nums}
 body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 100px) 0}
+/* iOS 26 home-screen apps (WebKit bug 301108): while the page is shorter than the screen, the viewport
+   stops a status-bar height short and the fixed tab bar floats above the bottom edge. Keeping the page
+   at least screen-tall pins it there. 0 inset in Safari or with an opaque status bar, so no effect. */
+html{min-height:min(100lvh, calc(100% + env(safe-area-inset-top)))}
 .wrap{max-width:600px;margin:0 auto;padding:0 16px}
 :focus-visible{outline:2px solid var(--acc);outline-offset:2px}
 button{font-family:inherit;cursor:pointer}
@@ -405,6 +409,8 @@ var S = { pc:null, data:null, screen:"today", tab:"today", form:{} };
 var ROOTS = ["today","rehab","run","progress"];
 var SHEETS = {session:"home", checkin:"home", flare:"home", bench:"home", runlog:"home", sess:"history"};
 var app = document.getElementById("app");
+// The run sheet opens from several screens (Today, Marathon, both histories) and goes back to its opener.
+function sheetBack(){ return S.screen==="runlog" ? (S.runFrom||"home") : SHEETS[S.screen]; }
 
 // ---------- unlock window ----------
 // The passcode stays valid for UNLOCK_DAYS since it was last used. Every successful
@@ -491,13 +497,14 @@ function render(){
   else if(S.screen==="bench") h=viewBench();
   else if(S.screen==="plan") h=viewPlan(w,p);
   else if(S.screen==="history") h=viewHistory();
+  else if(S.screen==="runs") h=viewRuns();
   else if(S.screen==="sess") h=viewSessionDetail();
   else if(S.screen==="prog") h=viewProgression();
   else if(S.screen==="progG") h=viewGroup();
   app.className="wrap t-"+S.tab;
   if(SHEETS[S.screen]){
     // A sheet covers the tab it was opened from; close (or Esc) goes back there.
-    var close=SHEETS[S.screen];
+    var close=sheetBack();
     app.innerHTML='<section class="sheet" role="dialog" aria-modal="true" aria-label="'+esc(sheetTitle())+'">'
       +'<div class="grab" aria-hidden="true"></div>'
       +'<div class="sheethead"><span></span><button class="x" data-go="'+close+'" aria-label="Close">&#10005;</button></div>'
@@ -512,7 +519,7 @@ function sheetTitle(){
     runlog:"Run",sess:"Edit session"}[S.screen]||"";
 }
 document.addEventListener("keydown", function(e){
-  if(e.key==="Escape" && SHEETS[S.screen] && S.data) go(SHEETS[S.screen]);
+  if(e.key==="Escape" && SHEETS[S.screen] && S.data) go(sheetBack());
 });
 
 function viewHome(w,p){
@@ -743,7 +750,7 @@ function viewRun(){
   out+='<nav class="links" aria-label="Marathon">'
     +'<button data-go="runplan">The 27-week plan<span>Every week, by phase</span></button>'
     +'<button data-runrules="1">Back rules &amp; race day<span>What the check-in and a flare do to the run</span></button>'
-    +'<button data-go="history">Run history<span>Every run, with its back score</span></button></nav>';
+    +'<button data-go="runs">Run history<span>Every run, with its back score</span></button></nav>';
   var hk=runs().filter(function(r){ return r.source==="healthkit"; })
     .map(function(r){ return r.created_at||""; }).sort().pop();
   out+='<p class="hint" role="status" style="text-align:center">'+(hk
@@ -1034,18 +1041,7 @@ function viewHistory(){
   out+= ss.length?'<p class="hint">Tap a session to see every load, fix a number, or delete it.</p>':'';
   out+='</div>';
   var rr=runs();
-  if(rr.length){
-    out+='<div class="card"><div class="lbl" style="margin-top:0">Runs</div>'+rr.slice(0,60).map(function(r){
-      var l=(r.pain!=null||r.leg_symptoms)?lightFor(r.pain,r.leg_symptoms):null;
-      return '<button class="tapper hist" data-run="'+r.id+'">'
-        +(l?lightPill(l):'<span class="pill" style="background:var(--run-dim);color:var(--run)">TO CONFIRM</span>')
-        +'<span style="flex:1"><b>'+fmtDate(r.run_date)+'</b> &middot; '+(r.slot?SLOTNAME[r.slot]:'Run')+' &middot; '+fmtMin(r.duration_min)
-        +(r.distance_km!=null?' &middot; '+fmtKm(r.distance_km):'')
-        +(r.pain!=null?' &middot; <span class="pnum">back '+r.pain+'/10</span>':'')
-        +(r.source==="healthkit"?'<br><span class="hint" style="margin:0">Apple Health'+(r.avg_hr?' &middot; avg HR '+r.avg_hr:'')+'</span>':'')
-        +'</span><span style="color:var(--muted);font-size:16px" aria-hidden="true">&rsaquo;</span></button>';
-    }).join("")+'</div>';
-  }
+  if(rr.length) out+='<div class="card"><div class="lbl" style="margin-top:0">Runs</div>'+runRows(rr.slice(0,60))+'</div>';
   var fl=S.data.flares||[];
   if(fl.length){
     out+='<div class="card"><div class="lbl" style="margin-top:0">Flares</div>'+fl.map(function(x){
@@ -1070,6 +1066,27 @@ function viewHistory(){
      + '</div></div>';
   }
   return out;
+}
+
+function runRows(rr){
+  return rr.map(function(r){
+    var l=(r.pain!=null||r.leg_symptoms)?lightFor(r.pain,r.leg_symptoms):null;
+    return '<button class="tapper hist" data-run="'+r.id+'">'
+      +(l?lightPill(l):'<span class="pill" style="background:var(--run-dim);color:var(--run)">TO CONFIRM</span>')
+      +'<span style="flex:1"><b>'+fmtDate(r.run_date)+'</b> &middot; '+(r.slot?SLOTNAME[r.slot]:'Run')+' &middot; '+fmtMin(r.duration_min)
+      +(r.distance_km!=null?' &middot; '+fmtKm(r.distance_km):'')
+      +(r.pain!=null?' &middot; <span class="pnum">back '+r.pain+'/10</span>':'')
+      +(r.source==="healthkit"?'<br><span class="hint" style="margin:0">Apple Health'+(r.avg_hr?' &middot; avg HR '+r.avg_hr:'')+'</span>':'')
+      +'</span><span style="color:var(--muted);font-size:16px" aria-hidden="true">&rsaquo;</span></button>';
+  }).join("");
+}
+
+// The Marathon tab's own history: every run and nothing from the gym.
+function viewRuns(){
+  var rr=runs();
+  return '<button class="back" data-go="home">&larr; Back</button><h2>Run history</h2>'
+    +'<div class="card">'+(rr.length?runRows(rr):'<div class="hint">No runs yet.</div>')+'</div>'
+    +(rr.length?'<p class="hint">Tap a run to fix a number, score the back, or delete it.</p>':'');
 }
 
 function exList(arr){
@@ -1762,9 +1779,9 @@ function wire(){
   });
 
   // marathon
-  app.querySelectorAll("[data-run]").forEach(function(b){ b.onclick=function(){ S.sel=Number(b.dataset.run); go("runlog"); }; });
+  app.querySelectorAll("[data-run]").forEach(function(b){ b.onclick=function(){ S.sel=Number(b.dataset.run); S.runFrom=S.screen; go("runlog"); }; });
   app.querySelectorAll("[data-newrun]").forEach(function(b){ b.onclick=function(){
-    S.sel=null; go("runlog", b.dataset.newrun?{slot:b.dataset.newrun}:{}); }; });
+    S.sel=null; S.runFrom=S.screen; go("runlog", b.dataset.newrun?{slot:b.dataset.newrun}:{}); }; });
   app.querySelectorAll("[data-slot]").forEach(function(b){ b.onclick=function(){ S.form.slot=b.dataset.slot; S.form._picked=true; render(); }; });
   app.querySelectorAll("[data-rpe]").forEach(function(b){ b.onclick=function(){ S.form.rpe=Number(b.dataset.rpe); render(); }; });
   app.querySelectorAll("[data-rtab]").forEach(function(b){ b.onclick=function(){ S.form.rtab=b.dataset.rtab; render(); }; });
@@ -1816,7 +1833,7 @@ function flareAction(kind, btn){
 }
 function delRun(btn){
   btn.disabled=true; btn.textContent="Deleting...";
-  api("deleteRun",{id:S.sel}).then(function(){ return refresh(btn,"home"); })
+  api("deleteRun",{id:S.sel}).then(function(){ return refresh(btn,sheetBack()); })
     .catch(function(e){ btn.disabled=false; btn.textContent="Retry — "+e.message; });
 }
 function delSession(btn){
@@ -1884,6 +1901,7 @@ function save(kind, btn){
       distanceKm:num(F.km), avgHr:num(F.avgHr), maxHr:num(F.maxHr), cadence:num(F.cad),
       rpe:F.rpe||null, pain:F.pain, legSymptoms:!!F.legSymptoms, notes:F.notes||null};
     pr = S.sel ? api("updateRun", Object.assign({id:S.sel}, payload)) : api("saveRun", payload);
+    back=sheetBack();
 
   } else if(kind==="flare"){
     pr=api("saveFlare",{date:S.form.date||today(),severity:S.form.severity!==undefined?S.form.severity:5,
