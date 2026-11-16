@@ -54,10 +54,10 @@
   {"t": "During a flare", "b": "Settle: no running. Reintroduce: walk-run, 20 min max. Rebuild: half the planned minutes, long run 45 min max. Re-load: 75%, easy only. Full: 90%, easy only until the flare closes."},
   {"t": "Stop and walk home if", "b": "back pain climbs to 4 or more, or anything reaches below the knee. Log the run with that score; the next morning's check-in decides what happens next."},
   {"t": "Strides and steady work", "b": "Only after 7 days with no Amber or Red. Otherwise the session is run easy at the same length."},
-  {"t": "With the gym", "b": "The day after a long run of 90 min or more: Day B, not the hinge day. No heavy legs in the 48 h before a long run of 2 h or more. Cutback and taper weeks are gym deload weeks too."},
+  {"t": "With the gym", "b": "Two gym sessions: Tue Day A (heavy legs and the hinge), Thu Day B (lighter legs, RPE 7). The day after a long run of 90 min or more: Day B, not the hinge day. No Day A in the 48 h before a long run of 2 h or more. Cutback and taper weeks are gym deload weeks too."},
   {"t": "Run-walk", "b": "Every long run of 2 h or more, and the race: 9 min run, 1 min walk, from the start. Walk breaks cut the continuous load on the spine, and finishing healthy does not need the minutes they cost."},
   {"t": "Winter", "b": "The treadmill counts minute for minute for E and Q, at 1% incline. Keep the long run outside where you can. On ice, move it a day."},
-  {"t": "A week is a set of runs", "b": "Do the three runs in any order by Sunday. Suggested: Tue E, Thu Q, Sun L, with the gym on Mon, Wed and Fri. Never two runs on consecutive days if the back was Amber in between."}
+  {"t": "A week is a set of runs", "b": "Do the three runs in any order by Sunday. Suggested: Wed E, Fri Q (Sat if Friday is taken), Sun L, with the gym on Tue and Thu. Never two runs on consecutive days if the back was Amber in between."}
  ],
  "race_day": [
   "Morning check-in done. Amber: start, run-walk, and be ready to walk it in. Red or leg symptoms: do not start.",

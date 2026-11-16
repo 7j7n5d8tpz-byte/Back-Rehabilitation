@@ -154,7 +154,7 @@ var RL = (function(){
     var seen={}, groups=[], byG={};
     var order=["1","2","3"], p0=String(phase||"");
     if(order.indexOf(p0)>0){ order.splice(order.indexOf(p0),1); order.unshift(p0); }
-    order.forEach(function(p){ ["A","B","C"].forEach(function(d){
+    order.forEach(function(p){ Object.keys(program[p]||{}).forEach(function(d){
       (program[p]&&program[p][d]||[]).forEach(function(e){
         if(seen[e.n]) return;
         if(maxSpine!=null && (e.sp||1)>maxSpine) return;

@@ -40,7 +40,7 @@ other exercise in the programme. Its last load is filled in. The swap is for tha
 only and is saved on it ("swapped for …"); during a flare the list only offers what your
 stage allows.
 
-**Log gym session** — pre-loaded with the right exercises for your current phase and day, and it suggests the next day in the A→B→C rotation. Loads are prefilled from last time, so you only touch what changed. Pick a traffic light, hit save. Under 30 seconds.
+**Log gym session** — pre-loaded with the right exercises for your current phase and day, and it suggests the next day in the rotation: A→B in Phase 3 (Tuesday A, Thursday B). Loads are prefilled from last time, so you only touch what changed. Pick a traffic light, hit save. Under 30 seconds.
 
 **Daily check-in** — this morning's traffic light, whether you did the 15-minute routine, and how far you walked. Six taps.
 
@@ -48,7 +48,7 @@ stage allows.
 
 **Benchmark test** — the six four-weekly tests, showing your previous numbers alongside so you can see the trend. Targets are printed at the top.
 
-**The plan** — the programme itself, on your phone. Three tabs: *Gym sessions* (the exercises for your current phase, with the coaching cue for each and a day A/B/C switcher), *Daily routine* (the 15-minute home work and the nervous-system exercises), and *Rules* (traffic lights, the never-do list, and the emergency red flags). It only ever shows the phase you're actually in, so there's nothing to scroll past.
+**The plan** — the programme itself, on your phone. Three tabs: *Gym sessions* (the exercises for your current phase, with the coaching cue for each and a day switcher), *Daily routine* (the 15-minute home work and the nervous-system exercises), and *Rules* (traffic lights, the never-do list, and the emergency red flags). It only ever shows the phase you're actually in, so there's nothing to scroll past.
 
 **History** — everything, with traffic lights as coloured dots.
 
