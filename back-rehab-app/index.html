@@ -256,25 +256,23 @@ var API = "https://mfzmyahruqghcnhjlkon.supabase.co/functions/v1/rehab";
 var PROGRAM = {
  1:{
   A:[{n:"Step-up (low box)",s:"3 x 10 per leg @ RPE 5-6",u:"kg",g:"quads",sp:2,c:"Drive through the top foot, do not push off the floor."},
+     {n:"Cable pull-through",s:"3 x 12",u:"kg",g:"post",sp:3,c:"Your hinge practice. Short range, spine locked neutral."},
      {n:"Machine chest press",s:"3 x 12",u:"kg",g:"chest",sp:1,c:"Back flat against the pad throughout."},
      {n:"Chest-supported DB row",s:"3 x 12",u:"kg",g:"back",sp:1,c:"Incline bench takes your lower back out of it entirely."},
      {n:"Single-leg glute bridge",s:"3 x 10 per leg",u:"bw",g:"post",sp:1,c:"Other knee hugged to the chest locks the pelvis. 2s squeeze at the top."},
      {n:"Single-leg calf raise",s:"2 x 15 per leg",u:"kg",g:"calf",sp:1,c:"Full range, 2s lower. S1 rehab as well as training."},
      {n:"Half-kneeling Pallof press",s:"3 x 8 per side",u:"kg",g:"trunk",sp:1,c:"3s hold. Resist rotation, do not produce it."},
+     {n:"90/90 hip lift-off",s:"3 x 5 per side",u:"bw",g:"hip",sp:1,c:"Lift the back knee by turning the thigh inward. 2s hold. Anything in the leg: prone version instead."},
      {n:"Suitcase carry",s:"3 x 30s per side",u:"kg",t:1,g:"trunk",sp:2,c:"Stay perfectly vertical. That is the exercise."}],
-  B:[{n:"Cable pull-through",s:"3 x 12",u:"kg",g:"post",sp:3,c:"Your hinge practice. Short range, spine locked neutral."},
+  B:[{n:"Split squat (rear foot down)",s:"3 x 10 per leg",u:"kg",g:"quads",sp:2,c:"Hold a rack for balance. Torso upright."},
      {n:"Lat pulldown, neutral grip",s:"3 x 12",u:"kg",g:"back",sp:1,c:"Torso near vertical, minimal lean-back."},
-     {n:"Incline DB press",s:"3 x 12",u:"kg",g:"chest",sp:1,c:"Feet flat, no arch. Bench at 30 degrees."},
-     {n:"Cable face pull",s:"2 x 15",u:"kg",g:"back",sp:1,c:"Upper back and rear delts. Keeps posture honest."},
-     {n:"Side plank",s:"3 x 20-30s per side",u:"bw",t:1,g:"trunk",sp:1,c:"Knees bent if needed. Completes the McGill big three."},
-     {n:"45 deg back extension",s:"3 x 12 bodyweight",u:"bw",g:"post",sp:2,c:"Rise to neutral only, never past straight. Glute-driven."}],
-  C:[{n:"Split squat (rear foot down)",s:"3 x 10 per leg",u:"kg",g:"quads",sp:2,c:"Hold a rack for balance. Torso upright."},
      {n:"Single-leg hip thrust",s:"3 x 10 per leg",u:"kg",g:"post",sp:1,c:"Bodyweight to start. Ribs down, hips level. Movement at the hip, not the spine."},
      {n:"Seated DB shoulder press",s:"3 x 12",u:"kg",g:"delts",sp:2,c:"High back support, ribs down, no lumbar arch."},
-     {n:"Seated cable row",s:"3 x 12",u:"kg",g:"back",sp:2,c:"Do not let the low back round at the stretch. Shorten the range if it does."},
-     {n:"Cable hip abduction",s:"3 x 12 per side",u:"kg",g:"post",sp:1,c:"Weak abductors make the lumbar spine stabilise the pelvis."},
+     {n:"Cable face pull",s:"2 x 15",u:"kg",g:"back",sp:1,c:"Upper back and rear delts. Keeps posture honest."},
      {n:"Cable lateral raise",s:"3 x 15",u:"kg",g:"delts",sp:1,c:"Your only side-delt work."},
-     {n:"Farmer carry",s:"3 x 40s",u:"kg",t:1,g:"trunk",sp:2,c:"Tall, braced, small steps."}]
+     {n:"Side plank",s:"3 x 20-30s per side",u:"bw",t:1,g:"trunk",sp:1,c:"Knees bent if needed. Completes the McGill big three."},
+     {n:"90/90 hip switch",s:"2 x 6 per side",u:"bw",g:"hip",sp:1,c:"Knees over to the other side, feet stay put, 2s each way. Anything in the leg: prone version instead."},
+     {n:"45 deg back extension",s:"3 x 12 bodyweight",u:"bw",g:"post",sp:2,c:"Rise to neutral only, never past straight. Glute-driven."}]
  },
  2:{
   A:[{n:"Trap bar deadlift (blocks)",s:"4 x 6 @ RPE 6-7",u:"kg",g:"post",sp:3,c:"High handles or 10-15cm blocks. Hips lead. Reset every rep, no touch-and-go. Film from behind: hips rise level, no shift to the strong side."},
@@ -301,30 +299,33 @@ var PROGRAM = {
      {n:"Back extension hold",s:"3 x 30-45s",u:"bw",t:1,g:"trunk",sp:2,c:"Hold at neutral, never past straight. Endurance, not strength."}]
  },
  3:{
-  A:[{n:"Trap bar deadlift",s:"4 x 5 @ RPE 7-8",u:"kg",g:"post",sp:3,c:"Lower the blocks only after 8 fully green weeks. Never grind a rep. Film from behind: hips rise level, no shift to the strong side."},
-     {n:"Step-up, 40cm box",s:"3 x 8 per leg",u:"kg",g:"quads",sp:2,c:"Heavier than Phase 2. Drive through the top foot."},
-     {n:"Flat bench press",s:"4 x 6",u:"kg",g:"chest",sp:1,c:"Modest arch only. Feet flat, glutes on the bench."},
-     {n:"Chest-supported row",s:"4 x 8, SS1",u:"kg",g:"back",sp:1},
-     {n:"Single-leg calf raise",s:"3 x 12 per leg, SS1",u:"kg",g:"calf",sp:1,c:"Symmetry is the target, not just strength."},
-     {n:"Standing single-leg leg curl",s:"3 x 8 per leg, SS2",u:"kg",g:"post",sp:1,c:"Hip stays straight, keeps the nerve slack. 2s lower."},
-     {n:"Half-kneeling cable chop",s:"3 x 10 per side, SS2",u:"kg",g:"trunk",sp:3,c:"Rotation from the thoracic spine and hips. The lumbar spine stays quiet."},
-     {n:"Heavy suitcase carry",s:"3 x 30s per side",u:"kg",t:1,g:"trunk",sp:2}],
-  B:[{n:"Single-leg hip thrust",s:"4 x 6 per leg @ RPE 8, SS1",u:"kg",g:"post",sp:1,c:"Heaviest glute work. Heavier DB or a Smith setup. Hips level."},
-     {n:"Side plank reach-through",s:"3 x 10 per side, SS1",u:"bw",g:"trunk",sp:1},
-     {n:"Standing overhead press",s:"4 x 6",u:"kg",g:"delts",sp:3,c:"Only if you can press without arching. Glutes squeezed, ribs down. Seated if not."},
-     {n:"Weighted pull-up / pulldown",s:"4 x 6, SS2",u:"kg",g:"back",sp:2},
-     {n:"Kneeling ab rollout",s:"3 x 8, SS2",u:"bw",g:"trunk",sp:3,c:"Short range. Stop before the hips sag. Ribs down."},
-     {n:"Incline DB press",s:"3 x 10",u:"kg",g:"chest",sp:1},
-     {n:"Weighted back extension",s:"3 x 10",u:"kg",g:"post",sp:3,c:"To neutral. Slow eccentric."}],
-  C:[{n:"Bulgarian split squat",s:"4 x 6 per leg, SS1",u:"kg",g:"quads",sp:2,c:"Heavier dumbbells, fewer reps."},
-     {n:"Dip / close-grip press",s:"3 x 8, SS1",u:"kg",g:"chest",sp:2},
-     {n:"Single-leg RDL",s:"3 x 8 per leg",u:"kg",g:"post",sp:3,c:"Hinge, balance and glute medius in one. Light load, high control."},
-     {n:"Single-arm cable row",s:"3 x 10 per side, SS2",u:"kg",g:"back",sp:2},
-     {n:"Cable lateral raise",s:"3 x 12-15, SS2",u:"kg",g:"delts",sp:1,c:"Your only side-delt work."},
-     {n:"Cable face pull",s:"3 x 15",u:"kg",g:"back",sp:1},
-     {n:"Heavy farmer carry",s:"4 x 40s",u:"kg",t:1,g:"trunk",sp:2},
-     {n:"Back extension hold",s:"3 x 45-60s",u:"bw",t:1,g:"trunk",sp:2,c:"Hold at neutral, never past straight. Endurance, not strength."}]
+  A:[{n:"Trap bar deadlift",s:"4 x 5 @ RPE 7-8, SS1",u:"kg",g:"post",sp:3,c:"Lower the blocks only after 8 fully green weeks. Never grind a rep. Film from behind: hips rise level, no shift to the strong side."},
+     {n:"90/90 hip lift-off",s:"4 x 5 per side, SS1",u:"bw",g:"hip",sp:1,c:"Lift the back knee by turning the thigh inward. 2s hold. Anything in the leg: prone version instead."},
+     {n:"Step-up, 40cm box",s:"3 x 8 per leg, SS2",u:"kg",g:"quads",sp:2,c:"Heavy quad work of the week. Drive through the top foot."},
+     {n:"Flat bench press",s:"3 x 6-8 @ RPE 7-8, SS2",u:"kg",g:"chest",sp:1,c:"Modest arch only. Feet flat, glutes on the bench."},
+     {n:"Chest-supported row",s:"3 x 8, SS3",u:"kg",g:"back",sp:1,c:"Chest stays on the pad."},
+     {n:"Single-leg calf raise",s:"3 x 12 per leg, SS3",u:"kg",g:"calf",sp:1,c:"Only gym calf work. The runs do the rest. Symmetry is the target."},
+     {n:"Half-kneeling cable chop",s:"3 x 10 per side, SS4",u:"kg",g:"trunk",sp:3,c:"Rotation from the thoracic spine and hips. The lumbar spine stays quiet."},
+     {n:"Cable lateral raise",s:"3 x 12-15, SS4",u:"kg",g:"delts",sp:1,c:"Only side-delt work. Same cable as the chop."},
+     {n:"Hip airplane",s:"3 x 5 per side, SS5",u:"kg",g:"hip",sp:2,c:"Hand on a rack. Turn the pelvis open, then closed over the standing hip. Slow. Light DB later."},
+     {n:"Heavy suitcase carry",s:"3 x 30s per side, SS5",u:"kg",t:1,g:"trunk",sp:2,c:"Stay perfectly vertical. Walk from the rack you did the airplanes at."}],
+  B:[{n:"Bulgarian split squat",s:"3 x 8 per leg @ RPE 7, SS1",u:"kg",g:"quads",sp:2,c:"DBs at your sides. RPE 7: the lighter leg day, runs follow."},
+     {n:"Weighted pull-up / pulldown",s:"4 x 6-8, SS1",u:"kg",g:"back",sp:2},
+     {n:"Seated DB shoulder press",s:"3 x 8-10",u:"kg",g:"delts",sp:2,c:"Back and head on the pad, ribs down. Stop short of lockout if the low back lifts."},
+     {n:"Single-leg hip thrust",s:"3 x 8 per leg @ RPE 8, SS2",u:"kg",g:"post",sp:1,c:"Heaviest glute work. DB on the working hip. Hips level."},
+     {n:"Dip / close-grip press",s:"3 x 8, SS2",u:"kg",g:"chest",sp:2,c:"Upright torso, shoulders down. Assisted if you need it. The dip station is by the stretch area."},
+     {n:"Kneeling ab rollout",s:"3 x 8, SS3",u:"bw",g:"trunk",sp:3,c:"Short range. Stop before the hips sag. Ribs down."},
+     {n:"Side plank reach-through",s:"3 x 8 per side, SS3",u:"bw",g:"trunk",sp:1},
+     {n:"90/90 hip switch",s:"3 x 6 per side, SS3",u:"bw",g:"hip",sp:1,c:"Knees over to the other side, feet stay put, 2s each way. Anything in the leg: prone version instead."},
+     {n:"Cable face pull",s:"3 x 15",u:"kg",g:"back",sp:1,c:"Upper back and rear delts; keeps posture honest."},
+     {n:"Weighted back extension",s:"3 x 10",u:"kg",g:"post",sp:3,c:"Plate on chest. To neutral only, slow eccentric. With the trap bar on Day A, this trains the back extensors twice a week."}]
  }
+};
+
+var DAYS = {
+ 1:[{d:"A",l:"single-leg squat, push & pull"},{d:"B",l:"single leg, upper body & trunk"}],
+ 2:[{d:"A",l:"hinge emphasis"},{d:"B",l:"upper body & glutes"},{d:"C",l:"single leg emphasis"}],
+ 3:[{d:"A",l:"heavy legs & hinge"},{d:"B",l:"upper body & lighter legs"}]
 };
 
 var PHASES = {
@@ -336,7 +337,7 @@ var PHASES = {
     r:["RPE 6-8, reps 6-12.","Trap bar from blocks or high handles only - never the floor.","RDLs deliberately short range.","Only progress a lift if last week was green.","Single-leg work: weaker leg first, the strong leg matches its reps."]},
  3:{t:"Strength",w:"weeks 13-24",
     g:"Consolidate. Heavier loads, same spine-sparing exercise selection. You can stay in this phase indefinitely.",
-    r:["Main lifts 4-6 reps at RPE 7-8.","Loaded rotation introduced carefully via cable chops.","Floor pulls only after 8 fully green weeks, and only with your physio's sign-off.","There is no requirement to ever pull from the floor.","Single-leg work: weaker leg first, the strong leg matches its reps.","SS1, SS2...: one set of each, then rest. Straight sets if the gym is busy."]}
+    r:["Two sessions a week: Day A Tue (heavy legs, hinge), Day B Thu (lighter legs, upper body).","Main lifts 4-6 reps at RPE 7-8.","Loaded rotation introduced carefully via cable chops.","Floor pulls only after 8 fully green weeks, and only with your physio's sign-off.","Single-leg work: weaker leg first, the strong leg matches its reps.","SS1, SS2...: one set of each, then rest. Three in a superset is a tri-set. Straight sets if the gym is busy.","Hip rotation work: anything felt in the leg, go back to the prone version from the warm-up."]}
 };
 
 var HOME = [
@@ -347,7 +348,8 @@ var HOME = [
  {n:"Dead bug",s:"8 per side",c:"Low back stays flat against the floor. That is the whole exercise."},
  {n:"Bird dog",s:"8 per side, 5s hold",c:"Draw a small square with the extended hand and foot to progress."},
  {n:"Side plank",s:"2 x 25s per side",c:"Knees bent version is fine."},
- {n:"Half-kneeling hip flexor stretch",s:"2 x 30s per side",c:"Tuck the pelvis first, then lean."}
+ {n:"Half-kneeling hip flexor stretch",s:"2 x 30s per side",c:"Tuck the pelvis first, then lean."},
+ {n:"Prone hip internal rotation",s:"2 x 10 per side",c:"On your stomach, knees bent. Feet fall outward slowly, then pull them back. Little and often."}
 ];
 
 var NERVE = [
@@ -363,7 +365,8 @@ var GROUPS = [
  {k:"delts",l:"Shoulders"},
  {k:"trunk",l:"Trunk"},
  {k:"calf",l:"Calves"},
- {k:"arms",l:"Arms"}
+ {k:"arms",l:"Arms"},
+ {k:"hip",l:"Hip rotation"}
 ];
 
 var FLARE = {
@@ -399,7 +402,7 @@ var PAIN = {
 
 var DELOADS = [10,18,24];
 
-var RUNPLAN = {"race":"Copenhagen Marathon","race_date":"2027-05-09","start_date":"2026-11-02","phases":{"base":{"title":"Base","goal":"Easy running only. Build the habit and the tissue tolerance, not fitness."},"build":{"title":"Build","goal":"Long run grows. Strides, then steady running, once the back has been quiet for a week."},"specific":{"title":"Specific","goal":"Marathon-effort running and the longest long runs. Run-walk on everything over 2 hours."},"taper":{"title":"Taper","goal":"Less volume, same rhythm. Gym at deload dosing."},"race":{"title":"Race week","goal":"Short and easy. Nothing heavy in the gym after Wednesday."}},"text":{"E":"Easy, talk-test pace (RPE 3-4). Flat and soft if you can.","Q_easy":"Easy, like E.","Q_strides":"Easy, then 6 x 20 s strides: relaxed, quick feet, full recovery. Not sprints.","Q_steady":"10 min easy, 3 x 8 min steady (RPE 6) with 2 min easy between, easy to finish.","Q_mp":"10 min easy, 2 x 15 min at marathon effort (RPE 5-6) with 3 min easy between, easy to finish.","Q_taper":"Easy, then 4 x 20 s strides.","L":"Easy, talk-test pace. Soft surfaces where you can.","L_runwalk":"Run-walk from the start: 9 min run, 1 min walk. Easy throughout."},"weeks":[{"w":1,"start":"2026-11-02","phase":"base","E":25,"Q":25,"L":35,"q":"Q_easy"},{"w":2,"start":"2026-11-09","phase":"base","E":25,"Q":30,"L":40,"q":"Q_easy"},{"w":3,"start":"2026-11-16","phase":"base","E":30,"Q":35,"L":45,"q":"Q_easy"},{"w":4,"start":"2026-11-23","phase":"base","E":25,"Q":30,"L":40,"q":"Q_easy","tag":"cutback"},{"w":5,"start":"2026-11-30","phase":"base","E":30,"Q":40,"L":50,"q":"Q_easy"},{"w":6,"start":"2026-12-07","phase":"base","E":35,"Q":40,"L":60,"q":"Q_easy"},{"w":7,"start":"2026-12-14","phase":"base","E":35,"Q":45,"L":70,"q":"Q_easy"},{"w":8,"start":"2026-12-21","phase":"base","E":30,"Q":40,"L":60,"q":"Q_easy","tag":"cutback"},{"w":9,"start":"2026-12-28","phase":"build","E":40,"Q":45,"L":80,"q":"Q_strides","qq":true},{"w":10,"start":"2027-01-04","phase":"build","E":40,"Q":50,"L":90,"q":"Q_strides","qq":true},{"w":11,"start":"2027-01-11","phase":"build","E":35,"Q":45,"L":75,"q":"Q_easy","tag":"cutback","note":"Moved from week 12 to line up with rehab deload week 24."},{"w":12,"start":"2027-01-18","phase":"build","E":45,"Q":50,"L":100,"q":"Q_strides","qq":true},{"w":13,"start":"2027-01-25","phase":"build","E":45,"Q":55,"L":110,"q":"Q_steady","qq":true},{"w":14,"start":"2027-02-01","phase":"build","E":45,"Q":55,"L":120,"q":"Q_steady","qq":true,"l":"L_runwalk"},{"w":15,"start":"2027-02-08","phase":"build","E":50,"Q":55,"L":130,"q":"Q_steady","qq":true,"l":"L_runwalk"},{"w":16,"start":"2027-02-15","phase":"build","E":45,"Q":50,"L":110,"q":"Q_strides","qq":true,"tag":"cutback"},{"w":17,"start":"2027-02-22","phase":"specific","E":50,"Q":60,"L":140,"q":"Q_mp","qq":true,"l":"L_runwalk"},{"w":18,"start":"2027-03-01","phase":"specific","E":50,"Q":60,"L":150,"q":"Q_mp","qq":true,"l":"L_runwalk"},{"w":19,"start":"2027-03-08","phase":"specific","E":50,"Q":60,"L":160,"q":"Q_mp","qq":true,"l_text":"Run-walk 9:1, then the last 20 min at marathon effort, running through.","lq":true},{"w":20,"start":"2027-03-15","phase":"specific","E":40,"Q":55,"L":135,"q_text":"10K test: 15 min easy, 10 km steady-hard on a flat route, 10 min easy. Your time sets the race pace.","qq":true,"l":"L_runwalk","tag":"cutback","test":true},{"w":21,"start":"2027-03-22","phase":"specific","E":50,"Q":60,"L":170,"q":"Q_mp","qq":true,"l":"L_runwalk"},{"w":22,"start":"2027-03-29","phase":"specific","E":50,"Q":60,"L":180,"q":"Q_mp","qq":true,"l":"L_runwalk","note":"First 3 hours. Easter week."},{"w":23,"start":"2027-04-05","phase":"specific","E":45,"Q":50,"L":150,"q":"Q_strides","qq":true,"l":"L_runwalk","tag":"cutback"},{"w":24,"start":"2027-04-12","phase":"specific","E":50,"Q":60,"L":180,"q":"Q_mp","qq":true,"l_text":"Run-walk 9:1, then the last 45 min at race pace and race run-walk. The dress rehearsal: race shoes, race breakfast, race gels.","lq":true,"note":"Peak week."},{"w":25,"start":"2027-04-19","phase":"taper","E":45,"Q":55,"L":120,"q":"Q_taper","qq":true,"l":"L_runwalk","tag":"taper"},{"w":26,"start":"2027-04-26","phase":"taper","E":40,"Q":45,"L":90,"q":"Q_taper","qq":true,"tag":"taper"},{"w":27,"start":"2027-05-03","phase":"race","E":30,"Q":20,"L":null,"e_text":"30 min easy, then 4 x 20 s strides.","q_text":"Shakeout: 20 min very easy, two days before the race.","tag":"race"}],"rules":[{"t":"The morning check-in decides the run","b":"Green: run as planned. Amber: easy only, 30 min cap, long run at 60%, flat soft route, no strides or steady work. Red, or anything below the knee: no run, walk only."},{"t":"During a flare","b":"Settle: no running. Reintroduce: walk-run, 20 min max. Rebuild: half the planned minutes, long run 45 min max. Re-load: 75%, easy only. Full: 90%, easy only until the flare closes."},{"t":"Stop and walk home if","b":"back pain climbs to 4 or more, or anything reaches below the knee. Log the run with that score; the next morning's check-in decides what happens next."},{"t":"Strides and steady work","b":"Only after 7 days with no Amber or Red. Otherwise the session is run easy at the same length."},{"t":"With the gym","b":"The day after a long run of 90 min or more: Day B, not the hinge day. No heavy legs in the 48 h before a long run of 2 h or more. Cutback and taper weeks are gym deload weeks too."},{"t":"Run-walk","b":"Every long run of 2 h or more, and the race: 9 min run, 1 min walk, from the start. Walk breaks cut the continuous load on the spine, and finishing healthy does not need the minutes they cost."},{"t":"Winter","b":"The treadmill counts minute for minute for E and Q, at 1% incline. Keep the long run outside where you can. On ice, move it a day."},{"t":"A week is a set of runs","b":"Do the three runs in any order by Sunday. Suggested: Tue E, Thu Q, Sun L, with the gym on Mon, Wed and Fri. Never two runs on consecutive days if the back was Amber in between."}],"race_day":["Morning check-in done. Amber: start, run-walk, and be ready to walk it in. Red or leg symptoms: do not start.","Run-walk 9:1 from the first kilometre, whatever everyone else does.","Gels every 40 min, the brand you used in the long runs.","Shoes that have at least two long runs in them.","Bib, pins, timing chip, and something warm to throw away at the start."]};
+var RUNPLAN = {"race":"Copenhagen Marathon","race_date":"2027-05-09","start_date":"2026-11-02","phases":{"base":{"title":"Base","goal":"Easy running only. Build the habit and the tissue tolerance, not fitness."},"build":{"title":"Build","goal":"Long run grows. Strides, then steady running, once the back has been quiet for a week."},"specific":{"title":"Specific","goal":"Marathon-effort running and the longest long runs. Run-walk on everything over 2 hours."},"taper":{"title":"Taper","goal":"Less volume, same rhythm. Gym at deload dosing."},"race":{"title":"Race week","goal":"Short and easy. Nothing heavy in the gym after Wednesday."}},"text":{"E":"Easy, talk-test pace (RPE 3-4). Flat and soft if you can.","Q_easy":"Easy, like E.","Q_strides":"Easy, then 6 x 20 s strides: relaxed, quick feet, full recovery. Not sprints.","Q_steady":"10 min easy, 3 x 8 min steady (RPE 6) with 2 min easy between, easy to finish.","Q_mp":"10 min easy, 2 x 15 min at marathon effort (RPE 5-6) with 3 min easy between, easy to finish.","Q_taper":"Easy, then 4 x 20 s strides.","L":"Easy, talk-test pace. Soft surfaces where you can.","L_runwalk":"Run-walk from the start: 9 min run, 1 min walk. Easy throughout."},"weeks":[{"w":1,"start":"2026-11-02","phase":"base","E":25,"Q":25,"L":35,"q":"Q_easy"},{"w":2,"start":"2026-11-09","phase":"base","E":25,"Q":30,"L":40,"q":"Q_easy"},{"w":3,"start":"2026-11-16","phase":"base","E":30,"Q":35,"L":45,"q":"Q_easy"},{"w":4,"start":"2026-11-23","phase":"base","E":25,"Q":30,"L":40,"q":"Q_easy","tag":"cutback"},{"w":5,"start":"2026-11-30","phase":"base","E":30,"Q":40,"L":50,"q":"Q_easy"},{"w":6,"start":"2026-12-07","phase":"base","E":35,"Q":40,"L":60,"q":"Q_easy"},{"w":7,"start":"2026-12-14","phase":"base","E":35,"Q":45,"L":70,"q":"Q_easy"},{"w":8,"start":"2026-12-21","phase":"base","E":30,"Q":40,"L":60,"q":"Q_easy","tag":"cutback"},{"w":9,"start":"2026-12-28","phase":"build","E":40,"Q":45,"L":80,"q":"Q_strides","qq":true},{"w":10,"start":"2027-01-04","phase":"build","E":40,"Q":50,"L":90,"q":"Q_strides","qq":true},{"w":11,"start":"2027-01-11","phase":"build","E":35,"Q":45,"L":75,"q":"Q_easy","tag":"cutback","note":"Moved from week 12 to line up with rehab deload week 24."},{"w":12,"start":"2027-01-18","phase":"build","E":45,"Q":50,"L":100,"q":"Q_strides","qq":true},{"w":13,"start":"2027-01-25","phase":"build","E":45,"Q":55,"L":110,"q":"Q_steady","qq":true},{"w":14,"start":"2027-02-01","phase":"build","E":45,"Q":55,"L":120,"q":"Q_steady","qq":true,"l":"L_runwalk"},{"w":15,"start":"2027-02-08","phase":"build","E":50,"Q":55,"L":130,"q":"Q_steady","qq":true,"l":"L_runwalk"},{"w":16,"start":"2027-02-15","phase":"build","E":45,"Q":50,"L":110,"q":"Q_strides","qq":true,"tag":"cutback"},{"w":17,"start":"2027-02-22","phase":"specific","E":50,"Q":60,"L":140,"q":"Q_mp","qq":true,"l":"L_runwalk"},{"w":18,"start":"2027-03-01","phase":"specific","E":50,"Q":60,"L":150,"q":"Q_mp","qq":true,"l":"L_runwalk"},{"w":19,"start":"2027-03-08","phase":"specific","E":50,"Q":60,"L":160,"q":"Q_mp","qq":true,"l_text":"Run-walk 9:1, then the last 20 min at marathon effort, running through.","lq":true},{"w":20,"start":"2027-03-15","phase":"specific","E":40,"Q":55,"L":135,"q_text":"10K test: 15 min easy, 10 km steady-hard on a flat route, 10 min easy. Your time sets the race pace.","qq":true,"l":"L_runwalk","tag":"cutback","test":true},{"w":21,"start":"2027-03-22","phase":"specific","E":50,"Q":60,"L":170,"q":"Q_mp","qq":true,"l":"L_runwalk"},{"w":22,"start":"2027-03-29","phase":"specific","E":50,"Q":60,"L":180,"q":"Q_mp","qq":true,"l":"L_runwalk","note":"First 3 hours. Easter week."},{"w":23,"start":"2027-04-05","phase":"specific","E":45,"Q":50,"L":150,"q":"Q_strides","qq":true,"l":"L_runwalk","tag":"cutback"},{"w":24,"start":"2027-04-12","phase":"specific","E":50,"Q":60,"L":180,"q":"Q_mp","qq":true,"l_text":"Run-walk 9:1, then the last 45 min at race pace and race run-walk. The dress rehearsal: race shoes, race breakfast, race gels.","lq":true,"note":"Peak week."},{"w":25,"start":"2027-04-19","phase":"taper","E":45,"Q":55,"L":120,"q":"Q_taper","qq":true,"l":"L_runwalk","tag":"taper"},{"w":26,"start":"2027-04-26","phase":"taper","E":40,"Q":45,"L":90,"q":"Q_taper","qq":true,"tag":"taper"},{"w":27,"start":"2027-05-03","phase":"race","E":30,"Q":20,"L":null,"e_text":"30 min easy, then 4 x 20 s strides.","q_text":"Shakeout: 20 min very easy, two days before the race.","tag":"race"}],"rules":[{"t":"The morning check-in decides the run","b":"Green: run as planned. Amber: easy only, 30 min cap, long run at 60%, flat soft route, no strides or steady work. Red, or anything below the knee: no run, walk only."},{"t":"During a flare","b":"Settle: no running. Reintroduce: walk-run, 20 min max. Rebuild: half the planned minutes, long run 45 min max. Re-load: 75%, easy only. Full: 90%, easy only until the flare closes."},{"t":"Stop and walk home if","b":"back pain climbs to 4 or more, or anything reaches below the knee. Log the run with that score; the next morning's check-in decides what happens next."},{"t":"Strides and steady work","b":"Only after 7 days with no Amber or Red. Otherwise the session is run easy at the same length."},{"t":"With the gym","b":"Two gym sessions: Tue Day A (heavy legs and the hinge), Thu Day B (lighter legs, RPE 7). The day after a long run of 90 min or more: Day B, not the hinge day. No Day A in the 48 h before a long run of 2 h or more. Cutback and taper weeks are gym deload weeks too."},{"t":"Run-walk","b":"Every long run of 2 h or more, and the race: 9 min run, 1 min walk, from the start. Walk breaks cut the continuous load on the spine, and finishing healthy does not need the minutes they cost."},{"t":"Winter","b":"The treadmill counts minute for minute for E and Q, at 1% incline. Keep the long run outside where you can. On ice, move it a day."},{"t":"A week is a set of runs","b":"Do the three runs in any order by Sunday. Suggested: Wed E, Fri Q (Sat if Friday is taken), Sun L, with the gym on Tue and Thu. Never two runs on consecutive days if the back was Amber in between."}],"race_day":["Morning check-in done. Amber: start, run-walk, and be ready to walk it in. Red or leg symptoms: do not start.","Run-walk 9:1 from the first kilometre, whatever everyone else does.","Gels every 40 min, the brand you used in the long runs.","Shoes that have at least two long runs in them.","Bib, pins, timing chip, and something warm to throw away at the start."]};
 // >>> END GENERATED
 var UNLOCK_DAYS = 30;
 var S = { pc:null, data:null, screen:"today", tab:"today", form:{} };
@@ -447,11 +450,23 @@ function weekNum(){
   return Math.max(1, Math.floor(diff/7)+1);
 }
 function phaseFor(w){ return w<=4?1:(w<=12?2:3); }
+// The day letters a phase has, in order: A/B in Phases 1 and 3, A/B/C in Phase 2.
+function dayCodes(p){ return (DAYS[p]||DAYS[3]).map(function(x){ return x.d; }); }
+function dayLabel(p,d){ var x=(DAYS[p]||[]).filter(function(y){ return y.d===d; })[0]; return x?x.l:""; }
+// Rotates through the current phase's days. A last session from a day this phase does not
+// have (a Day C from the old three-day week) starts the rotation again at Day A.
 function nextDay(){
+  var days=dayCodes(phaseFor(weekNum()));
   var ss=S.data&&S.data.sessions?S.data.sessions:[];
-  if(!ss.length) return "A";
-  var last=ss[0].day_code;
-  return last==="A"?"B":(last==="B"?"C":"A");
+  if(!ss.length) return days[0];
+  var i=days.indexOf(ss[0].day_code);
+  return i<0?days[0]:days[(i+1)%days.length];
+}
+// A day the phase actually has: a stale choice (Day C after the switch to two days) falls back to Day A.
+function dayIn(p,d){ return PROGRAM[p]&&PROGRAM[p][d]?d:dayCodes(p)[0]; }
+function dayChips(p,d){
+  return dayCodes(p).map(function(x){
+    return '<button data-day="'+x+'"'+(d===x?' class="on"':'')+'>Day '+x+' &middot; '+esc(dayLabel(p,x))+'</button>';}).join("");
 }
 function go(scr, form){
   if(scr==="home") scr=S.tab;
@@ -737,7 +752,7 @@ function viewRun(){
       }).join("")+'</ul>'
       +(wk&&Object.keys(a.byId).filter(function(k){ return a.byId[k]==="extra"; }).length
         ?'<p class="hint">Plus '+Object.keys(a.byId).filter(function(k){ return a.byId[k]==="extra"; }).length+' extra run(s), not counted against the plan.</p>':'')
-      +'<p class="hint">Any order, done by Sunday. Suggested: Tue E &middot; Thu Q &middot; Sun L, with the gym on Mon, Wed and Fri.</p></section>';
+      +'<p class="hint">Any order, done by Sunday. Suggested: Wed E &middot; Fri Q (or Sat) &middot; Sun L, with the gym on Tue (Day A) and Thu (Day B).</p></section>';
   }
   if(wk&&wk.w>1){
     var pw=P.weeks[wk.w-2], pt=RL.weekTotals(runs(),pw), pa=RL.assignWeek(runs(),pw,P.race_date);
@@ -902,7 +917,7 @@ function viewSession(w,p){
       + (picker?'<div style="flex-basis:100%">'+picker+'</div>':'')+'</div>';
   }).join("");
 
-  var held = st ? PROGRAM[plan.phase][d].filter(function(e){ return (e.sp||1)>st.sp; }) : [];
+  var held = st ? PROGRAM[plan.phase][dayIn(plan.phase,d)].filter(function(e){ return (e.sp||1)>st.sp; }) : [];
   var legs=!!S.form.legSymptoms;
 
   return head
@@ -911,9 +926,7 @@ function viewSession(w,p){
         +(st.pct?' Loads are prefilled at '+st.pct+'% of what you were lifting before.':'')
         +(plan.phase!==p?' Exercises come from Phase '+plan.phase+' while you rebuild.':'')+'</div>':'')
    + '<div class="card"><div class="lbl" style="margin-top:0">Which day</div><div class="chips">'
-   + ["A","B","C"].map(function(x){
-       var nm=x==="A"?"squat/hinge":(x==="B"?"posterior/upper":"single leg");
-       return '<button data-day="'+x+'"'+(d===x?' class="on"':'')+'>Day '+x+' &middot; '+nm+'</button>';}).join("")
+   + dayChips(p,d)
    + '</div></div>'
    + '<div class="card"><div class="lbl" style="margin-top:0">'+esc(PAIN.prompt)+'</div>'
    + '<div class="toggle" style="padding-top:2px"><b>Any symptoms below the knee?</b><button class="sw'+(legs?" on bad":"")+'" data-sw="legSymptoms"><i></i></button></div>'
@@ -1101,7 +1114,7 @@ function exList(arr){
 
 function viewPlan(w,p){
   var tab=S.form.tab||"gym";
-  var d=S.form.day||nextDay();
+  var d=dayIn(p,S.form.day||nextDay());
   var ph=PHASES[p];
   var out='<button class="back" data-go="home">&larr; Back</button><h2>The plan</h2>';
 
@@ -1119,12 +1132,10 @@ function viewPlan(w,p){
 
   if(tab==="gym"){
     out+='<div class="card"><div class="chips" style="margin-top:0">'
-      + ["A","B","C"].map(function(x){
-          var nm=x==="A"?"squat/hinge":(x==="B"?"posterior/upper":"single leg");
-          return '<button data-day="'+x+'"'+(d===x?' class="on"':'')+'>Day '+x+' &middot; '+nm+'</button>';}).join("")
+      + dayChips(p,d)
       +'</div></div>'
       +'<div class="card">'+exList(PROGRAM[p][d])+'</div>'
-      +'<p class="hint">Warm up 5 minutes every session: 3 min walk or bike, 10 bodyweight hinges, 10 glute bridges, 8 gentle cat-camel, 10 band pull-aparts. Rest 2-3 min on main lifts, 60-90s on accessories.</p>';
+      +'<p class="hint">Warm up about 10 minutes every session: 5 min bike, prone hip internal rotation 2 x 8 per side, 10 bodyweight hinges, 10 glute bridges, 10 band pull-aparts. Rest 2-3 min on main lifts, 60-90s on accessories.</p>';
   } else if(tab==="daily"){
     out+='<div class="card"><div class="lbl" style="margin-top:0">15 minutes, every day</div>'+exList(HOME)+'</div>'
       +'<div class="card"><div class="lbl" style="margin-top:0">Nervous system</div>'+exList(NERVE)
@@ -1483,12 +1494,12 @@ function stageSets(str, st){
 // flare stage still filters and doses whatever was swapped in.
 function sessionPlan(w,p,day){
   var f=openFlare(), sw=S.form&&S.form.swaps;
-  if(!f) return {ex:RL.applySwaps(PROGRAM[p][day], sw, PROGRAM, p), phase:p, stage:null, flare:null};
+  if(!f) return {ex:RL.applySwaps(PROGRAM[p][dayIn(p,day)], sw, PROGRAM, p), phase:p, stage:null, flare:null};
   var st=flareStage(f);
   if(!st.gym) return {ex:[], phase:p, stage:st, flare:f};
   var pool=st.pool?st.pool:p;
   if(!PROGRAM[pool]) pool=p;
-  var ex=RL.applySwaps(PROGRAM[pool][day], sw, PROGRAM, pool).filter(function(e){ return (e.sp||1)<=st.sp; }).map(function(e){
+  var ex=RL.applySwaps(PROGRAM[pool][dayIn(pool,day)], sw, PROGRAM, pool).filter(function(e){ return (e.sp||1)<=st.sp; }).map(function(e){
     var c={}; for(var k in e) c[k]=e[k];
     c.s=stageSets(e.s,st);
     return c;

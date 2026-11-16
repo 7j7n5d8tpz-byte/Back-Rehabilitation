@@ -12,7 +12,7 @@ const appDir = resolve(process.argv[2] || join(here, "..", "back-rehab-app"));
 const RL = createRequire(import.meta.url)(join(appDir, "logic.js"));
 const src = readFileSync(join(appDir, "index.html"), "utf8");
 const block = src.slice(src.indexOf("// <<< GENERATED"), src.indexOf("// >>> END GENERATED"));
-const { PROGRAM, FLARE, RUNPLAN: P, DELOADS } = new Function(block + "; return {PROGRAM, FLARE, RUNPLAN, DELOADS};")();
+const { PROGRAM, FLARE, RUNPLAN: P, DELOADS, DAYS } = new Function(block + "; return {PROGRAM, FLARE, RUNPLAN, DELOADS, DAYS};")();
 
 let n = 0;
 const t = (name, fn) => { fn(); n++; console.log("ok  " + name); };
@@ -123,6 +123,15 @@ t("gym deloads: programme weeks first, then run cutbacks after week 24", () => {
   assert.equal(RL.gymDeload(19, DELOADS, P.weeks[3]), false); // cutback, but before week 24
   assert.equal(RL.gymDeload(29, DELOADS, P.weeks[15]), true);  // run cutback week 16
   assert.equal(RL.gymDeload(29, DELOADS, P.weeks[14]), false);
+});
+
+t("days: DAYS lists exactly each phase's days; Phases 1 and 3 run as A/B", () => {
+  for (const p of Object.keys(PROGRAM)) {
+    assert.deepEqual(DAYS[p].map((x) => x.d), Object.keys(PROGRAM[p]));
+    assert.ok(DAYS[p].every((x) => x.l));
+  }
+  assert.deepEqual(Object.keys(PROGRAM[3]), ["A", "B"]);
+  assert.deepEqual(Object.keys(PROGRAM[1]), ["A", "B"]); // the flare ladder rebuilds from Phase 1
 });
 
 t("exercise catalog: no duplicates, spine filter, current phase's dose first", () => {

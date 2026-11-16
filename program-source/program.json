@@ -8,8 +8,8 @@
   "subtitle": "A 24-week sustainable strength program<br>for a recurrent L5/S1 disc herniation",
   "prepared_for": "Andreas",
   "date": "31 July 2026",
-  "revised": "17 October 2026",
-  "training": "3 full-body gym sessions/week, ~60 min",
+  "revised": "16 November 2026",
+  "training": "2 full-body gym sessions/week (Tue & Thu), ~75 min, alongside the marathon",
   "home": "15 minutes daily rehab + walking",
   "starting_point": "~6 weeks post June 2026 flare, improving but symptomatic"
  },
@@ -25,7 +25,7 @@
    "weeks": "weeks 1-4",
    "heading": "Phase 1 — Re-entry (weeks 1–4)",
    "goal_pdf": "establish a symptom-free baseline, rebuild trunk endurance and hip strength, and prove to your nervous system that loading is safe. You are not trying to get stronger in these four weeks. You are collecting evidence about what your back tolerates.",
-   "rules_pdf": "<b>Rules for this phase.</b> Everything at RPE 5–6. No hip hinge under external load — the hinge pattern is trained through back extensions and pull-throughs, which give you the posterior chain without the lever arm. Controlled tempo: 2 seconds down, no bounce. If you finish a session thinking “that was easy,” the phase is working as intended.",
+   "rules_pdf": "<b>Rules for this phase.</b> Everything at RPE 5–6. No hip hinge under external load — the hinge pattern is trained through back extensions and pull-throughs, which give you the posterior chain without the lever arm. Controlled tempo: 2 seconds down, no bounce. If you finish a session thinking “that was easy,” the phase is working as intended.</p><p><b>Two sessions.</b> Phase 1 is written as two sessions (A and B) to match the twice-weekly schedule. It is also where the flare ladder rebuilds from, so after a flare you return to these two days.",
    "goal_app": "Establish a symptom-free baseline and rebuild trunk endurance. You are not trying to get stronger — you are collecting evidence about what your back tolerates.",
    "rules_app": [
     "Everything at RPE 5-6, four or more reps left in the tank.",
@@ -37,8 +37,8 @@
    "footer_pdf": "<b>Passing out of Phase 1</b><br>Move to Phase 2 when you have completed <b>four consecutive weeks with no Red days</b> and you finish sessions feeling the same or better than when you started. If week 4 has been anything other than clean, repeat weeks 3–4. Repeating a phase costs you two weeks; a fourth herniation costs you six months.",
    "days": {
     "A": {
-     "label": "single-leg squat emphasis",
-     "mins": "~50 min",
+     "label": "single-leg squat, push & pull",
+     "mins": "~55 min",
      "exercises": [
       {
        "name": "Step-up, low box (20–30cm)",
@@ -52,6 +52,17 @@
        },
        "group": "quads",
        "spine": 2
+      },
+      {
+       "name": "Cable pull-through",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "Your hinge pattern practice. Short range, spine locked neutral.",
+       "app": {
+        "cue": "Your hinge practice. Short range, spine locked neutral."
+       },
+       "group": "post",
+       "spine": 3
       },
       {
        "name": "Machine chest press",
@@ -110,6 +121,19 @@
        "spine": 1
       },
       {
+       "name": "90/90 hip lift-off",
+       "sets": "3 × 5/side",
+       "rpe": "5–6",
+       "cue": "Sit in 90/90: front shin across your body, back shin out to the side, torso tall. Turn the back thigh inward to lift the back knee and foot off the floor, hold 2 s, lower slowly. That turn is hip internal rotation, trained at the end of your range. A small lift is normal at first. <b>If anything is felt in the leg, use the prone hip rotation from the warm-up instead.</b>",
+       "app": {
+        "sets": "3 x 5 per side",
+        "unit": "bw",
+        "cue": "Lift the back knee by turning the thigh inward. 2s hold. Anything in the leg: prone version instead."
+       },
+       "group": "hip",
+       "spine": 1
+      },
+      {
        "name": "Suitcase carry",
        "sets": "3 × 30 s/side",
        "rpe": "6",
@@ -125,88 +149,8 @@
      ]
     },
     "B": {
-     "label": "posterior chain & upper body",
-     "mins": "~45 min",
-     "exercises": [
-      {
-       "name": "Cable pull-through",
-       "sets": "3 × 12",
-       "rpe": "6",
-       "cue": "Your hinge pattern practice. Short range, spine locked neutral.",
-       "app": {
-        "cue": "Your hinge practice. Short range, spine locked neutral."
-       },
-       "group": "post",
-       "spine": 3
-      },
-      {
-       "name": "Lat pulldown, neutral grip",
-       "sets": "3 × 12",
-       "rpe": "6",
-       "cue": "Minimal lean-back. Keep the torso near vertical.",
-       "app": {
-        "cue": "Torso near vertical, minimal lean-back."
-       },
-       "group": "back",
-       "spine": 1
-      },
-      {
-       "name": "Incline dumbbell press",
-       "sets": "3 × 12",
-       "rpe": "6",
-       "cue": "Feet flat, no arch. Set the bench at 30°.",
-       "app": {
-        "name": "Incline DB press",
-        "cue": "Feet flat, no arch. Bench at 30 degrees."
-       },
-       "group": "chest",
-       "spine": 1
-      },
-      {
-       "name": "Cable face pull",
-       "sets": "2 × 15",
-       "rpe": "6",
-       "cue": "Upper back and rear delts; keeps posture honest.",
-       "app": {
-        "cue": "Upper back and rear delts. Keeps posture honest."
-       },
-       "group": "back",
-       "spine": 1
-      },
-      {
-       "name": "Side plank (forearm)",
-       "sets": "3 × 20–30 s/side",
-       "rpe": "6",
-       "cue": "Knees bent if the full version is hard. Completes the McGill “big three” with your home work.",
-       "app": {
-        "name": "Side plank",
-        "sets": "3 x 20-30s per side",
-        "unit": "bw",
-        "timed": true,
-        "cue": "Knees bent if needed. Completes the McGill big three."
-       },
-       "group": "trunk",
-       "spine": 1
-      },
-      {
-       "name": "45° back extension, bodyweight",
-       "sets": "3 × 12",
-       "rpe": "6",
-       "cue": "Rise to <b>neutral only</b>, never past straight. Driven by glutes, not by the low back.",
-       "app": {
-        "name": "45 deg back extension",
-        "sets": "3 x 12 bodyweight",
-        "unit": "bw",
-        "cue": "Rise to neutral only, never past straight. Glute-driven."
-       },
-       "group": "post",
-       "spine": 2
-      }
-     ]
-    },
-    "C": {
-     "label": "single leg & upper body",
-     "mins": "~50 min",
+     "label": "single leg, upper body & trunk",
+     "mins": "~55 min",
      "exercises": [
       {
        "name": "Split squat (rear foot on floor)",
@@ -220,6 +164,17 @@
        },
        "group": "quads",
        "spine": 2
+      },
+      {
+       "name": "Lat pulldown, neutral grip",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "Minimal lean-back. Keep the torso near vertical.",
+       "app": {
+        "cue": "Torso near vertical, minimal lean-back."
+       },
+       "group": "back",
+       "spine": 1
       },
       {
        "name": "Single-leg hip thrust",
@@ -242,27 +197,14 @@
        "spine": 2
       },
       {
-       "name": "Seated cable row, neutral grip",
-       "sets": "3 × 12",
+       "name": "Cable face pull",
+       "sets": "2 × 15",
        "rpe": "6",
-       "cue": "Do not let your lower back round at the stretch. Shorten the range if it does.",
+       "cue": "Upper back and rear delts; keeps posture honest.",
        "app": {
-        "name": "Seated cable row",
-        "cue": "Do not let the low back round at the stretch. Shorten the range if it does."
+        "cue": "Upper back and rear delts. Keeps posture honest."
        },
        "group": "back",
-       "spine": 2
-      },
-      {
-       "name": "Cable hip abduction",
-       "sets": "3 × 12/side",
-       "rpe": "6",
-       "cue": "Glute medius. Weak abductors make the lumbar spine do pelvic stabilising work.",
-       "app": {
-        "sets": "3 x 12 per side",
-        "cue": "Weak abductors make the lumbar spine stabilise the pelvis."
-       },
-       "group": "post",
        "spine": 1
       },
       {
@@ -278,16 +220,45 @@
        "spine": 1
       },
       {
-       "name": "Farmer carry (two hands)",
-       "sets": "3 × 40 s",
+       "name": "Side plank (forearm)",
+       "sets": "3 × 20–30 s/side",
        "rpe": "6",
-       "cue": "Tall, braced, small steps.",
+       "cue": "Knees bent if the full version is hard. Completes the McGill “big three” with your home work.",
        "app": {
-        "name": "Farmer carry",
-        "sets": "3 x 40s",
-        "timed": true
+        "name": "Side plank",
+        "sets": "3 x 20-30s per side",
+        "unit": "bw",
+        "timed": true,
+        "cue": "Knees bent if needed. Completes the McGill big three."
        },
        "group": "trunk",
+       "spine": 1
+      },
+      {
+       "name": "90/90 hip switch",
+       "sets": "2 × 6/side",
+       "rpe": "5",
+       "cue": "Sit in 90/90, hands on the floor behind you at first. Rotate both knees over to the other side without the feet sliding, 2 s each way; the hip that ends up behind you turns inward. Progress to hands-free, then hands-free with a tall torso. <b>Anything in the leg: use the prone hip rotation instead.</b>",
+       "app": {
+        "sets": "2 x 6 per side",
+        "unit": "bw",
+        "cue": "Knees over to the other side, feet stay put, 2s each way. Anything in the leg: prone version instead."
+       },
+       "group": "hip",
+       "spine": 1
+      },
+      {
+       "name": "45° back extension, bodyweight",
+       "sets": "3 × 12",
+       "rpe": "6",
+       "cue": "Rise to <b>neutral only</b>, never past straight. Driven by glutes, not by the low back.",
+       "app": {
+        "name": "45 deg back extension",
+        "sets": "3 x 12 bodyweight",
+        "unit": "bw",
+        "cue": "Rise to neutral only, never past straight. Glute-driven."
+       },
+       "group": "post",
        "spine": 2
       }
      ]
@@ -600,21 +571,22 @@
    "weeks": "weeks 13-24",
    "heading": "Phase 3 — Strength (weeks 13–24)",
    "goal_pdf": "consolidate. Lower reps, heavier loads, more demanding variations — but the same spine-sparing exercise selection. This is the phase you can stay in indefinitely.",
-   "rules_pdf": "<b>What changes.</b> Main lifts drop to 4–6 reps at RPE 7–8. Loaded rotation is introduced, carefully, through cable chops. The trap bar may come down toward the floor <b>only</b> if the previous eight weeks were entirely Green and you can maintain a neutral spine at that start position — check this with your physio, and film a set from the side. There is no requirement to ever pull from the floor.",
+   "rules_pdf": "<b>What changes.</b> Main lifts drop to 4–6 reps at RPE 7–8. Loaded rotation is introduced, carefully, through cable chops. The trap bar may come down toward the floor <b>only</b> if the previous eight weeks were entirely Green and you can maintain a neutral spine at that start position — check this with your physio, and film a set from the side. There is no requirement to ever pull from the floor.</p><p><b>Two sessions a week alongside the marathon.</b> From 16 November 2026 the phase runs as two full-body sessions instead of three, Tuesday and Thursday, so every muscle group is still trained twice a week. Day A carries the heavy leg work and the hinge; Day B keeps the legs lighter (RPE 7) because the quality run and the long run follow it. The runs do most of the calf work, so the gym keeps one calf exercise for symmetry. The standing overhead press is replaced by a back-supported seated press. Hip internal rotation is trained in both sessions as strength at the end of the range, not as passive stretching: the 90/90 lift-off and the hip airplane on Day A, the 90/90 hip switch on Day B.",
    "goal_app": "Consolidate. Heavier loads, same spine-sparing exercise selection. You can stay in this phase indefinitely.",
    "rules_app": [
+    "Two sessions a week: Day A Tue (heavy legs, hinge), Day B Thu (lighter legs, upper body).",
     "Main lifts 4-6 reps at RPE 7-8.",
     "Loaded rotation introduced carefully via cable chops.",
     "Floor pulls only after 8 fully green weeks, and only with your physio's sign-off.",
-    "There is no requirement to ever pull from the floor.",
     "Single-leg work: weaker leg first, the strong leg matches its reps.",
-    "SS1, SS2...: one set of each, then rest. Straight sets if the gym is busy."
+    "SS1, SS2...: one set of each, then rest. Three in a superset is a tri-set. Straight sets if the gym is busy.",
+    "Hip rotation work: anything felt in the leg, go back to the prone version from the warm-up."
    ],
    "footer_pdf": "",
    "days": {
     "A": {
-     "label": "hinge emphasis",
-     "mins": "~60 min",
+     "label": "heavy legs & hinge",
+     "mins": "~75 min",
      "exercises": [
       {
        "name": "Trap bar deadlift",
@@ -626,64 +598,70 @@
         "cue": "Lower the blocks only after 8 fully green weeks. Never grind a rep. Film from behind: hips rise level, no shift to the strong side."
        },
        "group": "post",
-       "spine": 3
+       "spine": 3,
+       "ss": 1
+      },
+      {
+       "name": "90/90 hip lift-off",
+       "sets": "4 × 5/side",
+       "rpe": "6–7",
+       "cue": "Sit in 90/90: front shin across your body, back shin out to the side, torso tall. Turn the back thigh inward to lift the back knee and foot off the floor, hold 2 s, lower slowly. That turn is hip internal rotation, trained at the end of your range. A small lift is normal at first. <b>If anything is felt in the leg, use the prone hip rotation from the warm-up instead.</b>",
+       "app": {
+        "sets": "4 x 5 per side",
+        "unit": "bw",
+        "cue": "Lift the back knee by turning the thigh inward. 2s hold. Anything in the leg: prone version instead."
+       },
+       "group": "hip",
+       "spine": 1,
+       "ss": 1
       },
       {
        "name": "Step-up, 40cm box",
        "sets": "3 × 8/leg",
-       "rpe": "8",
-       "cue": "Your Day A quad work, in place of the leg press. Heavier dumbbells than Phase 2; drive through the top foot.",
+       "rpe": "7–8",
+       "cue": "Your heavy quad work of the week. Drive through the top foot; do not push off the floor.",
        "app": {
         "sets": "3 x 8 per leg",
-        "cue": "Heavier than Phase 2. Drive through the top foot."
+        "cue": "Heavy quad work of the week. Drive through the top foot."
        },
        "group": "quads",
-       "spine": 2
+       "spine": 2,
+       "ss": 2
       },
       {
-       "name": "Flat barbell or DB bench press",
-       "sets": "4 × 6",
+       "name": "Flat DB bench press",
+       "sets": "3 × 6–8",
        "rpe": "7–8",
        "cue": "Modest arch only. Feet flat, glutes on the bench.",
        "app": {
-        "name": "Flat bench press"
+        "name": "Flat bench press",
+        "sets": "3 x 6-8 @ RPE 7-8"
        },
        "group": "chest",
-       "spine": 1
+       "spine": 1,
+       "ss": 2
       },
       {
        "name": "Chest-supported row",
-       "sets": "4 × 8",
+       "sets": "3 × 8",
        "rpe": "8",
-       "cue": "",
+       "cue": "Chest stays on the pad.",
        "group": "back",
        "spine": 1,
-       "ss": 1
+       "ss": 3
       },
       {
        "name": "Single-leg calf raise",
        "sets": "3 × 12/leg",
        "rpe": "8",
-       "cue": "Symmetry is the target, not just strength.",
+       "cue": "Your only gym calf work: the runs cover the rest, but they do not close a side-to-side gap. Symmetry is the target, not just strength.",
        "app": {
-        "sets": "3 x 12 per leg"
+        "sets": "3 x 12 per leg",
+        "cue": "Only gym calf work. The runs do the rest. Symmetry is the target."
        },
        "group": "calf",
        "spine": 1,
-       "ss": 1
-      },
-      {
-       "name": "Standing single-leg leg curl",
-       "sets": "3 × 8/leg",
-       "rpe": "8",
-       "cue": "Hamstrings at the knee. Cable with an ankle strap, or a standing leg-curl machine. The hip stays straight, which keeps the sciatic nerve slack — a seated curl bends the hip and stretches it. 2s lower.",
-       "app": {
-        "sets": "3 x 8 per leg",
-        "cue": "Hip stays straight, keeps the nerve slack. 2s lower."
-       },
-       "group": "post",
-       "spine": 1,
-       "ss": 2
+       "ss": 3
       },
       {
        "name": "Half-kneeling cable chop",
@@ -696,73 +674,114 @@
        },
        "group": "trunk",
        "spine": 3,
-       "ss": 2
+       "ss": 4
+      },
+      {
+       "name": "Cable lateral raise",
+       "sets": "3 × 12–15",
+       "rpe": "8",
+       "cue": "Your only direct side-delt work. Same cable as the chop: move the pulley between them.",
+       "app": {
+        "sets": "3 x 12-15",
+        "cue": "Only side-delt work. Same cable as the chop."
+       },
+       "group": "delts",
+       "spine": 1,
+       "ss": 4
+      },
+      {
+       "name": "Hip airplane",
+       "sets": "3 × 5/side",
+       "rpe": "6–7",
+       "cue": "Stand on one leg, one hand on a rack, soft knee, torso tipped forward only a little with the spine neutral. Turn the pelvis open (outward) and then closed (inward) over the standing hip, slowly and as far as you control. The closing turn is the internal rotation. Bodyweight first; later hold a light dumbbell in the free hand. Replaces the single-leg RDL: same balance and glute-medius work, plus rotation.",
+       "app": {
+        "sets": "3 x 5 per side",
+        "cue": "Hand on a rack. Turn the pelvis open, then closed over the standing hip. Slow. Light DB later."
+       },
+       "group": "hip",
+       "spine": 2,
+       "ss": 5
       },
       {
        "name": "Heavy suitcase carry",
        "sets": "3 × 30 s/side",
        "rpe": "8",
-       "cue": "",
+       "cue": "Stay perfectly vertical. Walk from the rack you did the airplanes at.",
        "app": {
         "sets": "3 x 30s per side",
         "timed": true
        },
        "group": "trunk",
-       "spine": 2
+       "spine": 2,
+       "ss": 5
       }
      ]
     },
     "B": {
-     "label": "upper body & glutes",
-     "mins": "~60 min",
+     "label": "upper body & lighter legs",
+     "mins": "~75 min",
      "exercises": [
       {
-       "name": "Single-leg hip thrust",
-       "sets": "4 × 6/leg",
-       "rpe": "8",
-       "cue": "Your heaviest glute work. Heavier dumbbell, or a Smith/machine single-leg setup. Hips level.",
-       "app": {
-        "sets": "4 x 6 per leg @ RPE 8",
-        "cue": "Heaviest glute work. Heavier DB or a Smith setup. Hips level."
-       },
-       "group": "post",
-       "spine": 1,
-       "ss": 1
-      },
-      {
-       "name": "Side plank with reach-through",
-       "sets": "3 × 10/side",
+       "name": "Bulgarian split squat",
+       "sets": "3 × 8/leg",
        "rpe": "7",
-       "cue": "",
+       "cue": "Dumbbells at your sides. RPE 7, not 8: this is the lighter leg day, so the quality run and the long run start on fresh legs.",
        "app": {
-        "name": "Side plank reach-through",
-        "sets": "3 x 10 per side",
-        "unit": "bw"
+        "sets": "3 x 8 per leg @ RPE 7",
+        "cue": "DBs at your sides. RPE 7: the lighter leg day, runs follow."
        },
-       "group": "trunk",
-       "spine": 1,
+       "group": "quads",
+       "spine": 2,
        "ss": 1
-      },
-      {
-       "name": "Standing overhead press",
-       "sets": "4 × 6",
-       "rpe": "7",
-       "cue": "Only if you can press without arching. Squeeze glutes, ribs down. Seated if not.",
-       "app": {
-        "cue": "Only if you can press without arching. Glutes squeezed, ribs down. Seated if not."
-       },
-       "group": "delts",
-       "spine": 3
       },
       {
        "name": "Weighted pull-up or pulldown",
-       "sets": "4 × 6",
+       "sets": "4 × 6–8",
        "rpe": "8",
        "cue": "",
        "app": {
-        "name": "Weighted pull-up / pulldown"
+        "name": "Weighted pull-up / pulldown",
+        "sets": "4 x 6-8"
        },
        "group": "back",
+       "spine": 2,
+       "ss": 1
+      },
+      {
+       "name": "Seated DB shoulder press, back supported",
+       "sets": "3 × 8–10",
+       "rpe": "7–8",
+       "cue": "Bench almost upright, back and head on the pad, ribs down. Press only as high as you can without the low back leaving the pad. Replaces the standing press: same shoulders, no lumbar arch.",
+       "app": {
+        "name": "Seated DB shoulder press",
+        "sets": "3 x 8-10",
+        "cue": "Back and head on the pad, ribs down. Stop short of lockout if the low back lifts."
+       },
+       "group": "delts",
+       "spine": 2
+      },
+      {
+       "name": "Single-leg hip thrust",
+       "sets": "3 × 8/leg",
+       "rpe": "8",
+       "cue": "Your heaviest glute work. Dumbbell on the working hip. Ribs down, hips level.",
+       "app": {
+        "sets": "3 x 8 per leg @ RPE 8",
+        "cue": "Heaviest glute work. DB on the working hip. Hips level."
+       },
+       "group": "post",
+       "spine": 1,
+       "ss": 2
+      },
+      {
+       "name": "Dip",
+       "sets": "3 × 8",
+       "rpe": "8",
+       "cue": "Upright torso, shoulders down. Assisted if you need it. The dip station is by the stretch area.",
+       "app": {
+        "name": "Dip / close-grip press"
+       },
+       "group": "chest",
        "spine": 2,
        "ss": 2
       },
@@ -778,126 +797,51 @@
        },
        "group": "trunk",
        "spine": 3,
-       "ss": 2
+       "ss": 3
       },
       {
-       "name": "Incline DB press",
-       "sets": "3 × 10",
-       "rpe": "8",
+       "name": "Side plank with reach-through",
+       "sets": "3 × 8/side",
+       "rpe": "7",
        "cue": "",
-       "group": "chest",
+       "app": {
+        "name": "Side plank reach-through",
+        "sets": "3 x 8 per side",
+        "unit": "bw"
+       },
+       "group": "trunk",
+       "spine": 1,
+       "ss": 3
+      },
+      {
+       "name": "90/90 hip switch",
+       "sets": "3 × 6/side",
+       "rpe": "5–6",
+       "cue": "Sit in 90/90, hands on the floor behind you at first. Rotate both knees over to the other side without the feet sliding, 2 s each way; the hip that ends up behind you turns inward. Progress to hands-free, then hands-free with a tall torso. <b>Anything in the leg: use the prone hip rotation instead.</b>",
+       "app": {
+        "sets": "3 x 6 per side",
+        "unit": "bw",
+        "cue": "Knees over to the other side, feet stay put, 2s each way. Anything in the leg: prone version instead."
+       },
+       "group": "hip",
+       "spine": 1,
+       "ss": 3
+      },
+      {
+       "name": "Cable face pull",
+       "sets": "3 × 15",
+       "rpe": "7–8",
+       "cue": "Upper back and rear delts; keeps posture honest.",
+       "group": "back",
        "spine": 1
       },
       {
        "name": "Weighted back extension",
        "sets": "3 × 10",
        "rpe": "7–8",
-       "cue": "To neutral. Slow eccentric.",
+       "cue": "Plate on chest. To neutral only, slow eccentric. With the trap bar on Day A, this trains the back extensors twice a week.",
        "group": "post",
        "spine": 3
-      }
-     ]
-    },
-    "C": {
-     "label": "single leg emphasis",
-     "mins": "~55 min",
-     "exercises": [
-      {
-       "name": "Bulgarian split squat",
-       "sets": "4 × 6/leg",
-       "rpe": "8",
-       "cue": "Heavier dumbbells, fewer reps.",
-       "app": {
-        "sets": "4 x 6 per leg"
-       },
-       "group": "quads",
-       "spine": 2,
-       "ss": 1
-      },
-      {
-       "name": "Dip or close-grip press",
-       "sets": "3 × 8",
-       "rpe": "8",
-       "cue": "",
-       "app": {
-        "name": "Dip / close-grip press"
-       },
-       "group": "chest",
-       "spine": 2,
-       "ss": 1
-      },
-      {
-       "name": "Single-leg RDL, dumbbell",
-       "sets": "3 × 8/leg",
-       "rpe": "7",
-       "cue": "Hip hinge, balance and glute-medius work in one. Light load, high control.",
-       "app": {
-        "name": "Single-leg RDL",
-        "sets": "3 x 8 per leg",
-        "cue": "Hinge, balance and glute medius in one. Light load, high control."
-       },
-       "group": "post",
-       "spine": 3
-      },
-      {
-       "name": "Single-arm cable row",
-       "sets": "3 × 10/side",
-       "rpe": "8",
-       "cue": "",
-       "app": {
-        "sets": "3 x 10 per side"
-       },
-       "group": "back",
-       "spine": 2,
-       "ss": 2
-      },
-      {
-       "name": "Cable lateral raise",
-       "sets": "3 × 12–15",
-       "rpe": "8",
-       "cue": "Your only direct side-delt work.",
-       "app": {
-        "sets": "3 x 12-15",
-        "cue": "Your only side-delt work."
-       },
-       "group": "delts",
-       "spine": 1,
-       "ss": 2
-      },
-      {
-       "name": "Cable face pull",
-       "sets": "3 × 15",
-       "rpe": "7–8",
-       "cue": "",
-       "group": "back",
-       "spine": 1
-      },
-      {
-       "name": "Heavy farmer carry",
-       "sets": "4 × 40 s",
-       "rpe": "8",
-       "cue": "",
-       "app": {
-        "sets": "4 x 40s",
-        "timed": true
-       },
-       "group": "trunk",
-       "spine": 2
-      },
-      {
-       "name": "45° back extension hold",
-       "sets": "3 × 45–60 s",
-       "rpe": "7",
-       "cue": "Bodyweight, held at <b>neutral</b> — a straight line from head to heels, never past it. Endurance, not strength: it is endurance of the back extensors that protects the spine. The same idea as your PT's static hold.",
-       "app": {
-        "name": "Back extension hold",
-        "sets": "3 x 45-60s",
-        "unit": "bw",
-        "timed": true,
-        "cue": "Hold at neutral, never past straight. Endurance, not strength."
-       },
-       "group": "trunk",
-       "spine": 2
       }
      ]
     }
@@ -972,6 +916,15 @@
    "app": {
     "dose": "2 x 30s per side",
     "cue": "Tuck the pelvis first, then lean."
+   }
+  },
+  {
+   "name": "Prone hip internal rotation",
+   "dose": "2 × 10/side",
+   "cue": "Lie on your stomach, knees bent to 90° and together. Let the feet fall outward slowly, which turns the hips inward, then bring them back using the hip muscles, not momentum. The hip stays straight, so the sciatic nerve stays slack. Your physio found the restriction is muscular: little and often beats long and hard.",
+   "app": {
+    "dose": "2 x 10 per side",
+    "cue": "On your stomach, knees bent. Feet fall outward slowly, then pull them back. Little and often."
    }
   }
  ],
@@ -1080,6 +1033,16 @@
    "why": "Same anti-extension job with a fraction of the spinal load."
   },
   {
+   "from": "90/90 hip lift-off or hip switch",
+   "to": "Prone hip internal rotation (the warm-up drill)",
+   "why": "Same internal rotation with the hip straight, which keeps the sciatic nerve slack. Use it if the 90/90 position brings on anything in the leg."
+  },
+  {
+   "from": "Hip airplane",
+   "to": "Smaller turn with both hands on the rack, or single-leg stand",
+   "why": "Keeps the balance and glute-medius work while the rotation range builds."
+  },
+  {
    "from": "Everything (a Red week)",
    "to": "Walking, nerve slides, Big Three at reduced range",
    "why": "See Section 8."
@@ -1113,6 +1076,10 @@
   {
    "date": "31 October 2026",
    "note": "Marathon added (Copenhagen, 9 May 2027): three runs a week from 2 November, kept in marathon.json and gated by the same check-in and flare ladder as the gym. Each flare stage now also says how much running it allows. After week 24 the gym deloads in the running plan's cutback and taper weeks, so the two never peak together. While logging a session an exercise can be swapped for any other in the programme; the swap is for that session only and is recorded on it."
+  },
+  {
+   "date": "16 November 2026",
+   "note": "Three gym sessions plus three runs was too much load, so the programme now runs as <b>two full-body sessions a week</b> (Tuesday and Thursday, about 75 minutes with warm-up), and every muscle group is still trained twice. Day A carries the heavy legs and the hinge; Day B keeps the legs at RPE 7 because the quality run and the long run follow it. The runs now cover most of the calf work, so one single-leg calf raise remains, for symmetry and S1 rehab. Removed: standing overhead press (replaced by a back-supported seated press), single-leg dumbbell RDL (replaced by the hip airplane), standing leg curl (Andreas's call; hamstrings are covered by running, the trap bar, hip thrust and back extension), farmer carry, single-arm cable row and the back-extension hold. <b>Hip internal rotation:</b> the physio found tight hips, internal rotation especially, and a muscular restriction, so it is trained as active strength at end range rather than passive stretching: prone hip internal rotation in every warm-up and daily at home (hip straight, nerve slack), the 90/90 hip lift-off and the hip airplane on Day A, the 90/90 hip switch on Day B. Any leg symptom in the 90/90 positions means going back to the prone version. Every superset was re-checked with Andreas against where the equipment stands in his gym. Phase 1, which the flare ladder rebuilds from, is also rewritten as two sessions; Phase 2 is left as it was run."
   }
  ],
  "_groups_comment": "group = primary muscle group used by the app's progression chart. spine = spinal load class (1 low, 2 moderate, 3 high) used by the flare protocol to decide which exercises are allowed at each return stage. Both are consumed by build.py.",
@@ -1148,6 +1115,10 @@
   {
    "key": "arms",
    "label": "Arms"
+  },
+  {
+   "key": "hip",
+   "label": "Hip rotation"
   }
  ],
  "flare_protocol": {

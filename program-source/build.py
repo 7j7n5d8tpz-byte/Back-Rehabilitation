@@ -108,8 +108,7 @@ def render_phase(num, ph):
         "  <p><b>Goal:</b> {}</p>".format(ph["goal_pdf"]),
         '  <div class="rules"><p>{}</p></div>'.format(ph["rules_pdf"]),
     ]
-    for letter in ("A", "B", "C"):
-        day = ph["days"][letter]
+    for letter, day in ph["days"].items():
         parts.append('  <div class="dayblock">')
         parts.append(
             '    <div class="daybar"><b>DAY {L}</b> <span>&mdash; {lab} &middot; {m}</span></div>'.format(
@@ -314,12 +313,23 @@ def build_app_block(d):
     for pi, pnum in enumerate(("1", "2", "3")):
         ph = d["phases"][pnum]
         lines.append(" {}:{{".format(pnum))
-        for di, letter in enumerate(("A", "B", "C")):
+        letters = list(ph["days"])
+        for di, letter in enumerate(letters):
             ex = ph["days"][letter]["exercises"]
             body = ",\n     ".join(exercise_js(e) for e in ex)
-            tail = "]" if di == 2 else "],"
+            tail = "]" if di == len(letters) - 1 else "],"
             lines.append("  {}:[{}{}".format(letter, body, tail))
         lines.append(" }" + ("," if pi < 2 else ""))
+    lines.append("};")
+    lines.append("")
+
+    # DAYS: each phase's day letters and labels, in order (Phase 2 has three, the others two)
+    lines.append("var DAYS = {")
+    lines.append(",\n".join(
+        " {}:[{}]".format(pnum, ",".join(
+            "{{d:{},l:{}}}".format(js(L), js(day["label"]))
+            for L, day in d["phases"][pnum]["days"].items()))
+        for pnum in ("1", "2", "3")))
     lines.append("};")
     lines.append("")
 
@@ -521,10 +531,10 @@ def main():
 
     # a quick sanity report
     for pnum in ("1", "2", "3"):
-        counts = {
-            L: len(d["phases"][pnum]["days"][L]["exercises"]) for L in ("A", "B", "C")
-        }
-        print("Phase {}: A={A} B={B} C={C} exercises".format(pnum, **counts))
+        counts = " ".join(
+            "{}={}".format(L, len(day["exercises"])) for L, day in d["phases"][pnum]["days"].items()
+        )
+        print("Phase {}: {} exercises".format(pnum, counts))
 
 
 if __name__ == "__main__":
